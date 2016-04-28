@@ -112,6 +112,26 @@ class Semente
                 "descricao: #{@descricao}",
                 "tamanho: #{@tamanho}"]
     end
+
+    # Retorna uma string desse objeto
+    def to_s
+        return  "nome: #{@nome}," +
+                "sigla: #{@sigla}," +
+                "id: #{@id}," +
+                "foto: #{@foto}," +
+                "nomes_cientificos: #{@nomes_cientificos.to_s}," +
+                "n_sementes_g: #{@n_sementes_g}," +
+                "n_dias_germinacao: #{@n_dias_germinacao}," +
+                "necessidade_kg_ha: #{@necessidade_kg_ha}," +
+                "ciclo_dias_inv: #{@ciclo_dias_inv}," +
+                "ciclo_dias_ver: #{@ciclo_dias_ver}," +
+                "espacamento_linha_plantas: #{@espacamento_linha_plantas}," +
+                "epoca_plantio_R1: #{@epoca_plantio_R1}," +
+                "epoca_plantio_R2: #{@epoca_plantio_R2}," +
+                "epoca_plantio_R3: #{@epoca_plantio_R3}," +
+                "descricao: #{@descricao}," +
+                "tamanho: #{@tamanho}"
+    end
 end
 
 ## Palavras reservadas - COLUNAS
@@ -141,12 +161,15 @@ puts ("...:::Sementes CSV Extractor :::...\n" +
 # Carregamos o arquivo
 arquivo = IO.readlines 'test1.csv'
 
+# Hash de plantas
+plantas = Hash.new
+
 # Vou criar uma lista com os id's que vou remover
 id_list = []
 i = 0
 
 # Vou remover os ID's que estão entre 'VARIEDADE' e 'Nº DE' e deixar
-# só os outros, ai usando o modelo deles, irei concertar todos de
+# só os outros, ai usando o modelo deles, irei cosertar todos de
 # forma que seja possível extrair os dados de cada planta
 while i < arquivo.length do
     # Se eu encontro a palavra variedade no arquivo
@@ -158,7 +181,7 @@ while i < arquivo.length do
         # o indice
         while arquivo[i] != "Nº DE\r\n" do
             id_list.push arquivo[i]
-            arquivo[i] = '-'
+            arquivo[i] = ''
             i += 1
         end
     else
@@ -170,6 +193,78 @@ end
 # Com a lista de ids em mão vou procurar por eles e fazer
 # verificações sobre como a string começa e como ela acaba
 # de forma a fazer as devidas correções no arquivo adequadamente
+# Como esse maldito arquivo não tem ordem, e as entradas estão
+# bastante desorganizadas e tal não vejo forma melhor de computar
+# essa coisa ao não ser em O(m*n) aonde m é o length dos ids e n e
+# o length do arquivo
+
+# retire o comentario dessa linha e das outras entradas para o debug
+# k = 0
+id_list.each do |e|
+    # Inicialização
+    i = 0
+
+    # Enquanto não encontrar o id procurado incrementa o loop
+    while i < arquivo.length && ( !arquivo[i].start_with?(e.gsub(/\r\n?/,'')) || (arquivo[i] =~ /^[^A-Za-z]+$/).nil?) do
+       i += 1
+    end
+
+    # Se o indice chegou ao tamanho do arquivo então o ID não foi
+    # encontrado, como os testes já foram feitos comentei a checagem
+    # de id's não encontrados
+    if i != arquivo.length then
+        # Se chegamos até aqui o ID está correto vamos corrigir ele
+        # antes de inserir essa entrada, então vamos fazer algumas
+        # checagems e correções
+
+        # Vamos checar se a entrada está no formato desejado
+        if !arquivo[i].end_with?(",\"\"\r\n") then
+            arquivo[i] = arquivo[i].gsub(/\r\n?/,'') + ",\"\"\r\n"
+        end
+
+        # Vamos corrigir as 2 posições anteriores e as duas seguintes
+        2.times do |x|
+            # Checa posição anterior
+            if !arquivo[i-(x+1)].start_with?('"",') then
+                arquivo[i-(x+1)] = '"",' + arquivo[i-(x+1)]
+            end
+
+            # Checa próxima posição
+            if !arquivo[i+(x+1)].end_with?(",\"\"\r\n") then
+                arquivo[i+(x+1)] = arquivo[i+(x+1)].gsub(/\r\n?/,'') + ",\"\"\r\n"
+            end
+        end
+
+        # Checa a última posição e corrige se for necessário
+        if !arquivo[i+3].end_with?(",\"\"\r\n") then
+            arquivo[i+3] = arquivo[i+3].gsub(/\r\n?/,'') + ",\"\"\r\n"
+        end
+
+        # Faz o parse e adiciona a propriedade
+        id = CSV.parse(arquivo[i])[0].to_i
+        plantas[id] = Semente.new(  CSV.parse(arquivo[i - 2])[1],  # Nome
+                                    CSV.parse(arquivo[i - 1])[1],  # Sigla
+                                    id)                            # ID
+
+        # Por ultimo adicionamos os nomes cientificos
+        # as outras propriedades vão ser adicionadas futuramente
+        3.times do |x|
+            plantas[id].nomes_cientificos.push CSV.parse(arquivo[i + (x + 1)]
+        end
+
+        # Com tudo isso feito vamos limpar essa parte do arquivo
+        z = i - 2
+        6.times do |x|
+            arquivo[z + x] = ''
+        end
+    end
+end
+
+# Agora com todas as informações triviais organizadas, nome da planta, sigla,
+# e nomes cientificos, iremos salvar esse arquivo e dar um parse dele uma única
+# vez, é importante lembrar que esse novo arquivo não vai conter a lista de ID's
+# nem as classes, já que essas já estão prontas, o que falta é só compor
+# as instâncias das classes com as informações que ainda não estão presentes
 
 # Carrega os dados do CSV de entrada
 dados = CSV.read 'dados2.csv'
@@ -179,9 +274,6 @@ progresso = 'Progress ['
 
 # Arquivo de saida
 CSV.open 'saida.csv', 'wb' do |saida|
-	# Hash de Plantas
-    plantas = Hash.new
-
     # Lista de ID's
     lista_id = []
 

@@ -374,12 +374,12 @@ R3 Ago - Fev
 Pumpkin Big Max,""
 Zapalo Mammoth,""
 Cucurbita pepo,""
-j4Abóbora 
-MENINA BRASILEIRA PRECOCE
-003
-Pumpkin Early Cushaw Golden
-Calabacin Menina Verde Rayado
-Cucurbita moschata
+"",j4Abóbora 
+"",MENINA BRASILEIRA PRECOCE
+003,""
+Pumpkin Early Cushaw Golden,""
+Calabacin Menina Verde Rayado,""
+Cucurbita moschata,""
 "",Abóbora
 "",MENINA BRASILEIRA 
 002,""
@@ -509,12 +509,12 @@ Cucurbita moschata,""
 Squash New Caravela,""
 Zapallo Nueva Caravela,""
 Cucurbita moschata,""
-Abóbora
-ITAPUÃ 301 JACAREZINHO
-023
-Squash Itapuã 301
-Zapallito Itapuã 301
-Cucurbita moschata
+"",Abóbora
+"",ITAPUÃ 301 JACAREZINHO
+023,""
+Squash Itapuã 301,""
+Zapallito Itapuã 301,""
+Cucurbita moschata,""
 "",Abóbora
 "",MINI PAULISTA
 036,""
@@ -527,12 +527,12 @@ Cucurbita moschata,""
 Pumpkin Atlantic Giant,""
 Zapallo Atlantic Gigante,""
 Curcubita maxima,""
-Abóbora 
-JERIMUM DE LEITE (SERGIPANA)
-913
-Pumpkin Jerimum
-Zapallo de Leche
-Cucurbita moschata
+"",Abóbora 
+"",JERIMUM DE LEITE (SERGIPANA)
+913,""
+Pumpkin Jerimum,""
+Zapallo de Leche,""
+Cucurbita moschata,""
 VARIEDADE
 036
 911
@@ -627,12 +627,12 @@ R3 Ago - Dez
 R1 Todo ano
 R2 Ago - Dez
 R3 Ago - Dez
-Mogango
-ENRUGADO VERDE SUL MIN.
-010
-Squash Hubbard Green
-Zapallo Hubbard Verde
-Cucurbita pepo
+"",Mogango
+"",ENRUGADO VERDE SUL MIN.
+010,""
+Squash Hubbard Green,""
+Zapallo Hubbard Verde,""
+Cucurbita pepo,""
 "",Moranga 
 "",COROA
 014,""
@@ -764,18 +764,18 @@ R3 Todo ano
 Cress Water Large Leaved,""
 Berro de Água Hoja Larga,""
 Nasturtium officinale,""
-Agrião 
-DA ÁGUA GIGANTE CALIXTO
-920
-Cress Water Giant Calixto
-Berro de Água Gigante Calixto
-Nasturtium officinales
-Agrião
-DA TERRA (PARA LAVOURA)
-021
-Cress Upland
-Berro Liso
-Barbarea verna
+"",Agrião 
+"",DA ÁGUA GIGANTE CALIXTO
+920,""
+Cress Water Giant Calixto,""
+Berro de Água Gigante Calixto,""
+Nasturtium officinales,""
+"",Agrião
+"",DA TERRA (PARA LAVOURA)
+021,""
+Cress Upland,""
+Berro Liso,""
+Barbarea verna,""
 "",Aipo/Salsão
 "", PASCAL TRONCHUDO
 024,""
@@ -889,12 +889,12 @@ R3 Todo ano
 R1 Todo ano
 R2 Todo ano
 R3 Todo ano
-Alface
-GRANDE LAGOS AMERICANA
-043
-Lettuce Great Lakes
-Lechuga Grandes Lagos
-Lactuca sativa
+"",Alface
+"",GRANDE LAGOS AMERICANA
+043,""
+Lettuce Great Lakes,""
+Lechuga Grandes Lagos,""
+Lactuca sativa,""
 "",Alface
 "",MIMOSA PRADO
 924,""
@@ -1039,12 +1039,12 @@ Lactuca sativa,""
 Lattuce Marvel Four Seasons,""
 Lechuga Cuatro Estaciones,""
 Lactuca sativa,""
-Alface 
-HANSON CRESPA REPOLHUDA
-029
-Lettuce Hanson
-Lechuga Hanson
-Lactuca sativa
+"",Alface 
+"",HANSON CRESPA REPOLHUDA
+029,""
+Lettuce Hanson,""
+Lechuga Hanson,""
+Lactuca sativa,""
 927
 037
 038
@@ -1078,12 +1078,12 @@ Lactuca sativa,""
 Lettuce Gamboa,""
 Lechuga Gamboa,""
 Lactuca sativa,""
-Alface 
-RAINHA DE MAIO (MANTEIGA)
-034
-Lettuce May Queen
-Lechuga Reina de Mayo
-Lactuca sativa
+"",Alface 
+"",RAINHA DE MAIO (MANTEIGA)
+034,""
+Lettuce May Queen,""
+Lechuga Reina de Mayo,""
+Lactuca sativa,""
 VARIEDADE
 032
 922
@@ -1186,30 +1186,30 @@ R3 Fev - Set
 Lettuce Regina Summer,""
 Lechuga Regina de Verano,""
 Lactuca sativa,""
-Alface 
-BOSTON BRANCA (MANTEIGA)
-027
-Lettuce White Boston
-Lechuga Boston Blanca
-Lactuca sativa
+"",Alface 
+"",BOSTON BRANCA (MANTEIGA)
+027,""
+Lettuce White Boston,""
+Lechuga Boston Blanca,""
+Lactuca sativa,""
 "",Alface
 "",BABA DE VERÃO
 026,""
 Lettuce Baba Summer,""
 Lechuga Baba de Verano,""
 Lactuca sativa,""
-Alface 
-MARAVILHA DE INVERNO MANTEIGA
-031
-Lettuce Winter Marvel
-Lechuga Maravilha de Invierno
-Lactuca sativa
-Alface
-ROMANA BRANCA DE PARIS
-044
-Lettuce White Paris Island Cos
-Lechuga Blanca de Paris
-Lactuca sativa
+"",Alface 
+"",MARAVILHA DE INVERNO MANTEIGA
+031,""
+Lettuce Winter Marvel,""
+Lechuga Maravilha de Invierno,""
+Lactuca sativa,""
+"",Alface
+"",ROMANA BRANCA DE PARIS
+044,""
+Lettuce White Paris Island Cos,""
+Lechuga Blanca de Paris,""
+Lactuca sativa,""
 "",Alface
 "",BATAVIA CACIMBA
 925,""
@@ -1343,12 +1343,12 @@ Cichorium intybus,""
 Chicory Spadona,""
 Achicoria Verde Spadona,""
 Cichorium intybus,""
-Almeirão
-DE CABEÇA PÃO DE AÇÚCAR
-053 
-Chicory Pain de Sucre
-Achicoria de Cabeza Pan de Azucar
-Cichorium intybus
+"",Almeirão
+"",DE CABEÇA PÃO DE AÇÚCAR
+053 ,""
+Chicory Pain de Sucre,""
+Achicoria de Cabeza Pan de Azucar,""
+Cichorium intybus,""
 VARIEDADE
 050
 051
@@ -1604,12 +1604,12 @@ Beta vulgaris,""
 Beet Long Red,""
 Remolacha Larga Roja,""
 Beta vulgaris,""
-Beterraba
-EARLY WONDER TALL TOP 
-069
-Beet Early Wonder Tall Top 
-Remolacha Early Wonder Tall Top
-Beta vulgaris
+"",Beterraba
+"",EARLY WONDER TALL TOP 
+069,""
+Beet Early Wonder Tall Top ,""
+Remolacha Early Wonder Tall Top,""
+Beta vulgaris,""
 VARIEDADE
 067
 068
@@ -1833,12 +1833,12 @@ R3 Mar - Jul
 R1 Abr - Jun
 R2 Abr - Jul
 R3 Mar - Jul
-Cebola
-PRIMAVERA (CERTIFICADA) 
-074
-Onion Primavera
-Cebolla Primavera
-Allium cepa
+"",Cebola
+"",PRIMAVERA (CERTIFICADA) 
+074,""
+Onion Primavera,""
+Cebolla Primavera,""
+Allium cepa,""
 "",Cebola 
 "",TEXAS GRANO 502 
 078,""
@@ -1857,12 +1857,12 @@ Allium cepa L.,""
 Onion White Creole,""
 Cebolla White Creole,""
 Allium cepa,""
-Cebola
-BOLA PRECOCE (CERTIFICADA) 
-081
-Onion Bola Precoce
-Cebolla Bola Precoce
-Allium cepa
+"",Cebola
+"",BOLA PRECOCE (CERTIFICADA) 
+081,""
+Onion Bola Precoce,""
+Cebolla Bola Precoce,""
+Allium cepa,""
 "",Cebola
 "",CONQUISTA
 083,""
@@ -1970,9 +1970,9 @@ Allium cepa,""
 "",Cenoura 
 "",SUPREMA 
 091,""
-Zanahoria Suprema
-Carrot Suprema Calibrated
-Daucus Carota
+Zanahoria Suprema,""
+Carrot Suprema Calibrated,""
+Daucus Carota,""
 "",Cebolinha
 "",VERDE
 085,""
@@ -2011,12 +2011,12 @@ Especiais para plantios de","","","","","tência às doenças foliares.
 recisão.",""
 Raiz cilíndrica. Alto teor de,"","","","","",caroteno.
 Raiz cônica.,"","","","","",""
-Cenoura
-NANTES CALIBRADA MÉDIA
-094
-Carrot Nantes
-Zanahoria Nantes
-Daucus carota
+"",Cenoura
+"",NANTES CALIBRADA MÉDIA
+094,""
+Carrot Nantes,""
+Zanahoria Nantes,""
+Daucus carota,""
 "",Cenoura
 "",TROPICAL
 096,""
@@ -2299,18 +2299,18 @@ Brassica oleracea var. italica,""
 Chinese Cabbage Pe-Tsai,""
 Col China Pe-Tsai,""
 Brassica pekinensis,""
-Couve-Flor
-BOLA DE NEVE (INVERNO) 
-115
-Cauliflower Snowball Early
-Coliflor Bola de Nieve
-Brassica oleracea var. botrytis
-Couve-Flor
-PIRACICABA PRECOCE (VERÃO) 
-116
-Cauliflower Early Piracicaba
-Coliflor Piracicaba de Verano
-Brassica oleracea var. botrytis
+"",Couve-Flor
+"",BOLA DE NEVE (INVERNO) 
+115,""
+Cauliflower Snowball Early,""
+Coliflor Bola de Nieve,""
+Brassica oleracea var. botrytis,""
+"",Couve-Flor
+"",PIRACICABA PRECOCE (VERÃO) 
+116,""
+Cauliflower Early Piracicaba,""
+Coliflor Piracicaba de Verano,""
+Brassica oleracea var. botrytis,""
 VARIEDADE
 112
 115
@@ -2432,12 +2432,12 @@ Brassica oleracea var. gongylodes,""
 Edible Podded Pea Flat Purple Flowered,""
 Arveja Chata Flor Púrpura,""
 Pisum sativum,""
-Ervilha 
-ITAPUÃ 600 (PARA DEBULHAR) 
-136
-Peas Onward
-Arveja Onward
-Pisum sativum
+"",Ervilha 
+"",ITAPUÃ 600 (PARA DEBULHAR) 
+136,""
+Peas Onward,""
+Arveja Onward,""
+Pisum sativum,""
 VARIEDADE
 129
 135
@@ -2535,24 +2535,24 @@ R3 Mar - Set
 R1 Fev - Nov
 R2 Todo ano
 R3 todo ano
-Ervilha
-TELEFONE ALTA (ALDERMAN) 
-137
-Peas Alderman (Tall Telephone)
-Arveja Alderman
-Pisum sativum
+"",Ervilha
+"",TELEFONE ALTA (ALDERMAN) 
+137,""
+Peas Alderman (Tall Telephone),""
+Arveja Alderman,""
+Pisum sativum,""
 "",Espinafre
 "",NOVA ZELÂNDIA
 140,""
 Spinach New Zeland,""
 Espinaca Nueva Zelandia,""
 Tetragonia tetragonoides,""
-Ervilha 
-ITAPUÃ 601 (PARA DEBULHAR) 
-138
-Peas Falchetto
-Arveja Falchetto
-Pisum sativum
+"",Ervilha 
+"",ITAPUÃ 601 (PARA DEBULHAR) 
+138,""
+Peas Falchetto,""
+Arveja Falchetto,""
+Pisum sativum,""
 "",Espinafre
 "",DE VIROFLAY 
 141,""
@@ -2662,12 +2662,12 @@ R3 Ago - Fev
 R1 Mar - Out
 R2 Ago - Fev
 R3 Ago - Jan
-Feijão-Vagem
-MACARRÃO TREPADOR (FAVORIT.)
-153
-Beans Macarrão Runner
-Poroto Macarrão Trepador
-Phaseolus vulgaris
+"",Feijão-Vagem
+"",MACARRÃO TREPADOR (FAVORIT.)
+153,""
+Beans Macarrão Runner,""
+Poroto Macarrão Trepador,""
+Phaseolus vulgaris,""
 "",Jiló
 "",GIGANTE JAÍBA 
 155,""
@@ -2685,12 +2685,12 @@ Phaseolus vulgaris,""
 160,""
 Indian Eggplant Light Green,""
 Solanum gilo,""
-Jiló 
-MORRO GRANDE VERDE-ESCURO
-161
-Indian Eggplant Dark Green Morro Grande
-Jiló Morro Grande Verde-Escuro
-Solanum gilo
+"",Jiló ,""
+"",MORRO GRANDE VERDE-ESCURO
+161,""
+Indian Eggplant Dark Green Morro Grande,""
+Jiló Morro Grande Verde-Escuro,""
+Solanum gilo,""
 "",Mamão 
 "",FORMOSA 
 158,""
@@ -2821,7 +2821,7 @@ arica papaya,""
 162,""
 Maxixe smooth Jaiba,""
 Maxixe Suavizar Jaiba,""
-Cucumis anguri,""
+"",Cucumis anguri,""
 "",MAXIXE
 163,""
 Cucumber West Indian Gherk,""
@@ -2963,12 +2963,12 @@ Citrullus lanatus,""
 Watermelon Hybrid Red Quality,""
 Sandia Hibrido Red Quality,""
 Citrullus lanatus,""
-Melancia Híbrida
-HONEY BALL SEM SEMENTES 
-166
-Watermelon Hybrid Honey Ball Seedless
-Sandia Hibrido Honey Ball Sin Semillas
-Citrullus lanatus
+"",Melancia Híbrida
+"",HONEY BALL SEM SEMENTES 
+166,""
+Watermelon Hybrid Honey Ball Seedless,""
+Sandia Hibrido Honey Ball Sin Semillas,""
+Citrullus lanatus,""
 VARIEDADE
 176
 177
@@ -3463,12 +3463,12 @@ R3 Ago - Jan
 R1 Todo ano
 R2 Ago - Abr
 R3 Set - Mar
-Milho-Doce 
-SUPER DOCE (TIPO HAVAÍ)
-506
-Sweet-Corn Super Sweet
-Maiz-Dulce Super Dulce
-Zea mays L.
+"",Milho-Doce 
+"",SUPER DOCE (TIPO HAVAÍ)
+506,""
+Sweet-Corn Super Sweet,""
+Maiz-Dulce Super Dulce,""
+Zea mays L.,""
 "",Morango
 "",ORNAMENTAL SILVESTRE
 185 ,""
@@ -3600,18 +3600,18 @@ R3 Fev - Nov
 Turnip White Globe Hybrid,""
 Nabo Redondo Blanco Híbrido,""
 Brassica rapa,""
-Nabo 
-JAPONÊS MINOWASE (RABANO) 
-192
-Radish Minowase
-Nabo Japonês Minowase
-Raphanus sativus var. acanthioformis
-Nabo Híbrido
-MINOWASE CHO-UM KOBAYASHI
-194
-Radish Minowase Hybrid
-Rabano Minowase Hibrido
-Raphanus sativus var. acanthioformis
+"",Nabo 
+"",JAPONÊS MINOWASE (RABANO) 
+192,""
+Radish Minowase,""
+Nabo Japonês Minowase,""
+Raphanus sativus var. acanthioformis,""
+"",Nabo Híbrido
+"",MINOWASE CHO-UM KOBAYASHI
+194,""
+Radish Minowase Hybrid,""
+Rabano Minowase Hibrido,""
+Raphanus sativus var. acanthioformis,""
 "",Nabo Redondo
 "",BRANCO COLO ROSADO
 193,""
@@ -3624,12 +3624,12 @@ Brassica rapa,""
 Cucumber Hybrid Green Pick,""
 Pepino Hibrido Green Pick,""
 Cucumis sativus,""
-Pepino Híbrido 
-PIONEIRO PARA CONSERVA
-200
-Cucumber Pioneer Hybrid
-Pepino Hibrido Pionero
-Cucumis sativus
+"",Pepino Híbrido 
+"",PIONEIRO PARA CONSERVA
+200,""
+Cucumber Pioneer Hybrid,""
+Pepino Hibrido Pionero,""
+Cucumis sativus,""
 VARIEDADE
 193
 198
@@ -3757,12 +3757,12 @@ Cucumis sativus,""
 Cucumber Aodai,""
 Pepino Aodai,""
 Cucumis sativus,""
-Pepino
-BRANCO MEIO-COMPRIDO 
-196
-Cucumber White Wonder
-Pepino Blanco
-Cucumis sativus
+"",Pepino
+"",BRANCO MEIO-COMPRIDO 
+196,""
+Cucumber White Wonder,""
+Pepino Blanco,""
+Cucumis sativus,""
 VARIEDADE
 946
 195
@@ -3867,12 +3867,12 @@ Cucumis sativus,""
 Cucumber Caipira,""
 Pepino Caipira,""
 Cucumis sativus,""
-Pepino
-CONSERVA WISCOSIN SMR 18 
-199
-Cucumber Wisconsin SMR 18
-Pepino Wisconsin SMR 18
-Cucumis sativus
+"",Pepino
+"",CONSERVA WISCOSIN SMR 18 
+199,""
+Cucumber Wisconsin SMR 18,""
+Pepino Wisconsin SMR 18,""
+Cucumis sativus,""
 "Pimenta Híbrida
 IBIRAJA JALAPENHO 
 965"
@@ -3989,12 +3989,12 @@ bastante picantes 90 - 10","","","e e frutos pequenos, próprios para
 as. Alto grau de uniformidade das 
 ode, saborosa e aromática. Frutos 
  mil (*SHU). Resistente ao TSWV e N.","","",""
-Pimenta
-GUARACI CUMARI DO PARÁ 
-974
-Hot Pepper Guaraci Cumari do Pará
-Pimiento Guaraci Cumari do Pará
-Capsicum annuum
+"",Pimenta
+"",GUARACI CUMARI DO PARÁ 
+974,""
+Hot Pepper Guaraci Cumari do Pará,""
+Pimiento Guaraci Cumari do Pará,""
+Capsicum annuum,""
 "",Pimenta
 "",DE CHEIRO ACEMIRA
 979,""
@@ -4104,24 +4104,24 @@ R3 Ago - Dez
 R1 Mar - Out
 R2 Ago - Dez
 R3 Ago - Dez
-Pimenta 
-BRS MARI (DEDO-DE-MOÇA) 
-977
-Hot Pepper BRS Mari (dedo-de-moça)
-Pimiento BRS Mari (dedo-de-moça)
-Capsicum annuum
-Pimenta 
-BOYRA HABANERO VERMELHA
-976
-Hot Pepper Boyra Habanero Red
-Pimiento Picante Boyra Habanero Rojo
-Capsicum chinense
-Pimenta 
-ITAGIBA HABANERO AMARELA 
-975
-Hot Pepper Itagiba
-Pimiento Itagiba Habanero
-Capsicum annuum
+"",Pimenta 
+"",BRS MARI (DEDO-DE-MOÇA) 
+977,""
+Hot Pepper BRS Mari (dedo-de-moça),""
+Pimiento BRS Mari (dedo-de-moça),""
+Capsicum annuum,""
+"",Pimenta 
+"",BOYRA HABANERO VERMELHA
+976,""
+Hot Pepper Boyra Habanero Red,""
+Pimiento Picante Boyra Habanero Rojo,""
+Capsicum chinense,""
+"",Pimenta 
+"",ITAGIBA HABANERO AMARELA 
+975,""
+Hot Pepper Itagiba,""
+Pimiento Itagiba Habanero,""
+Capsicum annuum,""
 "",Pimenta
 "",IBERABA JALAPENHO 
 973,""
@@ -4237,42 +4237,42 @@ R3 Ago - Jan
 R1 Mar - Out
 R2 Ago - Jan
 R3 Ago - Jan
-Pimenta
-ESPAGUETINHO ORNAMENTAL
-219
-Hot Pepper Octopus
-Pimiento Pulpo Ornamental
-Capsicum frutescens
+"",Pimenta
+"",ESPAGUETINHO ORNAMENTAL
+219,""
+Hot Pepper Octopus,""
+Pimiento Pulpo Ornamental,""
+Capsicum frutescens,""
 "",Pimenta
 "",ETNA ORNAMENTAL
 964,""
 Hot Pepper Etna,""
 Pimiento Picante Etna Ornamental,""
 Capsicum frutescens,""
-Pimenta
-STROMBOLI ORNAMENTAL
-963
-Hot Pepper Stromboli Ornamental
-Pimiento Stromboli Ornamental
-Capsicum annuum
-Pimentão
-CHAPÉU DE BISPO - CAMBUCÍ 
-213
-Sweet Pepper Bishop Hat
-Pimiento Dulce Sombrero de Obispo
-Capsicum annuum
+"",Pimenta
+"",STROMBOLI ORNAMENTAL
+963,""
+Hot Pepper Stromboli Ornamental,""
+Pimiento Stromboli Ornamental,""
+Capsicum annuum,""
+"",Pimentão
+"",CHAPÉU DE BISPO - CAMBUCÍ 
+213,""
+Sweet Pepper Bishop Hat,""
+Pimiento Dulce Sombrero de Obispo,""
+Capsicum annuum,""
 "",Pimentão Híbrido
 "",ANDES KOBAYASHI 
 204,""
 Sweet Pepper Hybrid Andes,""
 Pimiento Dulce Hibrido Andes,""
 Capsicum annuum,""
-Pimentão Híbrido
-VERMELHO SAMURAI-SAIS
-207
-Sweet Pepper Red Samura
-Pimiento Dulce Rojo Samurai
-Capsicum annuum
+"",Pimentão Híbrido
+"",VERMELHO SAMURAI-SAIS
+207,""
+Sweet Pepper Red Samura,""
+Pimiento Dulce Rojo Samurai,""
+Capsicum annuum,""
 VARIEDADE
 213
 204
@@ -4542,12 +4542,12 @@ Capsicum annuum,""
 Sweet Pepper Yolo Wonder,""
 Pimiento Dulce Yolo Wonder,""
 Capsicum annuum,""
-Pimentão
-ALONGADO AMARELO (DOCE) 
-212
-Sweet Pepper Yellow long
-Pimiento Dulce Amarillo Largo
-Capsicum annuum
+"",Pimentão
+"",ALONGADO AMARELO (DOCE) 
+212,""
+Sweet Pepper Yellow long,""
+Pimiento Dulce Amarillo Largo,""
+Capsicum annuum,""
 VARIEDADE
 210
 211
@@ -4776,12 +4776,12 @@ Raphanus sativus,""
 Radish White Icicle Long,""
 Rabanito Blanco Largo,""
 Raphanus sativus,""
-Rabanete 
-MEIO-COMPRIDO AMAGER 
-223
-Radish French Breakfast
-Rabanito Medio Largo Punta Blanca
-Raphanus sativus
+"",Rabanete 
+"",MEIO-COMPRIDO AMAGER 
+223,""
+Radish French Breakfast,""
+Rabanito Medio Largo Punta Blanca,""
+Raphanus sativus,""
 "",Rabanete
 "",VERMELHO COMPRIDO
 225,""
@@ -5058,12 +5058,12 @@ Brassica oleracea var. capitata,""
 Cabbage Mammoth Red Rock ,""
 Repollo Rojo,""
 Brassica oleracea var. capitata,""
-Rúcula 
-DONATELLA (FOLHA LARGA)
-254
-Rocket Donatella 
-Rucula Donatella
-Eruca sativa
+"",Rúcula 
+"",DONATELLA (FOLHA LARGA)
+254,""
+Rocket Donatella ,""
+Rucula Donatella,""
+Eruca sativa,""
 VARIEDADE
 242
 241
@@ -5297,12 +5297,12 @@ R3 Ago - Jan
 Parsley Moss Curled ,""
 Perejil Crespo,""
 Petroselinum crispum,""
-Tomate Cereja Híbrido
-CHIPANO LONGA VIDA SAIS
-266
-Cherry Tomato Hybrid Chipano Long Self Life 
-Tomate Cerejo Hibrido Chipano LSL
-Lycopersicon lycopersicum
+"",Tomate Cereja Híbrido
+"",CHIPANO LONGA VIDA SAIS
+266,""
+Cherry Tomato Hybrid Chipano Long Self Life ,""
+Tomate Cerejo Hibrido Chipano LSL,""
+Lycopersicon lycopersicum,""
 "",Salsa
 "",LISA
 253,""
@@ -5683,18 +5683,18 @@ Lycopersicun lycopersicum,""
 Cherry Tomato ,""
 Tomate Cereza,""
 Lycopersicon lycopersicum ,""
-Tomate 
-SUPER MARMANDE (GAÚCHO/MAÇÃ)
-262
-Tomato Super Marmande 
-Tomate Super Marmande
-Lycopesicon licopersicum (L.) H.Karst => 
-Tomate 
-SANTA CRUZ KADA (PAULISTA)
-263
-Tomato Santa Cruz Kada 
-Tomate Santa Cruz Kada
-Lycopersicon lycopersicum
+"",Tomate 
+"",SUPER MARMANDE (GAÚCHO/MAÇÃ)
+262,""
+Tomato Super Marmande ,""
+Tomate Super Marmande,""
+Lycopesicon licopersicum (L.) H.Karst => ,""
+"",Tomate 
+"",SANTA CRUZ KADA (PAULISTA)
+263,""
+Tomato Santa Cruz Kada ,""
+Tomate Santa Cruz Kada,""
+Lycopersicon lycopersicum,""
 VARIEDADE
 261
 262
@@ -5941,12 +5941,12 @@ livia cólicas menstruais.","","","ri
 a",", usando as folhas para as 
 s. Para aromatizar vinagres, 
 farmácia; o chá das folhas"
-Funcho 
-DOCE/ERVA-DOCE DE CABEÇA 
-482
-"Fennel, Sweet"
-Hinojo
-Foeniculum vulgare
+"",Funcho 
+"",DOCE/ERVA-DOCE DE CABEÇA 
+482,""
+"Fennel, Sweet",""
+Hinojo,""
+Foeniculum vulgare,""
 "",Hissopo 
 "",/ALFAZEMA DE CABOCLO
 483,""
@@ -6078,30 +6078,30 @@ Lavandula angustifolia,""
 Basil Gennaro de Menta,""
 Albahaca Gennaro de Menta,""
 Ocimum basilicum,""
-Losna
-/ABSINTO/ERVA DOS VERMES
-486
-Worwood / Absinthium
-Absinto
-Artemisia absinthium
-Manjericão
-TOSCANO FOLHA DE ALFACE 
-487
-Basil Toscano Lettuce Leaf
-Albahaca Toscano Hoja de Lechuga
-Ocimum basilicum L.
+"",Losna
+"",/ABSINTO/ERVA DOS VERMES
+486,""
+Worwood / Absinthium,""
+Absinto,""
+Artemisia absinthium,""
+"",Manjericão
+"",TOSCANO FOLHA DE ALFACE 
+487,""
+Basil Toscano Lettuce Leaf,""
+Albahaca Toscano Hoja de Lechuga,""
+Ocimum basilicum L.,""
 "",Manjericão
 "",/ALFAVACA BASILICÃO
 488,""
 "Basil, Sweet Italian Large Leaf",""
 Albahaca,""
 Ocimum basilicum,""
-Manjericão 
-/ALFAVACA BASILICÃO VERMELHO
-489
-"Basil, Sweet Italian Large Red Leaf"
-Albahaca
-Ocimum basilicum
+"",Manjericão 
+"",/ALFAVACA BASILICÃO VERMELHO
+489,""
+"Basil, Sweet Italian Large Red Leaf",""
+Albahaca,""
+Ocimum basilicum,""
 VARIEDADE
 487
 488
@@ -6208,12 +6208,12 @@ R3 Set - Mai
 R1 Todo ano
 R2 Todo ano
 R3 Set - Mai
-Manjericão/ALFAVACA
-BASILICÃO VERMELHO RUBI
-491
-Sweet Basil Red Rubin Purple Leaf
-Albahaca
-Ocimum Basilicum
+"",Manjericão/ALFAVACA
+"",BASILICÃO VERMELHO RUBI
+491,""
+Sweet Basil Red Rubin Purple Leaf,""
+Albahaca,""
+Ocimum Basilicum,""
 "",Manjericão 
 "",GRECCO A PALLA
 479,""
@@ -6225,7 +6225,7 @@ Ocimum basilicum,""
 499,""
 Basil Limoncino,""
 Albahaca Limoncino,""
-Ocimum basilicum,""
+"",Ocimum basilicum,""
 "",Manjerona 
 490,""
 "Marjoram, Sweet",""
@@ -6236,7 +6236,7 @@ Origanum majorana,""
 492,""
 Balm,""
 Toronjil,""
-Melissa officinalis,""
+"",Melissa officinalis,""
 "",Orégano 
 493,""
 "Manjoran, Pot or Perenial",""
@@ -6368,7 +6368,7 @@ Origanum vulgare subsp. hirtum,""
 498,""
 Thyme. Common,""
 Tomillo,""
-Thymus vulgaris,""
+"",Thymus vulgaris,""
 "",Sálvia 
 496,""
 Sage,""
@@ -6380,12 +6380,12 @@ Salvia officinalis,""
 Gourds Ornamentals Small Fruited Mixed,""
 Zapallito de Adorno Variado,""
 Cucurbita pepo,""
-Adonis 
-VERMELHO/OLHO DE FAISÃO
-301
-Adonis Aestivalis/Pheasant‘s Eye
-Adonis Rojo
-Adonis aestivalis
+"",Adonis 
+"",VERMELHO/OLHO DE FAISÃO
+301,""
+Adonis Aestivalis/Pheasant‘s Eye,""
+Adonis Rojo,""
+Adonis aestivalis,""
 "",Ageratum
 "",HOUSTONIANUM
 303,""
@@ -6480,12 +6480,12 @@ R3 Todo ano
 R1 Mai - Set
 R2 Ago - Fev 
 R3 Ago - Fev
-Ageratum
-AMARELO LONAS INODORA
-700
-Ageratum Yellow
-Ageratum Amarillo
-Lonas inodora
+"",Ageratum
+"",AMARELO LONAS INODORA
+700,""
+Ageratum Yellow,""
+Ageratum Amarillo,""
+Lonas inodora,""
 "",Alyssum
 "",COMPACTUM BRANCO 
 306,""
@@ -6510,12 +6510,12 @@ Alyssum saxatile,""
 Alyssum Queen Violet,""
 Alyssum Violeta,""
 Lobularia maritima,""
-Amaranthus
-GLOBULAR / PERPÉTUA ANÃ
-310
-Globe Amaranth
-Amaranthus Globular
-Gomphrena globosa
+"",Amaranthus
+"",GLOBULAR / PERPÉTUA ANÃ
+310,""
+Globe Amaranth,""
+Amaranthus Globular,""
+Gomphrena globosa,""
 VARIEDADE
 307
 308
@@ -6608,36 +6608,36 @@ R3 Mar - Jul
 R1 Maio
 R2 Abr - Jul
 R3 Fev - Ago
-Amor-Perfeito
-F2 HAPPYFLOWER SORTIDO 
-710
-Pansy F2 Happyflower Mixture
-Pensamiento F2 Happyflower Variado
-Viola wittrockiana
-Amor-Perfeito
-MINI HÍBRIDO SCOTCH SORTIDO
-715
-Pansy Miniature Hybrid Scotch Mixed
-Pensamiento Mini Hibrido Scotch Variado
-Viola wittrockiana
+"",Amor-Perfeito
+"",F2 HAPPYFLOWER SORTIDO 
+710,""
+Pansy F2 Happyflower Mixture,""
+Pensamiento F2 Happyflower Variado,""
+Viola wittrockiana,""
+"",Amor-Perfeito
+"",MINI HÍBRIDO SCOTCH SORTIDO
+715,""
+Pansy Miniature Hybrid Scotch Mixed,""
+Pensamiento Mini Hibrido Scotch Variado,""
+Viola wittrockiana,""
 "",Amor-Perfeito
 "",MIX OCEANO 
 713,""
 Pansy Swiss Giant Cape Horn,""
 Pensamiento Variado Azul y Blanco,""
 Viola wittrockiana,""
-Amor-Perfeito
-GIGANTE SUIÇO LARANJA
-312 
-Pansy Swiss Giant Deep Orange
-Pensamiento Naranja
-Viola wittrockiana
-Amor-Perfeito 
-GIGANTE SUÍÇO AMARELO
-314
-Pansy Swiss Giant Rheingold
-Pensamiento Amarillo
-Viola wittrockiana
+"",Amor-Perfeito
+"",GIGANTE SUIÇO LARANJA
+312 ,""
+Pansy Swiss Giant Deep Orange,""
+Pensamiento Naranja,""
+Viola wittrockiana,""
+"",Amor-Perfeito 
+"",GIGANTE SUÍÇO AMARELO
+314,""
+Pansy Swiss Giant Rheingold,""
+Pensamiento Amarillo,""
+Viola wittrockiana,""
 "",Amor-Perfeito 
 "",GIGANTE SUÍÇO ROXO
 315,""
@@ -6746,12 +6746,12 @@ Viola wittrockiana,""
 Pansy Swiss Giant Mixed,""
 Pensamiento Variado,""
 Viola wittrockiana,""
-Amor-Perfeito 
-GIGANTE SUÍÇO PÚRPURA
-317
-Pansy Swiss Giant Claret
-Pensamiento Purpura
-iola wittrockiana
+"",Amor-Perfeito 
+"",GIGANTE SUÍÇO PÚRPURA
+317,""
+Pansy Swiss Giant Claret,""
+Pensamiento Purpura,""
+iola wittrockiana,""
 "Aster
 PLUMA DE AVESTRUZ SORTIDA 
 332"
@@ -6902,12 +6902,12 @@ Bellis perennis,""
 Snapdragon Magic Carpet Dwarf Mixed,""
 Conejito Bajo Variado,""
 Antirrhinumn majus,""
-Antirrhinum/Boca-de-Leão
- ALTA SORTIDA
-326
-Snapdragon University of Califórnia Mixed
-Conejito Alto Variado
-Antirrhinum majus
+"",Antirrhinum/Boca-de-Leão
+"", ALTA SORTIDA
+326,""
+Snapdragon University of Califórnia Mixed,""
+Conejito Alto Variado,""
+Antirrhinum majus,""
 "",Brovalia
 "",AZUL 
 724,""
@@ -7038,24 +7038,24 @@ Tropaeolum majus,""
 asturtium Gleam Hybrids Mixed,""
 apuchina Híbrida Variada,""
 ropaeolum majus,""
-Celósia Cristata
-ANÃ SORTIDA/CRISTA-DE-GALO
-347
-Celosia Cristata Nana Coral Mixed
-Celosia Cristata/Cresta-de-Gallo
-Celosia argentea var. cristata
+"",Celósia Cristata
+"",ANÃ SORTIDA/CRISTA-DE-GALO
+347,""
+Celosia Cristata Nana Coral Mixed,""
+Celosia Cristata/Cresta-de-Gallo,""
+Celosia argentea var. cristata,""
 "",Celósia Plumosa
 "",SORTIDA/RABO-DE-GALO
 348,""
 Celosia Plumosa Pampas Plume Mixture,""
 Celosia Plumosa/Penacho-de-Gallo,""
 Celosia agentea var. plumosa,""
-Celósia Plumosa 
-SORTIDA ANÃ/RABO-DE-GALO
-349
-Celosia Plumosa Lilliput Mixed
-Celosia Plumosa Baja Variada/Penacho-de-G
-Celosia argentea var. plumosa
+"",Celósia Plumosa 
+"",SORTIDA ANÃ/RABO-DE-GALO
+349,""
+Celosia Plumosa Lilliput Mixed,""
+Celosia Plumosa Baja Variada/Penacho-de-G,""
+Celosia argentea var. plumosa,""
 VARIEDADE
 347
 348
@@ -7150,12 +7150,12 @@ R3 Ago - Dez
 R1 Mar - Nov
 R2 Todo ano
 R3 Todo ano
-Celósia Plumosa
-ANÃ GLITTERS SERIES SORTIDA
-725
-Celosia Plumosa Dwarf Glitters Series Mixed
-Celosia Plumosa Baja Glitters Series Variada
-Celosia argentea var.plumosa
+"",Celósia Plumosa
+"",ANÃ GLITTERS SERIES SORTIDA
+725,""
+Celosia Plumosa Dwarf Glitters Series Mixed,""
+Celosia Plumosa Baja Glitters Series Variada,""
+Celosia argentea var.plumosa,""
 "",Cinerária
 "",MARÍTIMA
 351,""
@@ -7180,12 +7180,12 @@ Senecio cineraria,""
 Clarkia Double Flowered Mixed,""
 Clarkia Variada,""
 Clarkia unguiculata,""
-Cobea
-SCANDENS/SINO DE CATEDRAL 
-360
-Cobea Scandens/Cathedral Bells
-Cobea Scandens
-Cobea scandens
+"",Cobea
+"",SCANDENS/SINO DE CATEDRAL 
+360,""
+Cobea Scandens/Cathedral Bells,""
+Cobea Scandens,""
+Cobea scandens,""
 VARIEDADE
 740
 352
@@ -7302,18 +7302,18 @@ onvolvulus tricolor,""
 Kale Ornamental Mixed,""
 Col Ornamental Variada,""
 Brassica oleracea,""
-Cravina 
-BARBATUS ALTA DOBRADA SORTIDA
-357
-Sweet William Tall Double Mixed
-Clavelina de Poeta Doble Variada
-Dianthus barbatus
-Cravina
-RENDADA DOBRADA SORTIDA ANÃ DA ÍNDIA
-358
-Dianthus Chinesis Dwarf Double Mixed
-Clavelina de la China Dobrada Variada
-Dianthus chinensis L.
+"",Cravina 
+"",BARBATUS ALTA DOBRADA SORTIDA
+357,""
+Sweet William Tall Double Mixed,""
+Clavelina de Poeta Doble Variada,""
+Dianthus barbatus,""
+"",Cravina
+"",RENDADA DOBRADA SORTIDA ANÃ DA ÍNDIA
+358,""
+Dianthus Chinesis Dwarf Double Mixed,""
+Clavelina de la China Dobrada Variada,""
+Dianthus chinensis L.,""
 VARIEDADE
 356
 357
@@ -7404,42 +7404,42 @@ R3 Fev - Jun
 R1 Abr - Mai
 R2 Mar - Mai
 R3 Fev - Jun
-Cravina 
-ANÃ SINGELA SORTIDA DA ÍNDIA
-359
-Dianthus Chinesis Dwarf Single Mixed/Persion Carp
-Clavelina de la China Simple Variada
-Dianthus chinesis
-Cravo Chabaud
-GIGANTE DOBRADO SORTIDO
-367
-Carnation Chabaud Double Mixed
-Clave Chabaud Gigante Variado
-Dianthus caryophyllus
-Cravo Chabaud 
-GIGANTE DOBRADO AMARELO
-366
-Carnation Chabaud Double Yellow
-Cravo Chabaud Dobrado Amarillo
-Dianthus caryophyllus
-Cravo Chabaud
-GIGANTE DOBRADO BRANCO
-368
-Carnation Chabaud Double White
-Clavel Chabaud Gigante Blanco
-Dianthus caryophyllus
-Cravo Chabaud
-GIGANTE DOBRADO VERMELHO
-369
-Carnation Chabaud Double Red
-Clavel Chabaud Gigante Rojo
-Dianthus caryophyllus
-Cravo Chabaud
-GIGANTE DOBRADO ROSA
-370
-Carnation Chabaud Double Rose
-Clavel Chabaud Gigante Rosa
-Dianthus caryophyllus
+"",Cravina 
+"",ANÃ SINGELA SORTIDA DA ÍNDIA
+359,""
+Dianthus Chinesis Dwarf Single Mixed/Persion Carp,""
+Clavelina de la China Simple Variada,""
+Dianthus chinesis,""
+"",Cravo Chabaud
+"",GIGANTE DOBRADO SORTIDO
+367,""
+Carnation Chabaud Double Mixed,""
+Clave Chabaud Gigante Variado,""
+Dianthus caryophyllus,""
+"",Cravo Chabaud 
+"",GIGANTE DOBRADO AMARELO
+366,""
+Carnation Chabaud Double Yellow,""
+Cravo Chabaud Dobrado Amarillo,""
+Dianthus caryophyllus,""
+"",Cravo Chabaud
+"",GIGANTE DOBRADO BRANCO
+368,""
+Carnation Chabaud Double White,""
+Clavel Chabaud Gigante Blanco,""
+Dianthus caryophyllus,""
+"",Cravo Chabaud
+"",GIGANTE DOBRADO VERMELHO
+369,""
+Carnation Chabaud Double Red,""
+Clavel Chabaud Gigante Rojo,""
+Dianthus caryophyllus,""
+"",Cravo Chabaud
+"",GIGANTE DOBRADO ROSA
+370,""
+Carnation Chabaud Double Rose,""
+Clavel Chabaud Gigante Rosa,""
+Dianthus caryophyllus,""
 VARIEDADE
 368
 369
@@ -7544,12 +7544,12 @@ Chrysanthemum multicaule Durieu,""
 Crysanthemum Carinatum Single Mixed,""
 Crisantemo Carenado Variado,""
 Chrysanthemum carinatum,""
-Margaridinha Branca
-CRYSANTHEMUM PALUDOSUM
-735
-Crysanthemum Paludosum (White)
-Crysanthemum Paludosum Blanco
-Chrysanthemum paludosum
+"",Margaridinha Branca
+"",CRYSANTHEMUM PALUDOSUM
+735,""
+Crysanthemum Paludosum (White),""
+Crysanthemum Paludosum Blanco,""
+Chrysanthemum paludosum,""
 "",Dália
 "",DOBRADA SORTIDA ANÃ
 378,""
@@ -7658,36 +7658,36 @@ R3 Dez - Fev
 R1 Mar - Nov
 R2 Todo ano
 R3 Todo ano
-Delphinium
-ESPORINHA DOBRADA SORTIDA
-381
-Delphinum Imperial Mixed/Larkspurt
-Delphinium /Espuela de Caballero
-Delphinium consolida L. => Consolida regalis Gra
-Dimorphoteca
-MARGARIDA AFRICANA SORTIDA
-384
-Dimorphotheca Mixed/Star of the Veldt
-Dimorphotheca Variada
-Dimorphotheca sinuata
-Digitalis
-FLOR DE GLOXINIA SORTIDA
-383
-Digitalis Excelsior Mixed/Foxglove
-Digital Variada/Dedalera
-Digitalis purpurea
-Eschscholzia
-PAPOULA DA CALIFÓRNIA SORT.
-385
-Eschscholzia Califórnica Single Mixed/Poppy
-Escolzia/Amapola Californiana
-Eschscholzia californica
-Ficóide
-SORTIDO/TAPETE MÁGICO
-387
-Mesembryanthemum/Livingstone Daisy
-Mesembryanthemum/Rayito de Sol
-orotheanthus bellidiformis
+"",Delphinium
+"",ESPORINHA DOBRADA SORTIDA
+381,""
+Delphinum Imperial Mixed/Larkspurt,""
+Delphinium /Espuela de Caballero,""
+Delphinium consolida L. => Consolida regalis Gra,""
+"",Dimorphoteca
+"",MARGARIDA AFRICANA SORTIDA
+384,""
+Dimorphotheca Mixed/Star of the Veldt,""
+Dimorphotheca Variada,""
+Dimorphotheca sinuata,""
+"",Digitalis
+"",FLOR DE GLOXINIA SORTIDA
+383,""
+Digitalis Excelsior Mixed/Foxglove,""
+Digital Variada/Dedalera,""
+Digitalis purpurea,""
+"",Eschscholzia
+"",PAPOULA DA CALIFÓRNIA SORT.
+385,""
+Eschscholzia Califórnica Single Mixed/Poppy,""
+Escolzia/Amapola Californiana,""
+Eschscholzia californica,""
+"",Ficóide
+"",SORTIDO/TAPETE MÁGICO
+387,""
+Mesembryanthemum/Livingstone Daisy,""
+Mesembryanthemum/Rayito de Sol,""
+orotheanthus bellidiformis,""
 "",Gailardia
 "",DOBRADA SORTIDA
 389,""
@@ -7803,24 +7803,24 @@ Gerbera jamesonii,""
 eranio Pelargonium Mixed,""
 eranio Pelargonium Variado,""
 elargonium x hortorum,""
-Girassol
-BONITO DE OUTONO SORTIDO
-386
-Sunflower Autumn Beauty Mixed
-Girasol Bello de Otoño Variado
-Helianthus annuus
+"",Girassol
+"",BONITO DE OUTONO SORTIDO
+386,""
+Sunflower Autumn Beauty Mixed,""
+Girasol Bello de Otoño Variado,""
+Helianthus annuus,""
 "",Girassol 
 "",SOL NOTURNO
 388,""
 Sunflower Evening Sun,""
 Girasol Sol Nocturno,""
 Helianthus annuus,""
-Girassol de Jardim 
-DOBRADO AMARELO ANÃO
-390
-Sunflower Sungold Dwarf
-Girassol de los Jardines Doble Amarillo Bajo
-Helianthus annuus
+"",Girassol de Jardim 
+"",DOBRADO AMARELO ANÃO
+390,""
+Sunflower Sungold Dwarf,""
+Girassol de los Jardines Doble Amarillo Bajo,""
+Helianthus annuus,""
 VARIEDADE
 386
 388
@@ -7971,18 +7971,18 @@ amados, devem ser sempre bem
 adas."
 "Flores: branca, rosa, e ver
 flor seca.","","",elha. Podem ser usadas como
-Gypsophila
-ELEGANS/MOSQUITINHO BRANCO
-395
-Gypsophila White Large Flower/Baby’s Breath
-Gypsophila Blanca
-Gypsophila elegans
-Gypsophila Panicolata
-SNOWFLAKE DOBRADA BRANCA
-775
-Gypsophila Paniculata Snowflake Double Whit
-Gypsophila Paniculata Snowflake Doble Branc
-Gypsophila paniculata
+"",Gypsophila
+"",ELEGANS/MOSQUITINHO BRANCO
+395,""
+Gypsophila White Large Flower/Baby’s Breath,""
+Gypsophila Blanca,""
+Gypsophila elegans,""
+"",Gypsophila Panicolata
+"",SNOWFLAKE DOBRADA BRANCA
+775,""
+Gypsophila Paniculata Snowflake Double Whit,""
+Gypsophila Paniculata Snowflake Doble Branc,""
+Gypsophila paniculata,""
 "",Helichrysum
 "",SEMPRE-VIVA SORTIDA
 397,""
@@ -8074,12 +8074,12 @@ R3 Mar - Mai
 R1 Abr - Ago 
 R2 Mar - Out
 R3 Fev - Nov
-Ipomea
-PURPÚREA SORTIDA/CAMPAINHA
-402
-Ipomea Purpurea Mixed/Morning Glory
-Ipomea Purpurea/Campanilla
-Ipomoea purpurea
+"",Ipomea
+"",PURPÚREA SORTIDA/CAMPAINHA
+402,""
+Ipomea Purpurea Mixed/Morning Glory,""
+Ipomea Purpurea/Campanilla,""
+Ipomoea purpurea,""
 "",Lavatera
 "",SORTIDA
 405,""
@@ -8087,12 +8087,12 @@ Lavatera Trimestris Mixed,""
 Lavatera Variada,""
 Lavatera trimestris,""
 Lathyrus
-ODORATUS SORTIDO/ERVILHA 
-CHEIROSA
-404
-Lathyrus Spencer Mixed Sweet Pea
-Arvejilla de Olor Variada
-Lathyrus odoratus
+"",ODORATUS SORTIDO/ERVILHA 
+"",CHEIROSA
+404,""
+Lathyrus Spencer Mixed Sweet Pea,""
+Arvejilla de Olor Variada,""
+Lathyrus odoratus,""
 "",Linária 
 "",MAROCCANA SORTIDA
 411,""
@@ -8223,18 +8223,18 @@ Chrysanthemum leucanthemum,""
 upinus Galery Yellow Shades,""
 upinus Amarillo / Altramu-de-flor,""
 upinus Polyphylus,""
-Myosotis Alpestris
-NÃO-TE-ESQUEÇAS-DE-MIM
-416
-Myosotis Alpestris Blue/Forget-Me-Not
-Myosotis/No-Me-Olvides
-Myosotis alpestris
-Mirabilis 
-BELA-DA-NOITE/MARAVILHA DO PERU SORTIDA
-415
-irabilis Jalapa Mixed/Four O´clock
-irabilis Variada
-irabilis jalapa
+"",Myosotis Alpestris
+"",NÃO-TE-ESQUEÇAS-DE-MIM
+416,""
+Myosotis Alpestris Blue/Forget-Me-Not,""
+Myosotis/No-Me-Olvides,""
+Myosotis alpestris,""
+"",Mirabilis 
+"",BELA-DA-NOITE/MARAVILHA DO PERU SORTIDA
+415,""
+irabilis Jalapa Mixed/Four O´clock,""
+irabilis Variada,""
+irabilis jalapa,""
 "",Nemesia
 "",STRUMOSA SORTIDA
 420,""
@@ -8358,12 +8358,12 @@ Petunia hybrida multiflora,""
 etunia F2 Mixture,""
 etunia F2 Variada,""
 etunia axillaria x Petunia integrifolia (hybrida ,""
-Petúnia Grandiflora Singela 
-POSTILION HÍBRIDA SORTIDA
-795
-Petunia Grandiflora Single Postilion Hybrid Mix
-Petunia Grandiflora Single Postillón Hibrida Va
-Petunia x hybrida
+"",Petúnia Grandiflora Singela 
+"",POSTILION HÍBRIDA SORTIDA
+795,""
+Petunia Grandiflora Single Postilion Hybrid Mix,""
+Petunia Grandiflora Single Postillón Hibrida Va,""
+Petunia x hybrida,""
 VARIEDADE
 430
 790
@@ -8455,12 +8455,12 @@ R3 Ago - Mar
 R1 Todo ano
 R2 Todo ano
 R3 Todo ano
-Petúnia
-NANA COMPACTA SORTIDA
-800
-Petunia Nana Compacta Mixed
-Petunia Nana Compacta Variada
-Petunia x hybrida
+"",Petúnia
+"",NANA COMPACTA SORTIDA
+800,""
+Petunia Nana Compacta Mixed,""
+Petunia Nana Compacta Variada,""
+Petunia x hybrida,""
 "",Phlox Drummondi
 "",ALTO SORTIDO/CHITINHA
 432,""
@@ -8473,18 +8473,18 @@ Phlox drummondi,""
 hacelia Tanacetifolia,""
 hacelia Azul,""
 hacelia tanacetifolia,""
-Phlox Drummondi
-ESTRELADO ANÃO SORTIDO/CHITINHA
-433
-Phlox Drummondi Twinkles Dwarf Mixed
-Phlox Drummondi Estrelado Variado
-Phlox drummondi
-Phlox Drummondi
-ANÃ COMPACTA BEAUTY SORTIDA
-805
-Phlox Drommondii Nana Compacta Beauty Mixed
-Phlo Drummondii Baja Compacta Beauty Variada
-Phlox drummondii
+"",Phlox Drummondi
+"",ESTRELADO ANÃO SORTIDO/CHITINHA
+433,""
+Phlox Drummondi Twinkles Dwarf Mixed,""
+Phlox Drummondi Estrelado Variado,""
+Phlox drummondi,""
+"",Phlox Drummondi
+"",ANÃ COMPACTA BEAUTY SORTIDA
+805,""
+Phlox Drommondii Nana Compacta Beauty Mixed,""
+Phlo Drummondii Baja Compacta Beauty Variada,""
+Phlox drummondii,""
 "",Piretro Híbrido
 "",SORTIDO
 434,""
@@ -8584,12 +8584,12 @@ R3 Set - Jan
 R1 Mai - Ago
 R2 Mai - Ago
 R3 Set - Jan
-Onze Horas
-PORTULACA SINGELA SORTIDA
-436
-Portulaca Single Flowered Mixed
-Portulaca Variada / Flor de Seda
-Portulaca grandiflora
+"",Onze Horas
+"",PORTULACA SINGELA SORTIDA
+436,""
+Portulaca Single Flowered Mixed,""
+Portulaca Variada / Flor de Seda,""
+Portulaca grandiflora,""
 "",Prímula 
 "",ELATIOR SORTIDA
 437,""
@@ -8602,12 +8602,12 @@ Primula elatior,""
 Pontetilla Miss Willmott Nepal Cinquefoil,""
 Potentilha Nepalensis,""
 Potentilla nepalensis,""
-Rudbeckia
-DOBRADA/MARGARIDA AMARELA
-441
-Rudbeckia Hirta Double
-Rudbeckia
-Rudbeckia hirta
+"",Rudbeckia
+"",DOBRADA/MARGARIDA AMARELA
+441,""
+Rudbeckia Hirta Double,""
+Rudbeckia,""
+Rudbeckia hirta,""
 "",Rudbeckia
 "",MARGARIDA AMARELA
 442,""
@@ -8852,36 +8852,36 @@ R3 Todo ano
 Salvia Splendens Amore Natalina,""
 Salvia Splendens Amor Natalina,""
 Salvia splendens,""
-Tagete
-SORTIDA ANÃ/CRAVO-DA-ÍNDIA
-454
-Marigold French Dwarf Double Mixed
-Tagete Bajo/Copete/Clavel Japonês
-Tagete patula
-Statice
-SORTIDA (SEMENTES LIMPAS)
-450
-tatice Sinuata Mixed (Clean Seeds)
-talice Variada (Semillas Limpias)
-imonium sinuatum
-Tagete
-SORTIDA ALTA/CRAVO-DA-ÍNDIA
-455
-Marigold African Tall Double Mixed
-Tagete Alto/Copete/Clavel Japonês
-Tagete erecta
+"",Tagete
+"",SORTIDA ANÃ/CRAVO-DA-ÍNDIA
+454,""
+Marigold French Dwarf Double Mixed,""
+Tagete Bajo/Copete/Clavel Japonês,""
+Tagete patula,""
+"",Statice
+"",SORTIDA (SEMENTES LIMPAS)
+450,""
+tatice Sinuata Mixed (Clean Seeds),""
+talice Variada (Semillas Limpias),""
+imonium sinuatum,""
+"",Tagete
+"",SORTIDA ALTA/CRAVO-DA-ÍNDIA
+455,""
+Marigold African Tall Double Mixed,""
+Tagete Alto/Copete/Clavel Japonês,""
+Tagete erecta,""
 "",Tagete
 "",TIGER EYES ANÃ
 826,""
 Tagete Tiger Eyes Dwarf,""
 Tagete Tiger Eyes Baja,""
 Tagete patula,""
-Thumbergia
-TREPADEIRA/AMARELINHA
-456
-Black-Eyed Susan
-Thumbergia Corredeira
-Thumbergia alata
+"",Thumbergia
+"",TREPADEIRA/AMARELINHA
+456,""
+Black-Eyed Susan,""
+Thumbergia Corredeira,""
+Thumbergia alata,""
 VARIEDADE
 455
 826
@@ -8990,12 +8990,12 @@ Tithonia speciosa,""
 Verbena Hybrid Ideal Florist Mixed,""
 Verbena Hibrida Variada,""
 Verbena hybrida,""
-Torênia F1Little Kiss mix 
-AMOR-PERFEITO DE VERÃO
-828
-Torênia F1 Litlle Kiss Mix
-Torênia F1 Little Kiss Variado
-Torenia fourniere
+"",Torênia F1Little Kiss mix 
+"",AMOR-PERFEITO DE VERÃO
+828,""
+Torênia F1 Litlle Kiss Mix,""
+Torênia F1 Little Kiss Variado,""
+Torenia fourniere,""
 "",Venidium
 "",LARANJA
 458,""
@@ -9249,12 +9249,12 @@ R3 Ago - Fev
 Zinnia Californian Giant Rose,""
 Zinnia Gigante Rosa/Flor-de-Papel,""
 Zinnia elegans,""
-Zinnia Gigante
-DA CALIFÓRNIA VERMELHA
-840
-Zinnia Californian Giant Red
-Zinnia Gigante Rojo/Flor-de-Papel
-Zinnia elegans
+"",Zinnia Gigante
+"",DA CALIFÓRNIA VERMELHA
+840,""
+Zinnia Californian Giant Red,""
+Zinnia Gigante Rojo/Flor-de-Papel,""
+Zinnia elegans,""
 "",Zinnia Gigante
 "",DA CALIFÓRNIA SALMÃO
 839,""
@@ -9281,7 +9281,7 @@ REF
 723
 726
 727
-CLASSIFICAÇÃO
+LASSIFICAÇÃO
 Pioneira
 Não Pioneira
 Não Pioneira
@@ -9380,7 +9380,7 @@ REF
 732
 736
 737
-CLASSIFICAÇÃO
+LASSIFICAÇÃO
 Pioneira
 Pioneira
 Pioneira
@@ -9467,7 +9467,7 @@ REF
 749
 751
 760
-CLASSIFICAÇÃO
+LASSIFICAÇÃO
 Pioneira
 Não Pioneira
 Pioneira
@@ -9560,7 +9560,7 @@ REF
 768
 769
 774
-CLASSIFICAÇÃO
+LASSIFICAÇÃO
 Pioneira
 Pioneira
 Não Pioneira
@@ -9656,7 +9656,7 @@ REF
 780
 782
 783
-CLASSIFICAÇÃO
+LASSIFICAÇÃO
 Pioneira
 Pioneira
 Pioneira
@@ -9742,7 +9742,7 @@ REF
 787
 788 
 789
-CLASSIFICAÇÃO
+LASSIFICAÇÃO
 Não Pioneira
 Pioneira
 Pioneira
