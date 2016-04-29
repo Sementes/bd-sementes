@@ -62,7 +62,7 @@ class Semente
 	@sigla
 	@id
 	@foto
-	@nomes_cientificos = []
+	@nomes_cientificos
 
 	# Propriedades Especificas
 	@n_sementes_g
@@ -91,6 +91,7 @@ class Semente
     # Construtor
     def initialize nome, sigla, id
         @nome, @sigla, @id = nome, sigla, id
+        @nomes_cientificos = []
     end
 
     # Retorna um array deste objeto
@@ -115,21 +116,21 @@ class Semente
 
     # Retorna uma string desse objeto
     def to_s
-        return  "nome: #{@nome}," +
-                "sigla: #{@sigla}," +
-                "id: #{@id}," +
-                "foto: #{@foto}," +
-                "nomes_cientificos: #{@nomes_cientificos.to_s}," +
-                "n_sementes_g: #{@n_sementes_g}," +
-                "n_dias_germinacao: #{@n_dias_germinacao}," +
-                "necessidade_kg_ha: #{@necessidade_kg_ha}," +
-                "ciclo_dias_inv: #{@ciclo_dias_inv}," +
-                "ciclo_dias_ver: #{@ciclo_dias_ver}," +
-                "espacamento_linha_plantas: #{@espacamento_linha_plantas}," +
-                "epoca_plantio_R1: #{@epoca_plantio_R1}," +
-                "epoca_plantio_R2: #{@epoca_plantio_R2}," +
-                "epoca_plantio_R3: #{@epoca_plantio_R3}," +
-                "descricao: #{@descricao}," +
+        return  "nome: #{@nome}, " +
+                "sigla: #{@sigla}, " +
+                "id: #{@id}, " +
+                "foto: #{@foto}, " +
+                "nomes_cientificos: #{@nomes_cientificos.to_s}, " +
+                "n_sementes_g: #{@n_sementes_g}, " +
+                "n_dias_germinacao: #{@n_dias_germinacao}, " +
+                "necessidade_kg_ha: #{@necessidade_kg_ha}, " +
+                "ciclo_dias_inv: #{@ciclo_dias_inv}, " +
+                "ciclo_dias_ver: #{@ciclo_dias_ver}, " +
+                "espacamento_linha_plantas: #{@espacamento_linha_plantas}, " +
+                "epoca_plantio_R1: #{@epoca_plantio_R1}, " +
+                "epoca_plantio_R2: #{@epoca_plantio_R2}, " +
+                "epoca_plantio_R3: #{@epoca_plantio_R3}, " +
+                "descricao: #{@descricao}, " +
                 "tamanho: #{@tamanho}"
     end
 end
@@ -164,6 +165,9 @@ arquivo = IO.readlines 'test1.csv'
 # Hash de plantas
 plantas = Hash.new
 
+# Hash de arvores
+arvores = Hash.new
+
 # Vou criar uma lista com os id's que vou remover
 id_list = []
 i = 0
@@ -174,8 +178,12 @@ i = 0
 while i < arquivo.length do
     # Se eu encontro a palavra variedade no arquivo
     if arquivo[i] == "VARIEDADE\r\n" then
+        # Removo a palavra VARIEDADE para que ela não me atrapalhe
+        arquivo[i] = "=====\r\n"
+
         # Pulo para a próxima entrada válida
         i += 1
+
         # Enquanto não acabar a lista de ID's
         # eu limpo o ID, inseridno '-' no lugar dele e incremento
         # o indice
@@ -242,9 +250,9 @@ id_list.each do |e|
 
         # Faz o parse e adiciona a propriedade
         id = CSV.parse(arquivo[i])[0].to_i
-        plantas[id] = Semente.new(  CSV.parse(arquivo[i - 2])[1],  # Nome
-                                    CSV.parse(arquivo[i - 1])[1],  # Sigla
-                                    id)                            # ID
+        plantas[id] = Semente.new(  CSV.parse(arquivo[i - 2])[0][1],  # Nome
+                                    CSV.parse(arquivo[i - 1])[0][1],  # Sigla
+                                    id)                               # ID
 
         # Por ultimo adicionamos os nomes cientificos
         # as outras propriedades vão ser adicionadas futuramente
@@ -265,6 +273,24 @@ end
 # vez, é importante lembrar que esse novo arquivo não vai conter a lista de ID's
 # nem as classes, já que essas já estão prontas, o que falta é só compor
 # as instâncias das classes com as informações que ainda não estão presentes
+# Para que isso seja fácil iremos salvar nosso arquivo resultante e carregar
+# ele numa nova variável
+
+# Abro meu arquivo final como escrita
+arquivo_pronto = open('dados2.csv', 'w')
+# Limpo ele
+arquivo_pronto.truncate(0)
+
+# Antes de gravar o arquivo vamos limpar a primeira instância do mesmo
+arquivo[0] = ''
+
+# Escrevo todas as linhas de arquivo em arquivo pronto
+arquivo.each do |e|
+    arquivo_pronto.write e
+end
+
+# Fechamos o arquivo para não ter nenhum tipo de problema
+arquivo_pronto.close
 
 # Carrega os dados do CSV de entrada
 dados = CSV.read 'dados2.csv'
@@ -285,6 +311,7 @@ CSV.open 'saida.csv', 'wb' do |saida|
     # for(inicializacao;condiao;incremento){}
     # Inicilização
     i = 0
+    j = 0
     # Condição
     while i < dados.length do
         # Adiciona uma barra de carregando
@@ -297,125 +324,79 @@ CSV.open 'saida.csv', 'wb' do |saida|
             print "\r"
             print "#{progresso} - #{prog} %"
 
-            # Força a saida para aparecer imediatamente, por padrão quando '\n' é printado
-            # o buffer da saida padrão é 'atualizado - flushed'
+            # Força a saida para aparecer imediatamente, por padrão quando
+            # '\n' é printado o buffer da saida padrão é 'atualizado - flushed'
             $stdout.flush
         end
 
-        # Se o primeiro parametro for igual uma string vazia ("")
-        # Cadastremos uma nova planta ou complementamos as informações da mesma
-        if dados[i][0].empty? then
-            # Adquire o ID da planta
-            id = dados[i+2][0].to_i
+        # Como só restam "Titulos" de colunas e dados dessas vamos organizar
+        palavra_reservada = dados[i][0]
 
-            unless plantas[id]
-                plantas[id] = Semente.new(dados[i][1],   # NOME
-                                          dados[i+1][1], # SIGLA
-                                          id)            # ID
-            else
-                plantas[id].nome    = dados[i][1]
-                plantas[id].sigla   = dados[i+1][1]
-                plantas[id].id      = id
-            end
+        # Remove o Index do titulo
+        i += titulos_colunas[palavra_reservada]
 
-            # Elimina os três primeiros dados
-            i += 3
-            # Procura os nomes cientficos
-            while dados[i][1].empty? do
-                # Adiciona o nome cientifico encontrado
-                plantas[i].nomes_cientificos.push dados[i][0]
-                # Incrementa 1
-                i += 1
-            end
-        # Como RUBY também não tem CONTINUE (puqueeee)
-        # CASO CONTRÁRIO
-        else
-            # Se não estamos cadastrando uma nova planta vamos verificar se temos uma palavra reservada
-            # na verdade sabemos que tem, vamos organizar o que cada uma vai nos retornar
-            palavra_reservada = dados[i][0]
+        # Checa a palavra reservada
+        case palavra_reservada
+            when '====='
+                # Se encontrou um bloco incrementamos em 6 o j
+                j += 6
+            when 'Nº DE'
+                for x in 0..5 do
+                    # Coloca a informação da tabela
+                    plantas[lista_id[]].n_sementes_g = dados[i+j][0].gsub('.', '').to_i
+                    j += 1
+                end
 
-            # Remove o Index do titulo
-            i += titulos_colunas[palavra_reservada]
+                # Incrementa o contador
+                i += 6
 
-            # Checa a palavra reservada
-            case palavra_reservada
-                # O ID define a ordem da leitura das linhas de cada tabela
-                # logo limpanos a lista_id e empilhamos os ID's
-                when 'VARIEDADE'
-                    # Limpa a Lista de ID
-                    lista_id = []
+            # Faz a mesma coisa que o anterior só que numa propriedade nova
+            when 'NECESSIDADE'
+                for j in 0..5 do
+                    # Como o array já está inicializado não precisamos verificar
+                    plantas[lista_id[j]].necessidade_kg_ha = dados[i+j][0].gsub('.','').gsub(',','.').to_f
+                end
 
-                    while dados[i][0] != 'Nº DE' do
-                        # Empilha o ID atual
-                        lista_id.push dados[i][0].to_i
+                # Incrementa o contador
+                i += 6
 
-                        # Incrementa
+            # Mais uma propriedade parecida
+            when 'Nº DIAS INÍCIO '
+                for j in 0..5 do
+                    plantas[lista_id[j]].n_dias_germinacao = dados[i+j][0]
+                end
+
+                # Incrementa o contador
+                i += 6
+
+            # Mesma receita de bolo
+            when 'ESPAÇAMENTO'
+                for j in 0..5 do
+                    # Muda o index e adiciona a palavra Vasos
+                    if dados[i+j][0] == '(Vasos)' || dados[i+j][0] == 'Planta para' || dados[i+j][0] == 'Lanço' then
                         i += 1
+                        plantas[lista_id[j]].espacamento_linha_plantas = "(Vasos)\n#{dados[i+j][0]}"
+                        if dados[i+j] == 'cultivo ornamental' then i += 1 end
+                    else
+                        # Adciona a caracteristica
+                        plantas[lista_id[j]].espacamento_linha_plantas = dados[i+j][0]
                     end
-                # Esse tipo aqui remove 6 linhas da tabela
-                # e coloca os valores no hash de plantas
-                when 'Nº DE'
-                    for j in 0..5 do
-                        # Se a posição não tiver ainda sido inicializada, inicializamos ela sem
-                        # os dados que não possuimos, nome e sigla, eles vão aparecer em algum momento rsrs
-                        unless plantas[lista_id[j]]
-                            plantas[lista_id[j]] = Semente.new('','',lista_id[j])
-                        end
+                end
 
-                        # Coloca a informação da tabela
-                        plantas[lista_id[j]].n_sementes_g = dados[i+j][0].gsub('.', '').to_i
-                    end
+                # Incrementa o contador
+                i += 6
 
-                    # Incrementa o contador
-                    i += 6
-
-                # Faz a mesma coisa que o anterior só que numa propriedade diferente
-                when 'NECESSIDADE'
-                    for j in 0..5 do
-                        # Como o array já está inicializado não precisamos verificar
-                        plantas[lista_id[j]].necessidade_kg_ha = dados[i+j][0].gsub('.','').gsub(',','.').to_f
-                    end
-
-                    # Incrementa o contador
-                    i += 6
-
-                # Mais uma propriedade parecida
-                when 'Nº DIAS INÍCIO '
-                    for j in 0..5 do
-                        plantas[lista_id[j]].n_dias_germinacao = dados[i+j][0]
-                    end
-
-                    # Incrementa o contador
-                    i += 6
-
-                # Mesma receita de bolo
-                when 'ESPAÇAMENTO'
-                    for j in 0..5 do
-                        # Muda o index e adiciona a palavra Vasos
-                        if dados[i+j][0] == '(Vasos)' || dados[i+j][0] == 'Planta para' || dados[i+j][0] == 'Lanço' then
-                            i += 1
-                            plantas[lista_id[j]].espacamento_linha_plantas = "(Vasos)\n#{dados[i+j][0]}"
-                            if dados[i+j] == 'cultivo ornamental' then i += 1 end
-                        else
-                            # Adciona a caracteristica
-                            plantas[lista_id[j]].espacamento_linha_plantas = dados[i+j][0]
-                        end
-                    end
-
-                    # Incrementa o contador
-                    i += 6
-
-                # Essa próximas caracteristicas são bem chatinhas e algumas muito complexas
-                # Apesar da receita ser a mesma, a execução é diferenciada
-                when 'CICLO'
-                when 'TAMANHO DA '
-                when 'CARACTERÍSTICAS/DIFERENCIAIS'
-                when 'ÉPOCA DE'
-                else
-                    # Não deveria estar chegando aqui :S
-            end
+            # Essa próximas caracteristicas são bem chatinhas e algumas
+            # muito complexas
+            # Apesar da receita ser a mesma, a execução é diferenciada
+            when 'CICLO'
+            when 'TAMANHO DA '
+            when 'CARACTERÍSTICAS/DIFERENCIAIS'
+            when 'ÉPOCA DE'
+            else
+                # Não deveria estar chegando aqui :S
         end
-	end
+    end
 
     # Para cada planta cadastrada
     # transformar objeto em array e jogar no CSV
