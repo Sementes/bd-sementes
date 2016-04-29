@@ -135,6 +135,54 @@ class Semente
     end
 end
 
+class Arvore
+    # Propriedades Gerais
+    @nome
+    @id
+    @foto
+    @nomes_cientificos
+
+    # Caracteristicas da Planta
+    @classificacao
+    @bioma
+    @regiao_de_origem
+    @caracteristicas
+
+    # Getters and setters
+    attr_accessor :nome, :id, :foto, :nomes_cientificos
+    attr_accessor :classificacao, :bioma, :regiao_de_origem, :caracteristicas
+
+    # Construtor
+    def initialize nome, id
+        @nome, @id = nome, id
+        @nomes_cientificos = []
+    end
+
+    # Retorna um array deste objeto
+    def to_a
+        return ["nome: #{@nome}",
+                "id: #{@id}",
+                "foto: #{@foto}",
+                "nomes_cientificos: #{@nomes_cientificos.to_s}",
+                "classificacao: #{@classificacao}",
+                "bioma: #{@bioma}",
+                "regiao_de_origem: #{@regiao_de_origem}",
+                "caracteristicas: #{@caracteristicas}"]
+    end
+
+    # Retorna uma string desse objeto
+    def to_s
+        return  "nome: #{@nome}, " +
+                "id: #{@id}, " +
+                "foto: #{@foto}, " +
+                "nomes_cientificos: #{@nomes_cientificos.to_s}, " +
+                "classificacao: #{@classificacao}, " +
+                "bioma: #{@bioma}, " +
+                "regiao_de_origem: #{@regiao_de_origem}, " +
+                "caracteristicas: #{@caracteristicas}"
+    end
+end
+
 ## Palavras reservadas - COLUNAS
 titulos_colunas = { "VARIEDADE"                      => 1,   # IGN: -
                     "Nº DE"                          => 2,   # IGN: "SEMENTES/g",
@@ -168,7 +216,8 @@ plantas = Hash.new
 # Hash de arvores
 arvores = Hash.new
 
-# Vou criar uma lista com os id's que vou remover
+# Vou criar uma lista com todos os id's
+ref_list = []
 id_list = []
 i = 0
 
@@ -267,6 +316,56 @@ id_list.each do |e|
         end
     end
 end
+
+# Agora que removemos todas as 'sementes', vamos adicionar as sementes só
+# que as sementes das Arvores, vamos começar adicionando as referências que é o
+# mesmo que o ID das variedades só que com outro nome.. Graças a Deus!
+
+# Armazenemos o ID da primeira referência
+first_ref = arquivo.find_index "REF\r\n"
+
+# Vamos agora pegar a lista de todas as referências a partir da primeira
+i = first_ref
+while i < arquivo.length do
+    if arquivo[i] == "REF\r\n" then
+        # Remove a palavra REF do arquivo
+        arquivo[i] = "=======\r\n"
+
+        # Pulo para a próxima entrada válida
+        i += 1
+
+        # Enquanto houver referências, adicionamos a entrada a lista REF
+        while arquivo[i] != "CLASSIFICAÇÃO\r\n" do
+            ref_list.push arquivo[i]
+            arquivo[i] = ''
+            i += 1
+        end
+    else
+        # Se não encontramos a palavra REF, incrementamos o contador
+        i += 1
+    end
+end
+
+# Como sabemos a primeira posição das arvores é igual a first_ref -13
+first_ref -= 13
+
+# Agora que temos a lista de referências preciamos procurar estas
+# arvores e adicionalas ao nosso hash de arvores
+ref_list.each do |e|
+    # Iniciamos a posição com a primeira referência, porém como nada nesse
+    # arquivo está organizado nós não podemos incrementar o first ref :/
+    i = first_ref
+
+    # Enquanto ão encontrarmos a referência desejada
+    while i < arquivo.length && ( !arquivo[i].start_with?(e.gsub(/\r\n?/,'')) || (arquivo[i] =~ /^[^A-Za-z]+$/).nil?) do
+        i += 1
+    end
+
+    # Se o indice chegou ao tamanho do arquivo então não encontramos o ID
+    # caso ele não tenha chegado nós olhamos os indices anteriores e após
+    # ele afim de inserir a arvore a nossa lista de arvores
+    if i != arquivo.length then
+
 
 # Agora com todas as informações triviais organizadas, nome da planta, sigla,
 # e nomes cientificos, iremos salvar esse arquivo e dar um parse dele uma única
