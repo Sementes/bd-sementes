@@ -284,7 +284,7 @@ end
 
 # retire o comentario dessa linha e das outras entradas para o debug
 # k = 0
-id_list.each do |e|
+id_list = id_list.map do |e|
     # Inicialização
     i = 0
 
@@ -327,8 +327,6 @@ id_list.each do |e|
         # Faz o parse do id
         id = CSV.parse(arquivo[i])[0][0].to_i
 
-        # Salvamos nossa referência como o novo valor
-        e = id
 
         # Agora adicionamos a nova propriedade
         plantas[id] = Semente.new(  CSV.parse(arquivo[i - 2])[0][1],  # Nome
@@ -347,6 +345,9 @@ id_list.each do |e|
             arquivo[z + x] = ''
         end
     end
+    
+    # Salvamos nossa referência como o novo valor
+    e = id
 end
 
 # Como sabemos a primeira posição das arvores é igual a first_ref -13
@@ -354,7 +355,7 @@ first_ref -= 13
 
 # Agora que temos a lista de referências preciamos procurar estas
 # arvores e adicionalas ao nosso hash de arvores
-ref_list.each do |e|
+ref_list = ref_list.map do |e|
     # Iniciamos a posição com a primeira referência, porém como nada nesse
     # arquivo está organizado nós não podemos incrementar o first ref :/
     i = first_ref
@@ -387,8 +388,6 @@ ref_list.each do |e|
         nome = CSV.parse(arquivo[i - 1])[0][1]
         arvores[id] = Arvore.new(nome, id)
 
-        # Salvamos a referência como o novo id
-        e = id
 
         # Como não sabemos quantos nomes cientficos a arvore possui
         # iremos corrigir e adiciona-los ele a instancia da classe
@@ -410,6 +409,9 @@ ref_list.each do |e|
         arquivo[i] = ''
         arquivo[i - 1] = ''
     end
+  
+    # Salvamos a referência como o novo id
+    e = id
 end
 
 # Agora com todas as informações triviais organizadas, nome da planta, sigla,
@@ -474,7 +476,7 @@ CSV.open 'saida.csv', 'wb' do |saida|
         palavra_reservada = dados[i][0]
 
         # Remove o Index do titulo, se a posição não for um bloco
-        if palavra_reservada != '======' then
+        if !titulos_colunas[palavra_reservada].nil? then
             i += titulos_colunas[palavra_reservada]
         end
 
@@ -536,10 +538,14 @@ CSV.open 'saida.csv', 'wb' do |saida|
             # Essa próximas caracteristicas são bem chatinhas e algumas muito complexas
             # Apesar da receita ser a mesma, a execução é diferenciada
             # TODO - Inserção de propriedades chave
-            when 'CICLO'
-            when 'TAMANHO DA '
-            when 'CARACTERÍSTICAS/DIFERENCIAIS'
+            # TODO - CICLO
+            #when 'CICLO'
+            # TODO - TAMANHO DA
+            #when 'TAMANHO DA '
+            # TODO - CARACTERISTICAS
+            #when 'CARACTERÍSTICAS/DIFERENCIAIS'
             else
+                i += 1
                 # Não deveria estar chegando aqui :S
         end
     end
@@ -551,13 +557,18 @@ CSV.open 'saida.csv', 'wb' do |saida|
     # Para cada planta cadastrada
     # transformar objeto em array e jogar no CSV
     plantas.each do |e|
-        saida << e.to_a
+        saida << e[1].to_a
+    end
+
+    # Para cada arvore cadastrada
+    arvores.each do |e|
+        saida << e[1].to_a
     end
 
     # Adiciona a propriedade extra
-    extra = plantas[15]
-    extra.id = 16
-    saida << extra.to_a
+    #extra = plantas[15]
+    #extra.id = 16
+    #saida << extra.to_a
 
     # FINISHED :D
     puts("]\n" +

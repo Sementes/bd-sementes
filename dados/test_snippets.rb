@@ -151,7 +151,7 @@ end
 
 plantas = Hash.new
 k = 0
-id_list.each do |e|
+id_list = id_list.map do |e|
     i = 0
 
     while i < arquivo.length && ( !arquivo[i].start_with?(e.gsub(/\r\n?/,'')) || (arquivo[i] =~ /^[^A-Za-z]+$/).nil?) do
@@ -182,7 +182,6 @@ id_list.each do |e|
 
         plantas[id] = Semente.new( CSV.parse(arquivo[i - 2])[0][1], CSV.parse(arquivo[i - 1])[0][1], id)
 
-        e = id;
 
         3.times do |x|
             plantas[id].nomes_cientificos.push(CSV.parse(arquivo[i + (x + 1)])[0][0])
@@ -201,6 +200,8 @@ id_list.each do |e|
         k += 1
         puts "not found #{e}"
     end
+    
+    e = id
 end
 
 print "Not found ID's = #{k} \n"
@@ -251,7 +252,7 @@ first_ref -= 13
 arvores = Hash.new
 k = 0
 
-ref_list.each do |e|
+ref_list = ref_list.map do |e|
     i = first_ref
 
     while i < arquivo.length && ( !arquivo[i].start_with?(e.gsub(/\r\n?/,'')) || (arquivo[i] =~ /^[^A-Za-z]+$/).nil?) do
@@ -270,7 +271,6 @@ ref_list.each do |e|
         id = CSV.parse(arquivo[i])[0][0].to_i
         nome = CSV.parse(arquivo[i - 1])[0][1]
         arvores[id] = Arvore.new(nome, id)
-        e = id
 
         x = 1
         while x + i < arquivo.length && !arquivo[i].empty? && !arquivo[i+x].start_with?('"",') && arquivo[i + x] != "=======\r\n" do
@@ -293,6 +293,8 @@ ref_list.each do |e|
         k += 1
         puts "not found #{e}"
     end
+
+    e = id
 end
 
 print "Not found ID's = #{k} \n"
