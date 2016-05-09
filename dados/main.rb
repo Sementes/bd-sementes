@@ -1,4 +1,4 @@
-require 'CSV'
+require 'csv'
 
 class Propriedade
     @nome
@@ -201,7 +201,7 @@ titulos_colunas = { "VARIEDADE"                      => 1,   # IGN: -
 # Começo do código
 puts ("...:::Sementes CSV Extractor :::...\n" +
       "Developed By: Jeferson Lima\n" +
-      "Version: 0.1\n\n" +
+      "Version: 0.4\n\n" +
       "Starting CSV Extraction...\n\n")
 
 # Antes de carregar os dados
@@ -228,7 +228,7 @@ while i < arquivo.length do
     # Se eu encontro a palavra variedade no arquivo
     if arquivo[i] == "VARIEDADE\r\n" then
         # Removo a palavra VARIEDADE para que ela não me atrapalhe
-        arquivo[i] = "=====\r\n"
+        arquivo[i] = "======\r\n"
 
         # Pulo para a próxima entrada válida
         i += 1
@@ -243,6 +243,33 @@ while i < arquivo.length do
         end
     else
         # Se eu não encontrei ID's novos eu continuo a leitura
+        i += 1
+    end
+end
+
+# Vamos popular também o array de REF
+
+# Armazenemos o ID da primeira referência
+first_ref = arquivo.find_index "REF\r\n"
+
+# Vamos agora pegar a lista de todas as referências a partir da primeira
+i = first_ref
+while i < arquivo.length do
+    if arquivo[i] == "REF\r\n" then
+        # Remove a palavra REF do arquivo
+        arquivo[i] = "=======\r\n"
+
+        # Pulo para a próxima entrada válida
+        i += 1
+
+        # Enquanto houver referências, adicionamos a entrada a lista REF
+        while arquivo[i] != "CLASSIFICAÇÃO\r\n" do
+            ref_list.push arquivo[i]
+            arquivo[i] = ''
+            i += 1
+        end
+    else
+        # Se não encontramos a palavra REF, incrementamos o contador
         i += 1
     end
 end
@@ -263,7 +290,7 @@ id_list.each do |e|
 
     # Enquanto não encontrar o id procurado incrementa o loop
     while i < arquivo.length && ( !arquivo[i].start_with?(e.gsub(/\r\n?/,'')) || (arquivo[i] =~ /^[^A-Za-z]+$/).nil?) do
-       i += 1
+        i += 1
     end
 
     # Se o indice chegou ao tamanho do arquivo então o ID não foi
@@ -297,8 +324,13 @@ id_list.each do |e|
             arquivo[i+3] = arquivo[i+3].gsub(/\r\n?/,'') + ",\"\"\r\n"
         end
 
-        # Faz o parse e adiciona a propriedade
-        id = CSV.parse(arquivo[i])[0].to_i
+        # Faz o parse do id
+        id = CSV.parse(arquivo[i])[0][0].to_i
+
+        # Salvamos nossa referência como o novo valor
+        e = id
+
+        # Agora adicionamos a nova propriedade
         plantas[id] = Semente.new(  CSV.parse(arquivo[i - 2])[0][1],  # Nome
                                     CSV.parse(arquivo[i - 1])[0][1],  # Sigla
                                     id)                               # ID
@@ -306,7 +338,7 @@ id_list.each do |e|
         # Por ultimo adicionamos os nomes cientificos
         # as outras propriedades vão ser adicionadas futuramente
         3.times do |x|
-            plantas[id].nomes_cientificos.push CSV.parse(arquivo[i + (x + 1)]
+            plantas[id].nomes_cientificos.push CSV.parse(arquivo[i + (x + 1)])[0][0]
         end
 
         # Com tudo isso feito vamos limpar essa parte do arquivo
@@ -314,35 +346,6 @@ id_list.each do |e|
         6.times do |x|
             arquivo[z + x] = ''
         end
-    end
-end
-
-# Agora que removemos todas as 'sementes', vamos adicionar as sementes só
-# que as sementes das Arvores, vamos começar adicionando as referências que é o
-# mesmo que o ID das variedades só que com outro nome.. Graças a Deus!
-
-# Armazenemos o ID da primeira referência
-first_ref = arquivo.find_index "REF\r\n"
-
-# Vamos agora pegar a lista de todas as referências a partir da primeira
-i = first_ref
-while i < arquivo.length do
-    if arquivo[i] == "REF\r\n" then
-        # Remove a palavra REF do arquivo
-        arquivo[i] = "=======\r\n"
-
-        # Pulo para a próxima entrada válida
-        i += 1
-
-        # Enquanto houver referências, adicionamos a entrada a lista REF
-        while arquivo[i] != "CLASSIFICAÇÃO\r\n" do
-            ref_list.push arquivo[i]
-            arquivo[i] = ''
-            i += 1
-        end
-    else
-        # Se não encontramos a palavra REF, incrementamos o contador
-        i += 1
     end
 end
 
@@ -365,7 +368,49 @@ ref_list.each do |e|
     # caso ele não tenha chegado nós olhamos os indices anteriores e após
     # ele afim de inserir a arvore a nossa lista de arvores
     if i != arquivo.length then
+        # Se não estamos no final do arquivo então a entrada está correta
+        # para assegurar que nada dê errado, iremos corrigir a estrutura
+        # antes de adicionarmos a propriedade
+        if !arquivo[i].end_with?(",\"\"\r\n") then
+            arquivo[i] = arquivo[i].gsub(/\r\n?/,'') + ",\"\"\r\n"
+        end
 
+        # Se a posição anterior não estiver no formato adequado
+        # corrigimos ela
+        if !arquivo[i-1].start_with?('"",') then
+            arquivo[i-1] = '"",' + arquivo[i-(x+1)]
+        end
+
+        # Agora com tudo corrigido iremos adicionar a arvore ao seu
+        # respectivo vetor
+        id = CSV.parse(arquivo[i])[0][0].to_i
+        nome = CSV.parse(arquivo[i - 1])[0][1]
+        arvores[id] = Arvore.new(nome, id)
+
+        # Salvamos a referência como o novo id
+        e = id
+
+        # Como não sabemos quantos nomes cientficos a arvore possui
+        # iremos corrigir e adiciona-los ele a instancia da classe
+        # recem criada
+        x = 1
+        while x + i < arquivo.length && !arquivo[i].empty? && !arquivo[i+x].start_with?('"",') && arquivo[i + x] != "=======\r\n" do
+            # Primeiro verificamos se elá está no formato desejado
+            if !arquivo[i+x].end_with?(",\"\"\r\n") then
+                arquivo[i+x] = arquivo[i+x].gsub(/\r\n?/,'') + ",\"\"\r\n"
+            end
+
+            # Após isso adicionamos ela e incrementamos o contador
+            arvores[id].nomes_cientificos.push CSV.parse(arquivo[i + x])[0][0]
+            arquivo[i + x] = ''
+            x += 1
+        end
+
+        # Com tudo ok podemos limpar as posições anteriores do vetor
+        arquivo[i] = ''
+        arquivo[i - 1] = ''
+    end
+end
 
 # Agora com todas as informações triviais organizadas, nome da planta, sigla,
 # e nomes cientificos, iremos salvar esse arquivo e dar um parse dele uma única
@@ -375,13 +420,13 @@ ref_list.each do |e|
 # Para que isso seja fácil iremos salvar nosso arquivo resultante e carregar
 # ele numa nova variável
 
+# Removemos a primeira linha das variedades para que a mesma não gere erros
+arquivo[18] = ''
+
 # Abro meu arquivo final como escrita
 arquivo_pronto = open('dados2.csv', 'w')
 # Limpo ele
 arquivo_pronto.truncate(0)
-
-# Antes de gravar o arquivo vamos limpar a primeira instância do mesmo
-arquivo[0] = ''
 
 # Escrevo todas as linhas de arquivo em arquivo pronto
 arquivo.each do |e|
@@ -399,9 +444,6 @@ progresso = 'Progress ['
 
 # Arquivo de saida
 CSV.open 'saida.csv', 'wb' do |saida|
-    # Lista de ID's
-    lista_id = []
-
     # Da start no progresso
     prog = 0
     unidades = dados.length / 100
@@ -412,7 +454,7 @@ CSV.open 'saida.csv', 'wb' do |saida|
     i = 0
     j = 0
     # Condição
-    while i < dados.length do
+    while i < dados.length && dados[i][0] != '=======' do
         # Adiciona uma barra de carregando
         if i >= (unidades * prog) then
             # Incrementa o progresso
@@ -421,7 +463,7 @@ CSV.open 'saida.csv', 'wb' do |saida|
             progresso << '='
             # Move o cursor para o começo da linha
             print "\r"
-            print "#{progresso} - #{prog} %"
+            print "#{progresso} - #{prog}%"
 
             # Força a saida para aparecer imediatamente, por padrão quando
             # '\n' é printado o buffer da saida padrão é 'atualizado - flushed'
@@ -431,71 +473,80 @@ CSV.open 'saida.csv', 'wb' do |saida|
         # Como só restam "Titulos" de colunas e dados dessas vamos organizar
         palavra_reservada = dados[i][0]
 
-        # Remove o Index do titulo
-        i += titulos_colunas[palavra_reservada]
+        # Remove o Index do titulo, se a posição não for um bloco
+        if palavra_reservada != '======' then
+            i += titulos_colunas[palavra_reservada]
+        end
 
         # Checa a palavra reservada
         case palavra_reservada
-            when '====='
-                # Se encontrou um bloco incrementamos em 6 o j
+            when '======'
+                # Se encontrou um bloco incrementamos em 6 o j e em 1 o i
                 j += 6
+                i += 1
             when 'Nº DE'
                 for x in 0..5 do
-                    # Coloca a informação da tabela
-                    plantas[lista_id[]].n_sementes_g = dados[i+j][0].gsub('.', '').to_i
-                    j += 1
+                    # Coloca a informação da tabela na hash table
+                    plantas[id_list[j+x]].n_sementes_g = dados[i][0].gsub('.', '').to_i
+                    
+                    # Incrementamos o contador, para ler a próxima linha
+                    # não incrementamos j aqui ao não ser que tenhamos encontrado um novo bloco
+                    i += 1
                 end
-
-                # Incrementa o contador
-                i += 6
 
             # Faz a mesma coisa que o anterior só que numa propriedade nova
             when 'NECESSIDADE'
-                for j in 0..5 do
-                    # Como o array já está inicializado não precisamos verificar
-                    plantas[lista_id[j]].necessidade_kg_ha = dados[i+j][0].gsub('.','').gsub(',','.').to_f
-                end
+                for x in 0..5 do
+                    # Coloca a informação da tabela na hash table
+                    plantas[id_list[j+x]].necessidade_kg_ha = dados[i][0].gsub('.','').gsub(',','.').to_f
 
-                # Incrementa o contador
-                i += 6
+                    i += 1
+                end
 
             # Mais uma propriedade parecida
             when 'Nº DIAS INÍCIO '
-                for j in 0..5 do
-                    plantas[lista_id[j]].n_dias_germinacao = dados[i+j][0]
-                end
+                for x in 0..5 do
+                    # Coloca a informação da tabela na hash table
+                    plantas[id_list[j+x]].n_dias_germinacao = dados[i][0]
 
-                # Incrementa o contador
-                i += 6
+                    i += 1
+                end
 
             # Mesma receita de bolo
             when 'ESPAÇAMENTO'
-                for j in 0..5 do
-                    # Muda o index e adiciona a palavra Vasos
-                    if dados[i+j][0] == '(Vasos)' || dados[i+j][0] == 'Planta para' || dados[i+j][0] == 'Lanço' then
-                        i += 1
-                        plantas[lista_id[j]].espacamento_linha_plantas = "(Vasos)\n#{dados[i+j][0]}"
-                        if dados[i+j] == 'cultivo ornamental' then i += 1 end
-                    else
-                        # Adciona a caracteristica
-                        plantas[lista_id[j]].espacamento_linha_plantas = dados[i+j][0]
-                    end
+                for x in 0..5 do
+                    # Coloca a informação da tabela na hash table
+                    plantas[id_list[j+x]].espacamento_linha_plantas = dados[i][0]
+
+                    i += 1
                 end
 
-                # Incrementa o contador
-                i += 6
+            # Mesma Receita de bolo só que 3 vezes para cada planta
+            when 'ÉPOCA DE'
+                for x in 0..5 do
+                    # Coloca a informação da tabela na hash table
+                    plantas[id_list[j+x]].epoca_plantio_R1 = dados[i][0]
+                    plantas[id_list[j+x]].epoca_plantio_R2 = dados[i+1][0]
+                    plantas[id_list[j+x]].epoca_plantio_R2 = dados[i+2][0]
 
-            # Essa próximas caracteristicas são bem chatinhas e algumas
-            # muito complexas
+                    # Incrementamos 3 posições porque são 3 linhas por planta
+                    i += 3
+                end
+
+            # Essa próximas caracteristicas são bem chatinhas e algumas muito complexas
             # Apesar da receita ser a mesma, a execução é diferenciada
+            # TODO - Inserção de propriedades chave
             when 'CICLO'
             when 'TAMANHO DA '
             when 'CARACTERÍSTICAS/DIFERENCIAIS'
-            when 'ÉPOCA DE'
             else
                 # Não deveria estar chegando aqui :S
         end
     end
+
+    # Depois de inserirmos as outras caracteristicas de uma planta iremos
+    # fazer o mesmo agora para as arvores
+    # TODO - Inserir adição das arvores
 
     # Para cada planta cadastrada
     # transformar objeto em array e jogar no CSV
