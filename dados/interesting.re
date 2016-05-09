@@ -61,3 +61,10 @@
 (CICLO)[\r\n](\(dias\))[\r\n](.*$)[\r\n](.*$)[\r\n](.*$)[\r\n](.*$)[\r\n](.*$)[\r\n](.*$)[\r\n](?=ESPAÇAMENTO)
 
 # Ahh se existisse uma regex para 'CICLO', 'TAMANHO DA' e 'CARACTERISTICAS' rsrs ;)
+
+# Uppercase usando regex no sublime text para corrigir titulos
+# Procura
+(?=[a-z])(.*)(?=\")
+
+# da Uppercase
+\U$1\E

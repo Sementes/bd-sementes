@@ -14,11 +14,11 @@ class Propriedade
 end
 
 class Tamanho
-	@unidade
-	@tamanho
+    @unidade
+    @tamanho
 
     # Getters and Setters
-	attr_accessor :unidade, :tamanho
+    attr_accessor :unidade, :tamanho
 
     # Construtor
     def initialize unidade, tamanho
@@ -27,22 +27,22 @@ class Tamanho
 end
 
 class DimensoesPlanta
-	# Altura folhagem
-	@AF
-	# Altura da Planta
-	@AP
-	# Altura
-	@A
-	# Comprimento
-	@C
-	# Comprimento da vagem
-	@CV
-	# Comprimento da espiga
-	@CE
-	# Diametro
-	@D
-	# Peso
-	@P
+    # Altura folhagem
+    @AF
+    # Altura da Planta
+    @AP
+    # Altura
+    @A
+    # Comprimento
+    @C
+    # Comprimento da vagem
+    @CV
+    # Comprimento da espiga
+    @CE
+    # Diametro
+    @D
+    # Peso
+    @P
 
     # Getters
     attr_reader :AF, :AP, :A, :C, :CV, :CE, :D, :P
@@ -57,31 +57,31 @@ class DimensoesPlanta
 end
 
 class Semente
-	# Propriedades Gerais
-	@nome
-	@sigla
-	@id
-	@foto
-	@nomes_cientificos
+    # Propriedades Gerais
+    @nome
+    @sigla
+    @id
+    @foto
+    @nomes_cientificos
 
-	# Propriedades Especificas
-	@n_sementes_g
-	@n_dias_germinacao
-	@necessidade_kg_ha
+    # Propriedades Especificas
+    @n_sementes_g
+    @n_dias_germinacao
+    @necessidade_kg_ha
 
-	# Preferencias da planta
-	@ciclo_dias_ver
-	@ciclo_dias_inv
-	@espacamento_linha_plantas
+    # Preferencias da planta
+    @ciclo_dias_ver
+    @ciclo_dias_inv
+    @espacamento_linha_plantas
 
-	# Caracteristicas regionais
-	@epoca_plantio_R1
-	@epoca_plantio_R2
-	@epoca_plantio_R3
+    # Caracteristicas regionais
+    @epoca_plantio_R1
+    @epoca_plantio_R2
+    @epoca_plantio_R3
 
-	# Caracteristicas da Planta
-	@descricao
-	@tamanho
+    # Caracteristicas da Planta
+    @descricao
+    @tamanho
 
     # Getters and setters
     attr_accessor :nome, :sigla, :id, :foto, :nomes_cientificos, :n_sementes_g, :n_dias_germinacao
@@ -554,6 +554,21 @@ CSV.open 'saida.csv', 'wb' do |saida|
     # fazer o mesmo agora para as arvores
     # TODO - Inserir adição das arvores
 
+    # Insere os headers
+    saida << [  "NOME", "SIGLA", "ID", "FOTO",
+                "NOMES_CIENTIFICOS",
+                "N_SEMENTES_G",
+                "N_DIAS_GERMINACAO",
+                "NECESSIDADE_KG_HA",
+                "CICLO_DIAS_INV",
+                "CICLO_DIAS_VER",
+                "ESPACAMENTO_LINHA_PLANTAS",
+                "EPOCA_PLANTIO_R1",
+                "EPOCA_PLANTIO_R2",
+                "EPOCA_PLANTIO_R3",
+                "DESCRICAO",
+                "TAMANHO" ]
+
     # Para cada planta cadastrada
     # transformar objeto em array e jogar no CSV
     plantas.each do |e|
@@ -561,8 +576,20 @@ CSV.open 'saida.csv', 'wb' do |saida|
     end
 
     # Para cada arvore cadastrada
-    arvores.each do |e|
-        saida << e[1].to_a
+    CSV.open 'saida2.csv', 'wb' do |saida2|
+        # Insere os titulos
+        saida2 << [ "NOME",
+                    "ID",
+                    "FOTO",
+                    "NOMES_CIENTIFICOS",
+                    "CLASSIFICACAO",
+                    "BIOMA",
+                    "REGIAO_DE_ORIGEM",
+                    "CARACTERISTICAS" ]
+
+        arvores.each do |e|
+            saida2 << e[1].to_a
+        end
     end
 
     # Adiciona a propriedade extra

@@ -1,0 +1,36 @@
+NOME,ID,FOTO,NOMES_CIENTIFICOS,CLASSIFICACAO,BIOMA,REGIAO_DE_ORIGEM,CARACTERISTICAS
+nome: ALBÍZIA,id: 717,foto: ,"nomes_cientificos: [""Angico-Branco e Farinha-Seca "", ""Albizia polycephala""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: AMBURANA,id: 719,foto: ,"nomes_cientificos: [""Cerejeira, Amburana-de-Cheiro e Cumaré "", ""Amburana cearensis""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: ARAÇÁ-AMARELO,id: 722,foto: ,"nomes_cientificos: [""Aroeira-Mansa, Aroeira-Vermelha e Aroeira-"", ""Schinus terebenthifolius""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: AROEIRA-PIMENTEIRA,id: 723,foto: ,"nomes_cientificos: [""Aroeira-Mansa, Aroeira-Vermelha e Aroeira-"", ""Precoce "", ""Schinus terebenthifolius""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: AROEIRA-PRETA / AROEIRA-VERDADEIRO,id: 726,foto: ,"nomes_cientificos: [""Urundeúva, Aroeira-do-Sertão e Urindeúva "", ""Myracrodruon urundeuva""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: AROEIRA-SALSO,id: 727,foto: ,"nomes_cientificos: [""Corneíba, Aroeira-Periquita e Aroeira-Folha-"", ""de-Salso"", ""Schinus molle"", nil, nil, nil, nil]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: GRINALDA-DE-NOIVA,id: 728,foto: ,"nomes_cientificos: [""Barbatimão Ornamental, Chuva-de-Ouro e "", ""Cássia-Barbatimão "", ""Cassia leptophylla""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: BRACATINGA,id: 729,foto: ,"nomes_cientificos: [""Abracaatinga, Paracaatinga e Bracatinga "", ""Comum"", ""Mimosa scabrella""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: BRACATINGA-BRANCA,id: 731,foto: ,"nomes_cientificos: [""Abracaatinga, Paracaatinga e Bracatinga "", ""Comum"", ""Mimosa scabrella""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: CANAFÍSTULA / FAVEIRA,id: 732,foto: ,"nomes_cientificos: [""Farinha-seca, Sobrasil e Canafístula-Branca "", ""Peltophorum dubium""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: CÁSSIA DO NORDESTE,id: 736,foto: ,"nomes_cientificos: [""Cássia-do-Nordeste, São-João, Pau-de-"", ""Ovelha e Sena Spectabilis "", ""Senna spectabilis""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: CEBOLÃO BELA-SOMBRA,id: 737,foto: ,"nomes_cientificos: [""Cebolão, Umbu, Umbuzeiro, Ceboleiro e "", ""Bela-Sombra "", ""Phytolacca dioica"", nil, nil, nil, nil, nil]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: CHIMBUVA,id: 739,foto: ,"nomes_cientificos: [""Tambuvê, Chimbo, Timbo e Tamboril "", ""Timbauva "", ""Enterolobium timbouva""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: COPAÍBA,id: 741,foto: ,"nomes_cientificos: [""leo-de-Copaíba e Copaíba-Vermelha "", ""opaifera langsdorffii""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: FEDEGOSO,id: 746,foto: ,"nomes_cientificos: [""Canudo de Apito, Aleluia e Sena Aleluia "", ""Senna pendula""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: GOIABA-VERMELHA,id: 749,foto: ,"nomes_cientificos: [""Goiaba, Guava e Guaiava"", ""Psidium guajava""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: GUAPURUVU,id: 751,foto: ,"nomes_cientificos: [""uapurubu, Ficheira e Bacurubu "", ""chizolobium parahyba""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: JATOBÁ,id: 760,foto: ,"nomes_cientificos: [""Jataí, Jataí-Amarelo e Jataí-Peba "", ""Hymenaea courbaril"", nil, nil, nil, nil]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: MARICÁ,id: 765,foto: ,"nomes_cientificos: [""Amorosa, Arranha-Gato, Espinheira-de-"", ""Cerca e Espinheira-de-Maricá "", ""Mimosa bimucronata""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: MONJOLEIRO,id: 766,foto: ,"nomes_cientificos: [""Acácia-Monjolo"", ""Acacia polyphylla DC""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: MULUNGU,id: 767,foto: ,"nomes_cientificos: [""Suinã e Mulungu Velutina "", ""Erythrina velutina""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: MUTAMBO,id: 768,foto: ,"nomes_cientificos: [""Mutamba, Chico-Magro, Pau-de-Bicho e "", ""Mutamba-Verdadeira"", ""Guazuma ulmifolia""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: OLHO-DE-CABRA,id: 769,foto: ,"nomes_cientificos: [""lho-de-Boi, Pau-Ripa e Tento-Vermelho "", ""rmosia arborea""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: PAU-AMENDOIM,id: 774,foto: ,"nomes_cientificos: [""Amendoim-Bravo "", ""Pterogyne nitens"", nil, nil, nil, nil]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: PAU-CIGARRA,id: 776,foto: ,"nomes_cientificos: [""Sena-multijuga"", ""Senna multijuga""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: PAU-D’ALHO,id: 777,foto: ,"nomes_cientificos: [""Guararema e Ibirarema"", ""Gallesia integrifolia""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: PAU-FORMIGA,id: 779,foto: ,"nomes_cientificos: [""Pau-de-Novato e Novateiro Rosa"", ""Triplaris americana""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: PAU-FERRO,id: 780,foto: ,"nomes_cientificos: [""Jucá "", ""Caesalpinia ferrea""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: QUARESMEIRA,id: 782,foto: ,"nomes_cientificos: [""uaresma "", ""ibouchina granulosa""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: SABOEIRO,id: 783,foto: ,"nomes_cientificos: [""Saboneteiro "", ""Sapindus saponaria"", nil, nil, nil, nil]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: SAGUARAJI,id: 784,foto: ,"nomes_cientificos: [""Sabiá"", ""Mimosa caesalpiniaefolia""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: SANSÃO-DO-CAMPO / CERCA VIVA,id: 785,foto: ,"nomes_cientificos: [""Sabiá"", ""Mimosa caesalpiniaefolia""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: TIMBURI / TIMBAÚVA,id: 787,foto: ,"nomes_cientificos: [""Tamboril, Orelha de Macaco e Tomboril-"", ""da-Mata"", ""Enterolobium contortisiliquum""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: TUCANEIRO / PAU-VIOLA,id: 788,foto: ,"nomes_cientificos: [""Jacareúba e Tarumã"", ""Citharexylum myrianthum""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
+nome: URUCUM,id: 789,foto: ,"nomes_cientificos: [""Urucu, Açafroa e Açafroeira-da-Terra "", ""Bixa orellana""]",classificacao: ,bioma: ,regiao_de_origem: ,caracteristicas: 
