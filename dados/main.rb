@@ -96,22 +96,22 @@ class Semente
 
     # Retorna um array deste objeto
     def to_a
-        return ["nome: #{@nome}",
-                "sigla: #{@sigla}",
-                "id: #{@id}",
-                "foto: #{@foto}",
-                "nomes_cientificos: #{@nomes_cientificos.to_s}",
-                "n_sementes_g: #{@n_sementes_g}",
-                "n_dias_germinacao: #{@n_dias_germinacao}",
-                "necessidade_kg_ha: #{@necessidade_kg_ha}",
-                "ciclo_dias_inv: #{@ciclo_dias_inv}",
-                "ciclo_dias_ver: #{@ciclo_dias_ver}",
-                "espacamento_linha_plantas: #{@espacamento_linha_plantas}",
-                "epoca_plantio_R1: #{@epoca_plantio_R1}",
-                "epoca_plantio_R2: #{@epoca_plantio_R2}",
-                "epoca_plantio_R3: #{@epoca_plantio_R3}",
-                "descricao: #{@descricao}",
-                "tamanho: #{@tamanho}"]
+        return ["#{@nome}",
+                "#{@sigla}",
+                "#{@id}",
+                "#{@foto}",
+                "#{@nomes_cientificos.to_s}",
+                "#{@n_sementes_g}",
+                "#{@n_dias_germinacao}",
+                "#{@necessidade_kg_ha}",
+                "#{@ciclo_dias_inv}",
+                "#{@ciclo_dias_ver}",
+                "#{@espacamento_linha_plantas}",
+                "#{@epoca_plantio_R1}",
+                "#{@epoca_plantio_R2}",
+                "#{@epoca_plantio_R3}",
+                "#{@descricao}",
+                "#{@tamanho}"]
     end
 
     # Retorna uma string desse objeto
@@ -160,14 +160,14 @@ class Arvore
 
     # Retorna um array deste objeto
     def to_a
-        return ["nome: #{@nome}",
-                "id: #{@id}",
-                "foto: #{@foto}",
-                "nomes_cientificos: #{@nomes_cientificos.to_s}",
-                "classificacao: #{@classificacao}",
-                "bioma: #{@bioma}",
-                "regiao_de_origem: #{@regiao_de_origem}",
-                "caracteristicas: #{@caracteristicas}"]
+        return ["#{@nome}",
+                "#{@id}",
+                "#{@foto}",
+                "#{@nomes_cientificos.to_s}",
+                "#{@classificacao}",
+                "#{@bioma}",
+                "#{@regiao_de_origem}",
+                "#{@caracteristicas}"]
     end
 
     # Retorna uma string desse objeto
