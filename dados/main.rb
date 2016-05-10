@@ -307,7 +307,7 @@ end
 # Começo do código
 puts ("...:::Sementes CSV Extractor :::...\n" +
       "Developed By: Jeferson Lima\n" +
-      "Version: 0.4\n\n" +
+      "Version: 0.6\n\n" +
       "Starting CSV Extraction...\n\n")
 
 # Antes de carregar os dados
