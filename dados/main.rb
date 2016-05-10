@@ -221,7 +221,7 @@ class ProgressBar
         @tags_bar   = tags_bar
 
         @status_bar = "#{title} #{tags_bar[0]}"
-        @unities    = @length >= 100 ? @length / 100 : 1
+        @unities    = @length >= 100 ? @length / 100.to_f : 1
     end
 
     # Imprime o progresso inicial ou seja 0%
