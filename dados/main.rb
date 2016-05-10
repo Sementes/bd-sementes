@@ -194,6 +194,112 @@ titulos_colunas = { "VARIEDADE"                      => 1,   # IGN: -
                     "CARACTERÍSTICAS/DIFERENCIAIS"   => 1,   # IGN: -
                     "ÉPOCA DE"                       => 2  } # IGN: "PLANTIO"
 
+# Barra de progresso simples
+class ProgressBar
+    # Caracteristicas da barra de progresso
+    @progress
+    @unities
+    @length
+    @title
+    @it
+    
+    # Items da barra de progresso
+    @status_bar
+    @symbol_bar
+    @tags_bar
+
+    # Getters
+    attr_reader :progress, :unities, :title, :it 
+
+    def initialize length, title = 'Progress = ', symbol_bar = '=', tags_bar = ['[',']']
+        @it         = 0
+        @progress   = 0
+
+        @title      = title
+        @length     = length
+        @symbol_bar = symbol_bar
+        @tags_bar   = tags_bar
+
+        @status_bar = "#{title} #{tags_bar[0]}"
+        @unities    = @length >= 100 ? @length / 100 : 1
+    end
+
+    # Imprime o progresso inicial ou seja 0%
+    def start
+        # Move o cursor para o começo da linha
+        print "\r"
+
+        # Imprime a barra de progresso
+        print   "#{@status_bar}#{ if @progress == 100 then @tags_bar[1] end } - " + 
+                "#{ @length >= 100 ? @progress : ((100 / @length) * @progress) }%"
+
+        # Força a saida para aparecer imediatamente, por padrão quando
+        # '\n' é printado o buffer da saida padrão é 'atualizado - flushed'
+        $stdout.flush
+    end
+
+    # Conta quanto falta para finalizar a barra de progresso e finaliza a mesma
+    def stop
+        # Finaliza a barra de progresso
+        @status_bar = "#{@title} #{@tags_bar[0]}"
+        @status_bar << @symbol_bar * 100
+
+        # Move o cursor para o começo da linha
+        print "\r"
+
+        # Imprime a barra de progresso
+        print "#{@status_bar}#{@tags_bar[1]} - 100%"
+
+        # Força a saida para aparecer imediatamente, por padrão quando
+        # '\n' é printado o buffer da saida padrão é 'atualizado - flushed'
+        $stdout.flush
+
+        # Coloca um '\n' na saída para que a barra de progresso não seja alterada
+        print "\n"
+    end
+
+    # Checa se devemos acrescentar uma nova barra de progresso
+    def check
+        # Incrementa o contador
+        @it += 1
+
+        # Imprime o progresso
+        imprimeProgresso()
+    end
+
+    # Move o iterador da barra de progresso para um ponto especifico
+    def change value
+        @it = value
+
+        # Imprime o progresso
+        imprimeProgresso()
+    end
+
+    private
+    def imprimeProgresso
+        # Se o iterador for maior que o progresso atual pela quantidade de unidades
+        if @it >= (@progress * @unities) then
+            # Incrementa o progresso
+            @progress += 1
+
+            # Adiciona isso visualmente
+            @status_bar << @symbol_bar * (@length >= 100 ? 1 : (100 / @length)) 
+    
+            # Move o cursor para o começo da linha
+            print "\r"
+
+            # Imprime a barra de progresso
+            print   "#{@status_bar}#{ if @progress == 100 then @tags_bar[1] end } - " + 
+                    "#{ @length >= 100 ? @progress : ((100 / @length) * @progress) }%"
+
+            # Força a saida para aparecer imediatamente, por padrão quando
+            # '\n' é printado o buffer da saida padrão é 'atualizado - flushed'
+            $stdout.flush
+        end
+    end
+
+end
+
 # Com essa informação podemos agora excluir essas linhas, sabemos que elas vão sempre aparecer na mesma ordem
 # então só precisamos saber o que vamos modificar de acordo com cada uma
 # para facilitar vamos agrupar por linha nossos titulos
@@ -208,7 +314,7 @@ puts ("...:::Sementes CSV Extractor :::...\n" +
 # precisamos corrigir a estrutura desse CSV
 
 # Carregamos o arquivo
-arquivo = IO.readlines 'test1.csv'
+arquivo = IO.readlines 'entrada.csv'
 
 # Hash de plantas
 plantas = Hash.new
@@ -221,10 +327,20 @@ ref_list = []
 id_list = []
 i = 0
 
+# Barra de Progresso
+progresso = ProgressBar.new arquivo.length
+
+# Inicia a barra de progresso
+puts 'Extracting list of Plants'
+progresso.start
+
 # Vou remover os ID's que estão entre 'VARIEDADE' e 'Nº DE' e deixar
 # só os outros, ai usando o modelo deles, irei cosertar todos de
 # forma que seja possível extrair os dados de cada planta
 while i < arquivo.length do
+    # Incrementa o progresso
+    progresso.check
+
     # Se eu encontro a palavra variedade no arquivo
     if arquivo[i] == "VARIEDADE\r\n" then
         # Removo a palavra VARIEDADE para que ela não me atrapalhe
@@ -247,14 +363,28 @@ while i < arquivo.length do
     end
 end
 
+# Finaliza o progresso
+progresso.stop
+
 # Vamos popular também o array de REF
 
 # Armazenemos o ID da primeira referência
 first_ref = arquivo.find_index "REF\r\n"
 
+# Barra de Progresso
+progresso = ProgressBar.new arquivo.length - first_ref
+
+# Inicia a barra de progresso
+puts 'Extracting list of Trees'
+progresso.start
+
 # Vamos agora pegar a lista de todas as referências a partir da primeira
 i = first_ref
 while i < arquivo.length do
+    # Incrementa o progresso
+    progresso.check
+
+    # Se encontramos uma lista de referências, adicionamos todas elas
     if arquivo[i] == "REF\r\n" then
         # Remove a palavra REF do arquivo
         arquivo[i] = "=======\r\n"
@@ -274,6 +404,9 @@ while i < arquivo.length do
     end
 end
 
+# Finaliza o progresso
+progresso.stop
+
 # Com a lista de ids em mão vou procurar por eles e fazer
 # verificações sobre como a string começa e como ela acaba
 # de forma a fazer as devidas correções no arquivo adequadamente
@@ -282,9 +415,17 @@ end
 # essa coisa ao não ser em O(m*n) aonde m é o length dos ids e n e
 # o length do arquivo
 
-# retire o comentario dessa linha e das outras entradas para o debug
-# k = 0
+# Barra de Progresso
+progresso = ProgressBar.new id_list.length
+
+# Inicia a barra de progresso
+puts 'Creating Plants instances'
+progresso.start
+
 id_list = id_list.map do |e|
+    # Checa o progresso
+    progresso.check
+
     # Inicialização
     i = 0
 
@@ -350,12 +491,25 @@ id_list = id_list.map do |e|
     e = id
 end
 
+# Finaliza o progresso
+progresso.stop
+
 # Como sabemos a primeira posição das arvores é igual a first_ref -13
 first_ref -= 13
+
+# Barra de Progresso
+progresso = ProgressBar.new ref_list.length
+
+# Inicia a barra de progresso
+puts 'Extracting list of Trees'
+progresso.start
 
 # Agora que temos a lista de referências preciamos procurar estas
 # arvores e adicionalas ao nosso hash de arvores
 ref_list = ref_list.map do |e|
+    # Incrementa o progresso
+    progresso.check
+
     # Iniciamos a posição com a primeira referência, porém como nada nesse
     # arquivo está organizado nós não podemos incrementar o first ref :/
     i = first_ref
@@ -414,6 +568,9 @@ ref_list = ref_list.map do |e|
     e = id
 end
 
+# Finaliza o progresso
+progresso.stop
+
 # Agora com todas as informações triviais organizadas, nome da planta, sigla,
 # e nomes cientificos, iremos salvar esse arquivo e dar um parse dele uma única
 # vez, é importante lembrar que esse novo arquivo não vai conter a lista de ID's
@@ -426,7 +583,7 @@ end
 arquivo[18] = ''
 
 # Abro meu arquivo final como escrita
-arquivo_pronto = open('dados2.csv', 'w')
+arquivo_pronto = open('dados.csv', 'w')
 # Limpo ele
 arquivo_pronto.truncate(0)
 
@@ -439,121 +596,111 @@ end
 arquivo_pronto.close
 
 # Carrega os dados do CSV de entrada
-dados = CSV.read 'dados2.csv'
+dados = CSV.read 'dados.csv'
 
-# Progresso
-progresso = 'Progress ['
+# Barra de Progresso
+progresso = ProgressBar.new dados.length
 
-# Arquivo de saida
-CSV.open 'saida.csv', 'wb' do |saida|
-    # Da start no progresso
-    prog = 0
-    unidades = dados.length / 100
+# Inicia a barra de progresso
+puts 'Composing Plants instances'
+progresso.start
 
-    # Como Ruby não tem um FOR, C-like (shame) implementamos um while
-    # for(inicializacao;condiao;incremento){}
-    # Inicilização
-    i = 0
-    j = 0
-    # Condição
-    while i < dados.length && dados[i][0] != '=======' do
-        # Adiciona uma barra de carregando
-        if i >= (unidades * prog) then
-            # Incrementa o progresso
-            prog += 1
-            # Adiciona isso visualmente
-            progresso << '='
-            # Move o cursor para o começo da linha
-            print "\r"
-            print "#{progresso} - #{prog}%"
+# Como Ruby não tem um FOR, C-like (shame) implementamos um while
+# for(inicializacao;condiao;incremento){}
+# Inicilização
+i = 0
+j = 0
+# Condição
+while i < dados.length && dados[i][0] != '=======' do
+    # Adiciona uma barra de carregando
+    progresso.check
 
-            # Força a saida para aparecer imediatamente, por padrão quando
-            # '\n' é printado o buffer da saida padrão é 'atualizado - flushed'
-            $stdout.flush
-        end
+    # Como só restam "Titulos" de colunas e dados dessas vamos organizar
+    palavra_reservada = dados[i][0]
 
-        # Como só restam "Titulos" de colunas e dados dessas vamos organizar
-        palavra_reservada = dados[i][0]
-
-        # Remove o Index do titulo, se a posição não for um bloco
-        if !titulos_colunas[palavra_reservada].nil? then
-            i += titulos_colunas[palavra_reservada]
-        end
-
-        # Checa a palavra reservada
-        case palavra_reservada
-            when '======'
-                # Se encontrou um bloco incrementamos em 6 o j e em 1 o i
-                j += 6
-                i += 1
-            when 'Nº DE'
-                for x in 0..5 do
-                    # Coloca a informação da tabela na hash table
-                    plantas[id_list[j+x]].n_sementes_g = dados[i][0].gsub('.', '').to_i
-                    
-                    # Incrementamos o contador, para ler a próxima linha
-                    # não incrementamos j aqui ao não ser que tenhamos encontrado um novo bloco
-                    i += 1
-                end
-
-            # Faz a mesma coisa que o anterior só que numa propriedade nova
-            when 'NECESSIDADE'
-                for x in 0..5 do
-                    # Coloca a informação da tabela na hash table
-                    plantas[id_list[j+x]].necessidade_kg_ha = dados[i][0].gsub('.','').gsub(',','.').to_f
-
-                    i += 1
-                end
-
-            # Mais uma propriedade parecida
-            when 'Nº DIAS INÍCIO '
-                for x in 0..5 do
-                    # Coloca a informação da tabela na hash table
-                    plantas[id_list[j+x]].n_dias_germinacao = dados[i][0]
-
-                    i += 1
-                end
-
-            # Mesma receita de bolo
-            when 'ESPAÇAMENTO'
-                for x in 0..5 do
-                    # Coloca a informação da tabela na hash table
-                    plantas[id_list[j+x]].espacamento_linha_plantas = dados[i][0]
-
-                    i += 1
-                end
-
-            # Mesma Receita de bolo só que 3 vezes para cada planta
-            when 'ÉPOCA DE'
-                for x in 0..5 do
-                    # Coloca a informação da tabela na hash table
-                    plantas[id_list[j+x]].epoca_plantio_R1 = dados[i][0]
-                    plantas[id_list[j+x]].epoca_plantio_R2 = dados[i+1][0]
-                    plantas[id_list[j+x]].epoca_plantio_R2 = dados[i+2][0]
-
-                    # Incrementamos 3 posições porque são 3 linhas por planta
-                    i += 3
-                end
-
-            # Essa próximas caracteristicas são bem chatinhas e algumas muito complexas
-            # Apesar da receita ser a mesma, a execução é diferenciada
-            # TODO - Inserção de propriedades chave
-            # TODO - CICLO
-            #when 'CICLO'
-            # TODO - TAMANHO DA
-            #when 'TAMANHO DA '
-            # TODO - CARACTERISTICAS
-            #when 'CARACTERÍSTICAS/DIFERENCIAIS'
-            else
-                i += 1
-                # Não deveria estar chegando aqui :S
-        end
+    # Remove o Index do titulo, se a posição não for um bloco
+    if !titulos_colunas[palavra_reservada].nil? then
+        i += titulos_colunas[palavra_reservada]
     end
 
-    # Depois de inserirmos as outras caracteristicas de uma planta iremos
-    # fazer o mesmo agora para as arvores
-    # TODO - Inserir adição das arvores
+    # Checa a palavra reservada
+    case palavra_reservada
+        when '======'
+            # Se encontrou um bloco incrementamos em 6 o j e em 1 o i
+            j += 6
+            i += 1
+        when 'Nº DE'
+            for x in 0..5 do
+                # Coloca a informação da tabela na hash table
+                plantas[id_list[j+x]].n_sementes_g = dados[i][0].gsub('.', '').to_i
+                
+                # Incrementamos o contador, para ler a próxima linha
+                # não incrementamos j aqui ao não ser que tenhamos encontrado um novo bloco
+                i += 1
+            end
 
+        # Faz a mesma coisa que o anterior só que numa propriedade nova
+        when 'NECESSIDADE'
+            for x in 0..5 do
+                # Coloca a informação da tabela na hash table
+                plantas[id_list[j+x]].necessidade_kg_ha = dados[i][0].gsub('.','').gsub(',','.').to_f
+
+                i += 1
+            end
+
+        # Mais uma propriedade parecida
+        when 'Nº DIAS INÍCIO '
+            for x in 0..5 do
+                # Coloca a informação da tabela na hash table
+                plantas[id_list[j+x]].n_dias_germinacao = dados[i][0]
+
+                i += 1
+            end
+
+        # Mesma receita de bolo
+        when 'ESPAÇAMENTO'
+            for x in 0..5 do
+                # Coloca a informação da tabela na hash table
+                plantas[id_list[j+x]].espacamento_linha_plantas = dados[i][0]
+
+                i += 1
+            end
+
+        # Mesma Receita de bolo só que 3 vezes para cada planta
+        when 'ÉPOCA DE'
+            for x in 0..5 do
+                # Coloca a informação da tabela na hash table
+                plantas[id_list[j+x]].epoca_plantio_R1 = dados[i][0]
+                plantas[id_list[j+x]].epoca_plantio_R2 = dados[i+1][0]
+                plantas[id_list[j+x]].epoca_plantio_R2 = dados[i+2][0]
+
+                # Incrementamos 3 posições porque são 3 linhas por planta
+                i += 3
+            end
+
+        # Essa próximas caracteristicas são bem chatinhas e algumas muito complexas
+        # Apesar da receita ser a mesma, a execução é diferenciada
+        # TODO - Inserção de propriedades chave
+        # TODO - CICLO
+        #when 'CICLO'
+        # TODO - TAMANHO DA
+        #when 'TAMANHO DA '
+        # TODO - CARACTERISTICAS
+        #when 'CARACTERÍSTICAS/DIFERENCIAIS'
+        else
+            # Se chegarmos em uma linha que não sabemos tratar
+            # ignoramos a mesma
+            i += 1
+    end
+end
+progresso.stop
+
+# Depois de inserirmos as outras caracteristicas de uma planta iremos
+# fazer o mesmo agora para as arvores
+# TODO - Inserir adição das arvores
+
+# Arquivo de saida Plantas
+CSV.open 'plantas-saida.csv', 'wb' do |saida|
     # Insere os headers
     saida << [  "NOME", "SIGLA", "ID", "FOTO",
                 "NOMES_CIENTIFICOS",
@@ -575,31 +722,30 @@ CSV.open 'saida.csv', 'wb' do |saida|
         saida << e[1].to_a
     end
 
-    # Para cada arvore cadastrada
-    CSV.open 'saida2.csv', 'wb' do |saida2|
-        # Insere os titulos
-        saida2 << [ "NOME",
-                    "ID",
-                    "FOTO",
-                    "NOMES_CIENTIFICOS",
-                    "CLASSIFICACAO",
-                    "BIOMA",
-                    "REGIAO_DE_ORIGEM",
-                    "CARACTERISTICAS" ]
-
-        arvores.each do |e|
-            saida2 << e[1].to_a
-        end
-    end
-
-    # Adiciona a propriedade extra
-    #extra = plantas[15]
-    #extra.id = 16
-    #saida << extra.to_a
-
-    # FINISHED :D
-    puts("]\n" +
-         "Extraction Complete.\n" +
-         "Open 'saida.csv' to see the results.\n" +
-         "Thank You\n")
 end
+
+# PArquivo de sadia Arvores
+CSV.open 'arvores-saida.csv', 'wb' do |saida|
+    # Insere os titulos
+    saida << [ "NOME",
+                "ID",
+                "FOTO",
+                "NOMES_CIENTIFICOS",
+                "CLASSIFICACAO",
+                "BIOMA",
+                "REGIAO_DE_ORIGEM",
+                "CARACTERISTICAS" ]
+
+    arvores.each do |e|
+        saida << e[1].to_a
+    end
+end
+
+# TODO - Adiciona a propriedade extra
+# Existe uma lista grande de propriedades repetidas.
+# Precisamos inserir as mesmas dentros das listas já criadas
+
+# FINISHED :D
+puts("Extraction Complete.\n" +
+     "Open 'saida.csv' to see the results.\n" +
+     "Thank You\n")
