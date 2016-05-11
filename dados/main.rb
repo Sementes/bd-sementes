@@ -1,4 +1,5 @@
 require 'csv'
+require 'sqlite3'
 
 class Propriedade
     @nome
@@ -114,6 +115,26 @@ class Semente
                 "#{@tamanho}"]
     end
 
+    # To string sql
+    def to_sql
+        return "#{@id}, " +
+               "'#{@nome}', " +
+               "'#{@sigla}', " +
+               "'#{@foto}', " +
+               "'#{@nomes_cientificos.to_s}', " +
+               "#{@n_sementes_g}, " +
+               "'#{@n_dias_germinacao}', " +
+               "'#{@necessidade_kg_ha}', " +
+               "'#{@ciclo_dias_inv}', " +
+               "'#{@ciclo_dias_ver}', " +
+               "'#{@espacamento_linha_plantas}', " +
+               "'#{@epoca_plantio_R1}', " +
+               "'#{@epoca_plantio_R2}', " +
+               "'#{@epoca_plantio_R3}', " +
+               "'#{@descricao}', " +
+               "'#{@tamanho}'"
+    end
+
     # Retorna uma string desse objeto
     def to_s
         return  "nome: #{@nome}, " +
@@ -202,14 +223,14 @@ class ProgressBar
     @length
     @title
     @it
-    
+
     # Items da barra de progresso
     @status_bar
     @symbol_bar
     @tags_bar
 
     # Getters
-    attr_reader :progress, :unities, :title, :it 
+    attr_reader :progress, :unities, :title, :it
 
     def initialize length, title = 'Progress = ', symbol_bar = '=', tags_bar = ['[',']']
         @it         = 0
@@ -230,7 +251,7 @@ class ProgressBar
         print "\r"
 
         # Imprime a barra de progresso
-        print   "#{@status_bar}#{ if @progress == 100 then @tags_bar[1] end } - " + 
+        print   "#{@status_bar}#{ if @progress == 100 then @tags_bar[1] end } - " +
                 "#{ @length >= 100 ? @progress : ((100 / @length) * @progress) }%"
 
         # Força a saida para aparecer imediatamente, por padrão quando
@@ -283,13 +304,13 @@ class ProgressBar
             @progress += 1
 
             # Adiciona isso visualmente
-            @status_bar << @symbol_bar * (@length >= 100 ? 1 : (100 / @length)) 
-    
+            @status_bar << @symbol_bar * (@length >= 100 ? 1 : (100 / @length))
+
             # Move o cursor para o começo da linha
             print "\r"
 
             # Imprime a barra de progresso
-            print   "#{@status_bar}#{ if @progress == 100 then @tags_bar[1] end } - " + 
+            print   "#{@status_bar}#{ if @progress == 100 then @tags_bar[1] end } - " +
                     "#{ @length >= 100 ? @progress : ((100 / @length) * @progress) }%"
 
             # Força a saida para aparecer imediatamente, por padrão quando
@@ -305,7 +326,7 @@ end
 # para facilitar vamos agrupar por linha nossos titulos
 
 # Começo do código
-puts ("...:::Sementes CSV Extractor :::...\n" +
+puts ("...::: Sementes CSV Extractor :::...\n" +
       "Developed By: Jeferson Lima\n" +
       "Version: 0.6\n\n" +
       "Starting CSV Extraction...\n\n")
@@ -486,7 +507,7 @@ id_list = id_list.map do |e|
             arquivo[z + x] = ''
         end
     end
-    
+
     # Salvamos nossa referência como o novo valor
     e = id
 end
@@ -563,7 +584,7 @@ ref_list = ref_list.map do |e|
         arquivo[i] = ''
         arquivo[i - 1] = ''
     end
-  
+
     # Salvamos a referência como o novo id
     e = id
 end
@@ -633,7 +654,7 @@ while i < dados.length && dados[i][0] != '=======' do
             for x in 0..5 do
                 # Coloca a informação da tabela na hash table
                 plantas[id_list[j+x]].n_sementes_g = dados[i][0].gsub('.', '').to_i
-                
+
                 # Incrementamos o contador, para ler a próxima linha
                 # não incrementamos j aqui ao não ser que tenhamos encontrado um novo bloco
                 i += 1
@@ -702,7 +723,10 @@ progresso.stop
 # Arquivo de saida Plantas
 CSV.open 'plantas-saida.csv', 'wb' do |saida|
     # Insere os headers
-    saida << [  "NOME", "SIGLA", "ID", "FOTO",
+    saida << [  "NOME",
+                "SIGLA",
+                "ID",
+                "FOTO",
                 "NOMES_CIENTIFICOS",
                 "N_SEMENTES_G",
                 "N_DIAS_GERMINACAO",
@@ -724,7 +748,7 @@ CSV.open 'plantas-saida.csv', 'wb' do |saida|
 
 end
 
-# PArquivo de sadia Arvores
+# Arquivo de sadia Arvores
 CSV.open 'arvores-saida.csv', 'wb' do |saida|
     # Insere os titulos
     saida << [ "NOME",
@@ -744,6 +768,45 @@ end
 # TODO - Adiciona a propriedade extra
 # Existe uma lista grande de propriedades repetidas.
 # Precisamos inserir as mesmas dentros das listas já criadas
+
+# TODO - Exportar para uma tabela sqlite3
+begin
+    # Create a new Database
+    db = SQLite3::Database.open "dados.db"
+
+    # Remove a tabela plantas caso a mesma já exista
+    db.execute "DROP TABLE IF EXISTS Plantas"
+
+    # Cria a tabela Plantas
+    db.execute "CREATE TABLE Plantas(Id INTEGER PRIMARY KEY, Nome TEXT, Sigla TEXT, Foto TEXT, NomeCientificos TEXT, NumeroSementes INTEGER, NumeroDias TEXT, NecessidadeSementes , CicloDiasInv TEXT, CicloDiasVer TEXT, Espacamento TEXT, EpocaPlantioR1 TEXT, EpocaPlantioR3 TEXT, EpocaPlantioR2 TEXT, Descricao TEXT, Tamanho TEXT)"
+
+    # Barra de Progresso
+    progresso = ProgressBar.new plantas.length
+
+    # Inicia a barra de progresso
+    puts 'Populating Output Database'
+    progresso.start
+
+    # Adicionamos agora todas as propriedades
+    # Nossa classe já possui um metodo to_s que serve exatamente para esse propósito
+    plantas.each do |e|
+        # Adicionamos o progresso
+        progresso.check
+
+        # Adicionamos a entrada
+        db.execute "INSERT INTO Plantas VALUES(#{e[1].to_sql})"
+    end
+
+    # Finliza o progresso
+    progresso.stop
+
+rescue SQLite3::Exception => e
+    puts "[BUG] Error on database interaction"
+    puts e
+ensure
+    # Fecha a db mesmo que ocoram erros
+    db.close if db
+end
 
 # FINISHED :D
 puts("Extraction Complete.\n" +
