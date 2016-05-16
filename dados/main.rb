@@ -9,7 +9,7 @@ class Propriedade
     attr_reader :nome, :propriedade
 
     # Construtor
-    def initialize nome, propriedade
+    def initialize(nome, propriedade)
         @nome, @propriedade = nome, propriedade
     end
 end
@@ -22,36 +22,39 @@ class Tamanho
     attr_accessor :unidade, :tamanho
 
     # Construtor
-    def initialize unidade, tamanho
+    def initialize(unidade, tamanho)
         @unidade, @tamanho = unidade, tamanho
     end
 end
 
 class DimensoesPlanta
     # Altura folhagem
-    @AF
+    @af
     # Altura da Planta
-    @AP
+    @ap
     # Altura
-    @A
+    @al
     # Comprimento
-    @C
+    @co
     # Comprimento da vagem
-    @CV
+    @cv
     # Comprimento da espiga
-    @CE
+    @ce
     # Diametro
-    @D
+    @di
     # Peso
-    @P
+    @pe
 
     # Getters
-    attr_reader :AF, :AP, :A, :C, :CV, :CE, :D, :P
+    attr_reader :af, :ap, :al, :co, :cv, :ce, :di, :pe
 
     # Construtor
     def initialize(propriedades)
+        # Inicializa todas as propriedades como vazias
+        @af, @ap, @al, @co, @cv, @ce, @di, @pe = ''
+
         # cada propriedade é dado na forma de uma tupla ":nome, tamanho
-        for propriedade in propriedades
+        propriedades.each do |propriedade |
             instance_variable_set "@#{propriedade.nome}", propriedade.tamanho
         end
     end
@@ -76,9 +79,9 @@ class Semente
     @espacamento_linha_plantas
 
     # Caracteristicas regionais
-    @epoca_plantio_R1
-    @epoca_plantio_R2
-    @epoca_plantio_R3
+    @epoca_plantio_r1
+    @epoca_plantio_r2
+    @epoca_plantio_r3
 
     # Caracteristicas da Planta
     @descricao
@@ -86,73 +89,79 @@ class Semente
 
     # Getters and setters
     attr_accessor :nome, :sigla, :id, :foto, :nomes_cientificos, :n_sementes_g, :n_dias_germinacao
-    attr_accessor :necessidade_kg_ha, :ciclo_dias_inv, :espacamento_linha_plantas, :epoca_plantio_R1
-    attr_accessor :epoca_plantio_R2, :epoca_plantio_R3, :descricao, :tamanho
+    attr_accessor :necessidade_kg_ha, :ciclo_dias_inv, :espacamento_linha_plantas, :epoca_plantio_r1
+    attr_accessor :epoca_plantio_r2, :epoca_plantio_r3, :descricao, :tamanho
 
     # Construtor
-    def initialize nome, sigla, id
+    def initialize(nome, sigla, id)
         @nome, @sigla, @id = nome, sigla, id
         @nomes_cientificos = []
+
+        # Inicializa todas as propriedades como umas string vazia
+        @foto, @n_sementes_g, @n_dias_germinacao = ''
+        @ciclo_dias_inv, @ciclo_dias_ver, @espacamento_linha_plantas = ''
+        @epoca_plantio_r1, @epoca_plantio_r2, @epoca_plantio_r3 = ''
+        @descricao, @tamanho, @necessidade_kg_ha = ''
     end
 
     # Retorna um array deste objeto
     def to_a
-        return ["#{@nome}",
-                "#{@sigla}",
-                "#{@id}",
-                "#{@foto}",
-                "#{@nomes_cientificos.to_s}",
-                "#{@n_sementes_g}",
-                "#{@n_dias_germinacao}",
-                "#{@necessidade_kg_ha}",
-                "#{@ciclo_dias_inv}",
-                "#{@ciclo_dias_ver}",
-                "#{@espacamento_linha_plantas}",
-                "#{@epoca_plantio_R1}",
-                "#{@epoca_plantio_R2}",
-                "#{@epoca_plantio_R3}",
-                "#{@descricao}",
-                "#{@tamanho}"]
+        [@nome,
+        @sigla,
+        @id,
+        @foto,
+        @nomes_cientificos.to_s,
+        @n_sementes_g,
+        @n_dias_germinacao,
+        @necessidade_kg_ha,
+        @ciclo_dias_inv,
+        @ciclo_dias_ver,
+        @espacamento_linha_plantas,
+        @epoca_plantio_r1,
+        @epoca_plantio_r2,
+        @epoca_plantio_r3,
+        @descricao,
+        @tamanho]
     end
 
     # To string sql
     def to_sql
-        return "#{@id}, " +
-               "'#{@nome}', " +
-               "'#{@sigla}', " +
-               "'#{@foto}', " +
-               "'#{@nomes_cientificos.to_s}', " +
-               "#{@n_sementes_g}, " +
-               "'#{@n_dias_germinacao}', " +
-               "'#{@necessidade_kg_ha}', " +
-               "'#{@ciclo_dias_inv}', " +
-               "'#{@ciclo_dias_ver}', " +
-               "'#{@espacamento_linha_plantas}', " +
-               "'#{@epoca_plantio_R1}', " +
-               "'#{@epoca_plantio_R2}', " +
-               "'#{@epoca_plantio_R3}', " +
-               "'#{@descricao}', " +
-               "'#{@tamanho}'"
+        "#{@id}, " +
+        "'#{@nome}', " +
+        "'#{@sigla}', " +
+        "'#{@foto}', " +
+        "'#{@nomes_cientificos.to_s}', " +
+        "#{@n_sementes_g}, " +
+        "'#{@n_dias_germinacao}', " +
+        "'#{@necessidade_kg_ha}', " +
+        "'#{@ciclo_dias_inv}', " +
+        "'#{@ciclo_dias_ver}', " +
+        "'#{@espacamento_linha_plantas}', " +
+        "'#{@epoca_plantio_r1}', " +
+        "'#{@epoca_plantio_r2}', " +
+        "'#{@epoca_plantio_r3}', " +
+        "'#{@descricao}', " +
+        "'#{@tamanho}'"
     end
 
     # Retorna uma string desse objeto
     def to_s
-        return  "nome: #{@nome}, " +
-                "sigla: #{@sigla}, " +
-                "id: #{@id}, " +
-                "foto: #{@foto}, " +
-                "nomes_cientificos: #{@nomes_cientificos.to_s}, " +
-                "n_sementes_g: #{@n_sementes_g}, " +
-                "n_dias_germinacao: #{@n_dias_germinacao}, " +
-                "necessidade_kg_ha: #{@necessidade_kg_ha}, " +
-                "ciclo_dias_inv: #{@ciclo_dias_inv}, " +
-                "ciclo_dias_ver: #{@ciclo_dias_ver}, " +
-                "espacamento_linha_plantas: #{@espacamento_linha_plantas}, " +
-                "epoca_plantio_R1: #{@epoca_plantio_R1}, " +
-                "epoca_plantio_R2: #{@epoca_plantio_R2}, " +
-                "epoca_plantio_R3: #{@epoca_plantio_R3}, " +
-                "descricao: #{@descricao}, " +
-                "tamanho: #{@tamanho}"
+        "nome: #{@nome}, " +
+        "sigla: #{@sigla}, " +
+        "id: #{@id}, " +
+        "foto: #{@foto}, " +
+        "nomes_cientificos: #{@nomes_cientificos.to_s}, " +
+        "n_sementes_g: #{@n_sementes_g}, " +
+        "n_dias_germinacao: #{@n_dias_germinacao}, " +
+        "necessidade_kg_ha: #{@necessidade_kg_ha}, " +
+        "ciclo_dias_inv: #{@ciclo_dias_inv}, " +
+        "ciclo_dias_ver: #{@ciclo_dias_ver}, " +
+        "espacamento_linha_plantas: #{@espacamento_linha_plantas}, " +
+        "epoca_plantio_r1: #{@epoca_plantio_r1}, " +
+        "epoca_plantio_r2: #{@epoca_plantio_r2}, " +
+        "epoca_plantio_r3: #{@epoca_plantio_r3}, " +
+        "descricao: #{@descricao}, " +
+        "tamanho: #{@tamanho}"
     end
 end
 
@@ -174,46 +183,61 @@ class Arvore
     attr_accessor :classificacao, :bioma, :regiao_de_origem, :caracteristicas
 
     # Construtor
-    def initialize nome, id
+    def initialize(nome, id)
         @nome, @id = nome, id
         @nomes_cientificos = []
+
+        # Inicializa todas as propriedaes como campos vazios
+        @foto, @classificacao, @bioma, @regiao_de_origem = ''
+        @caracteristicas = ''
     end
 
     # Retorna um array deste objeto
     def to_a
-        return ["#{@nome}",
-                "#{@id}",
-                "#{@foto}",
-                "#{@nomes_cientificos.to_s}",
-                "#{@classificacao}",
-                "#{@bioma}",
-                "#{@regiao_de_origem}",
-                "#{@caracteristicas}"]
+        [@nome,
+        @id,
+        @foto,
+        @nomes_cientificos.to_s,
+        @classificacao,
+        @bioma,
+        @regiao_de_origem,
+        @caracteristicas]
     end
 
     # Retorna uma string desse objeto
     def to_s
-        return  "nome: #{@nome}, " +
-                "id: #{@id}, " +
-                "foto: #{@foto}, " +
-                "nomes_cientificos: #{@nomes_cientificos.to_s}, " +
-                "classificacao: #{@classificacao}, " +
-                "bioma: #{@bioma}, " +
-                "regiao_de_origem: #{@regiao_de_origem}, " +
-                "caracteristicas: #{@caracteristicas}"
+        "nome: #{@nome}, " +
+        "id: #{@id}, " +
+        "foto: #{@foto}, " +
+        "nomes_cientificos: #{@nomes_cientificos.to_s}, " +
+        "classificacao: #{@classificacao}, " +
+        "bioma: #{@bioma}, " +
+        "regiao_de_origem: #{@regiao_de_origem}, " +
+        "caracteristicas: #{@caracteristicas}"
+    end
+
+    def to_sql
+        "#{@id}, " +
+        "'#{@nome}', " +
+        "'#{@foto}', " +
+        "'#{@nomes_cientificos.to_s}', " +
+        "'#{@classificacao}', " +
+        "'#{@bioma}', " +
+        "'#{@regiao_de_origem}', " +
+        "'#{@caracteristicas}'"
     end
 end
 
 ## Palavras reservadas - COLUNAS
-titulos_colunas = { "VARIEDADE"                      => 1,   # IGN: -
-                    "Nº DE"                          => 2,   # IGN: "SEMENTES/g",
-                    "NECESSIDADE"                    => 2,   # IGN: "(KG/ha)",
-                    "Nº DIAS INÍCIO "                => 2,   # IGN: "GERMINAÇÃO",
-                    "CICLO"                          => 2,   # IGN: "(dias)",
-                    "ESPAÇAMENTO"                    => 3,   # IGN: "LINHA X PLANTAS", "(cm)",
-                    "TAMANHO DA "                    => 3,   # IGN: "PLANTA/FRUTO", "CRESCIMENTO",
-                    "CARACTERÍSTICAS/DIFERENCIAIS"   => 1,   # IGN: -
-                    "ÉPOCA DE"                       => 2  } # IGN: "PLANTIO"
+titulos_colunas = { 'VARIEDADE'.to_sym                      => 1,   # IGN: -
+                    'Nº DE'.to_sym                          => 2,   # IGN: "SEMENTES/g",
+                    'NECESSIDADE'.to_sym                    => 2,   # IGN: "(KG/ha)",
+                    'Nº DIAS INÍCIO '.to_sym                => 2,   # IGN: "GERMINAÇÃO",
+                    'CICLO'.to_sym                          => 2,   # IGN: "(dias)",
+                    'ESPAÇAMENTO'.to_sym                    => 3,   # IGN: "LINHA X PLANTAS", "(cm)",
+                    'TAMANHO DA '.to_sym                    => 3,   # IGN: "PLANTA/FRUTO", "CRESCIMENTO",
+                    'CARACTERÍSTICAS/DIFERENCIAIS'.to_sym   => 1,   # IGN: -
+                    'ÉPOCA DE'.to_sym                       => 2  } # IGN: "PLANTIO"
 
 # Barra de progresso simples
 class ProgressBar
@@ -232,7 +256,7 @@ class ProgressBar
     # Getters
     attr_reader :progress, :unities, :title, :it
 
-    def initialize length, title = 'Progress = ', symbol_bar = '=', tags_bar = ['[',']']
+    def initialize(length, title = 'Progress = ', symbol_bar = '=', tags_bar = %w{[ ]})
         @it         = 0
         @progress   = 0
 
@@ -251,7 +275,7 @@ class ProgressBar
         print "\r"
 
         # Imprime a barra de progresso
-        print   "#{@status_bar}#{ if @progress == 100 then @tags_bar[1] end } - " +
+        print   "#{@status_bar}#{ @tags_bar[1] if @progress == 100} - " +
                 "#{ @length >= 100 ? @progress : ((100 / @length) * @progress) }%"
 
         # Força a saida para aparecer imediatamente, por padrão quando
@@ -285,21 +309,21 @@ class ProgressBar
         @it += 1
 
         # Imprime o progresso
-        imprimeProgresso()
+        imprime_progresso
     end
 
     # Move o iterador da barra de progresso para um ponto especifico
-    def change value
+    def change(value)
         @it = value
 
         # Imprime o progresso
-        imprimeProgresso()
+        imprime_progresso
     end
 
     private
-    def imprimeProgresso
+    def imprime_progresso
         # Se o iterador for maior que o progresso atual pela quantidade de unidades
-        if @it >= (@progress * @unities) then
+        if @it >= (@progress * @unities)
             # Incrementa o progresso
             @progress += 1
 
@@ -310,8 +334,8 @@ class ProgressBar
             print "\r"
 
             # Imprime a barra de progresso
-            print   "#{@status_bar}#{ if @progress == 100 then @tags_bar[1] end } - " +
-                    "#{ @length >= 100 ? @progress : ((100 / @length) * @progress) }%"
+            print   "#{@status_bar}#{ @tags_bar[1] if @progress == 100 } - " +
+                    "#{ @length >= 100 ? @progress - 1 : ((100 / @length) * @progress) }%"
 
             # Força a saida para aparecer imediatamente, por padrão quando
             # '\n' é printado o buffer da saida padrão é 'atualizado - flushed'
@@ -319,6 +343,14 @@ class ProgressBar
         end
     end
 
+end
+
+# Remove os acentos
+def remove_acentos(str)
+    str.tr('ÀÁÂÃÄÅàáâãäåĀāĂăĄąÇçĆćĈĉĊċČčÐðĎďĐđÈÉÊËèéêëĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħÌÍÎÏìíîïĨĩĪīĬĭĮįİıĴĵĶķĸĹĺĻļĽľĿŀŁł' +
+               'ÑñŃńŅņŇňŉŊŋÒÓÔÕÖØòóôõöøŌōŎŏŐőŔŕŖŗŘřŚśŜŝŞşŠšſŢţŤťŦŧÙÚÛÜùúûüŨũŪūŬŭŮůŰűŲųŴŵÝýÿŶŷŸŹźŻżŽž',
+           'AAAAAAaaaaaaAaAaAaCcCcCcCcCcDdDdDdEEEEeeeeEeEeEeEeEeGgGgGgGgHhHhIIIIiiiiIiIiIiIiIiJjKkkLlLlLlLlLl' +
+               'NnNnNnNnnNnOOOOOOooooooOoOoOoRrRrRrSsSsSsSssTtTtTtUUUUuuuuUuUuUuUuUuUuWwYyyYyYZzZzZz') unless str.nil?
 end
 
 # Com essa informação podemos agora excluir essas linhas, sabemos que elas vão sempre aparecer na mesma ordem
@@ -363,7 +395,7 @@ while i < arquivo.length do
     progresso.check
 
     # Se eu encontro a palavra variedade no arquivo
-    if arquivo[i] == "VARIEDADE\r\n" then
+    if arquivo[i] == "VARIEDADE\r\n"
         # Removo a palavra VARIEDADE para que ela não me atrapalhe
         arquivo[i] = "======\r\n"
 
@@ -406,7 +438,7 @@ while i < arquivo.length do
     progresso.check
 
     # Se encontramos uma lista de referências, adicionamos todas elas
-    if arquivo[i] == "REF\r\n" then
+    if arquivo[i] == "REF\r\n"
         # Remove a palavra REF do arquivo
         arquivo[i] = "=======\r\n"
 
@@ -455,34 +487,37 @@ id_list = id_list.map do |e|
         i += 1
     end
 
+    # Inicialização do ID
+    id = 0
+
     # Se o indice chegou ao tamanho do arquivo então o ID não foi
     # encontrado, como os testes já foram feitos comentei a checagem
     # de id's não encontrados
-    if i != arquivo.length then
+    if i != arquivo.length
         # Se chegamos até aqui o ID está correto vamos corrigir ele
         # antes de inserir essa entrada, então vamos fazer algumas
         # checagems e correções
 
         # Vamos checar se a entrada está no formato desejado
-        if !arquivo[i].end_with?(",\"\"\r\n") then
+        unless arquivo[i].end_with?(",\"\"\r\n")
             arquivo[i] = arquivo[i].gsub(/\r\n?/,'') + ",\"\"\r\n"
         end
 
         # Vamos corrigir as 2 posições anteriores e as duas seguintes
         2.times do |x|
             # Checa posição anterior
-            if !arquivo[i-(x+1)].start_with?('"",') then
+            unless arquivo[i-(x+1)].start_with?('"",')
                 arquivo[i-(x+1)] = '"",' + arquivo[i-(x+1)]
             end
 
             # Checa próxima posição
-            if !arquivo[i+(x+1)].end_with?(",\"\"\r\n") then
+            unless arquivo[i+(x+1)].end_with?(",\"\"\r\n")
                 arquivo[i+(x+1)] = arquivo[i+(x+1)].gsub(/\r\n?/,'') + ",\"\"\r\n"
             end
         end
 
         # Checa a última posição e corrige se for necessário
-        if !arquivo[i+3].end_with?(",\"\"\r\n") then
+        unless arquivo[i+3].end_with?(",\"\"\r\n")
             arquivo[i+3] = arquivo[i+3].gsub(/\r\n?/,'') + ",\"\"\r\n"
         end
 
@@ -540,20 +575,23 @@ ref_list = ref_list.map do |e|
         i += 1
     end
 
+    # Inicialização do ID
+    id = 0
+
     # Se o indice chegou ao tamanho do arquivo então não encontramos o ID
     # caso ele não tenha chegado nós olhamos os indices anteriores e após
     # ele afim de inserir a arvore a nossa lista de arvores
-    if i != arquivo.length then
+    if i != arquivo.length
         # Se não estamos no final do arquivo então a entrada está correta
         # para assegurar que nada dê errado, iremos corrigir a estrutura
         # antes de adicionarmos a propriedade
-        if !arquivo[i].end_with?(",\"\"\r\n") then
+        unless arquivo[i].end_with?(",\"\"\r\n")
             arquivo[i] = arquivo[i].gsub(/\r\n?/,'') + ",\"\"\r\n"
         end
 
         # Se a posição anterior não estiver no formato adequado
         # corrigimos ela
-        if !arquivo[i-1].start_with?('"",') then
+        unless arquivo[i-1].start_with?('"",')
             arquivo[i-1] = '"",' + arquivo[i-(x+1)]
         end
 
@@ -563,14 +601,13 @@ ref_list = ref_list.map do |e|
         nome = CSV.parse(arquivo[i - 1])[0][1]
         arvores[id] = Arvore.new(nome, id)
 
-
         # Como não sabemos quantos nomes cientficos a arvore possui
         # iremos corrigir e adiciona-los ele a instancia da classe
         # recem criada
         x = 1
         while x + i < arquivo.length && !arquivo[i].empty? && !arquivo[i+x].start_with?('"",') && arquivo[i + x] != "=======\r\n" do
             # Primeiro verificamos se elá está no formato desejado
-            if !arquivo[i+x].end_with?(",\"\"\r\n") then
+            unless arquivo[i+x].end_with?(",\"\"\r\n")
                 arquivo[i+x] = arquivo[i+x].gsub(/\r\n?/,'') + ",\"\"\r\n"
             end
 
@@ -640,8 +677,8 @@ while i < dados.length && dados[i][0] != '=======' do
     palavra_reservada = dados[i][0]
 
     # Remove o Index do titulo, se a posição não for um bloco
-    if !titulos_colunas[palavra_reservada].nil? then
-        i += titulos_colunas[palavra_reservada]
+    unless titulos_colunas[palavra_reservada.to_sym].nil?
+        i += titulos_colunas[palavra_reservada.to_sym]
     end
 
     # Checa a palavra reservada
@@ -651,7 +688,7 @@ while i < dados.length && dados[i][0] != '=======' do
             j += 6
             i += 1
         when 'Nº DE'
-            for x in 0..5 do
+            0..5.times do |x|
                 # Coloca a informação da tabela na hash table
                 plantas[id_list[j+x]].n_sementes_g = dados[i][0].gsub('.', '').to_i
 
@@ -662,7 +699,7 @@ while i < dados.length && dados[i][0] != '=======' do
 
         # Faz a mesma coisa que o anterior só que numa propriedade nova
         when 'NECESSIDADE'
-            for x in 0..5 do
+            0..5.times do |x|
                 # Coloca a informação da tabela na hash table
                 plantas[id_list[j+x]].necessidade_kg_ha = dados[i][0].gsub('.','').gsub(',','.').to_f
 
@@ -671,7 +708,7 @@ while i < dados.length && dados[i][0] != '=======' do
 
         # Mais uma propriedade parecida
         when 'Nº DIAS INÍCIO '
-            for x in 0..5 do
+            0..5.times do |x|
                 # Coloca a informação da tabela na hash table
                 plantas[id_list[j+x]].n_dias_germinacao = dados[i][0]
 
@@ -680,7 +717,7 @@ while i < dados.length && dados[i][0] != '=======' do
 
         # Mesma receita de bolo
         when 'ESPAÇAMENTO'
-            for x in 0..5 do
+            0..5.times do |x|
                 # Coloca a informação da tabela na hash table
                 plantas[id_list[j+x]].espacamento_linha_plantas = dados[i][0]
 
@@ -689,11 +726,11 @@ while i < dados.length && dados[i][0] != '=======' do
 
         # Mesma Receita de bolo só que 3 vezes para cada planta
         when 'ÉPOCA DE'
-            for x in 0..5 do
+            0..5.times do |x|
                 # Coloca a informação da tabela na hash table
-                plantas[id_list[j+x]].epoca_plantio_R1 = dados[i][0]
-                plantas[id_list[j+x]].epoca_plantio_R2 = dados[i+1][0]
-                plantas[id_list[j+x]].epoca_plantio_R2 = dados[i+2][0]
+                plantas[id_list[j+x]].epoca_plantio_r1 = dados[i][0]
+                plantas[id_list[j+x]].epoca_plantio_r2 = dados[i+1][0]
+                plantas[id_list[j+x]].epoca_plantio_r2 = dados[i+2][0]
 
                 # Incrementamos 3 posições porque são 3 linhas por planta
                 i += 3
@@ -718,27 +755,63 @@ progresso.stop
 
 # Depois de inserirmos as outras caracteristicas de uma planta iremos
 # fazer o mesmo agora para as arvores
-# TODO - Inserir adição das arvores
+# Barra de Progresso
+progresso = ProgressBar.new(dados.length - i)
+
+# Inicia a barra de progresso
+puts 'Composing Trees instances'
+progresso.start
+
+# Referência
+j = 0
+# Condição
+while i < dados.length do
+    # Adiciona uma barra de carregando
+    progresso.check
+
+    # Como só restam "Titulos" de colunas e dados dessas vamos organizar
+    #palavra_reservada = dados[i][0]
+
+    # Remove o Index do titulo, se a posição não for um bloco
+    unless titulos_colunas[palavra_reservada].nil?
+        i += titulos_colunas[palavra_reservada]
+    end
+
+    ref_list
+
+    # Checa a palavra reservada
+    case palavra_reservada
+        when '======='
+            # Se encontrou um bloco incrementamos em 6 o j e em 1 o i
+            j += 6
+            i += 1
+        else
+            # Se chegarmos em uma linha que não sabemos tratar
+            # ignoramos a mesma
+            i += 1
+    end
+end
+progresso.stop
 
 # Arquivo de saida Plantas
 CSV.open 'plantas-saida.csv', 'wb' do |saida|
     # Insere os headers
-    saida << [  "NOME",
-                "SIGLA",
-                "ID",
-                "FOTO",
-                "NOMES_CIENTIFICOS",
-                "N_SEMENTES_G",
-                "N_DIAS_GERMINACAO",
-                "NECESSIDADE_KG_HA",
-                "CICLO_DIAS_INV",
-                "CICLO_DIAS_VER",
-                "ESPACAMENTO_LINHA_PLANTAS",
-                "EPOCA_PLANTIO_R1",
-                "EPOCA_PLANTIO_R2",
-                "EPOCA_PLANTIO_R3",
-                "DESCRICAO",
-                "TAMANHO" ]
+    saida << %w{    NOME
+                    SIGLA
+                    ID
+                    FOTO
+                    NOMES_CIENTIFICOS
+                    N_SEMENTES_G
+                    N_DIAS_GERMINACAO
+                    NECESSIDADE_KG_HA
+                    CICLO_DIAS_INV
+                    CICLO_DIAS_VER
+                    ESPACAMENTO_LINHA_PLANTAS
+                    EPOCA_PLANTIO_R1
+                    EPOCA_PLANTIO_R2
+                    EPOCA_PLANTIO_R3
+                    DESCRICAO
+                    TAMANHO }
 
     # Para cada planta cadastrada
     # transformar objeto em array e jogar no CSV
@@ -751,14 +824,14 @@ end
 # Arquivo de sadia Arvores
 CSV.open 'arvores-saida.csv', 'wb' do |saida|
     # Insere os titulos
-    saida << [ "NOME",
-                "ID",
-                "FOTO",
-                "NOMES_CIENTIFICOS",
-                "CLASSIFICACAO",
-                "BIOMA",
-                "REGIAO_DE_ORIGEM",
-                "CARACTERISTICAS" ]
+    saida << %w{    NOME
+                    ID
+                    FOTO
+                    NOMES_CIENTIFICOS
+                    CLASSIFICACAO
+                    BIOMA
+                    REGIAO_DE_ORIGEM
+                    CARACTERISTICAS }
 
     arvores.each do |e|
         saida << e[1].to_a
@@ -772,19 +845,37 @@ end
 # TODO - Exportar para uma tabela sqlite3
 begin
     # Create a new Database
-    db = SQLite3::Database.open "dados.db"
+    db = SQLite3::Database.open 'dados.db'
 
     # Remove a tabela plantas caso a mesma já exista
-    db.execute "DROP TABLE IF EXISTS Plantas"
+    db.execute 'DROP TABLE IF EXISTS Plantas'
+
+    # Remove a tabela arvores caso a mesma já exista
+    db.execute 'DROP TABLE IF EXISTS Arvores'
 
     # Cria a tabela Plantas
-    db.execute "CREATE TABLE Plantas(Id INTEGER PRIMARY KEY, Nome TEXT, Sigla TEXT, Foto TEXT, NomeCientificos TEXT, NumeroSementes INTEGER, NumeroDias TEXT, NecessidadeSementes , CicloDiasInv TEXT, CicloDiasVer TEXT, Espacamento TEXT, EpocaPlantioR1 TEXT, EpocaPlantioR3 TEXT, EpocaPlantioR2 TEXT, Descricao TEXT, Tamanho TEXT)"
+    db.execute  'CREATE TABLE Plantas(Id INTEGER PRIMARY KEY, ' +
+                'Nome TEXT, Sigla TEXT, Foto TEXT, ' +
+                'NomeCientificos TEXT, NumeroSementes INTEGER, ' +
+                'NumeroDias TEXT, NecessidadeSementes , CicloDiasInv TEXT, ' +
+                'CicloDiasVer TEXT, Espacamento TEXT, EpocaPlantioR1 TEXT, ' +
+                'EpocaPlantioR3 TEXT, EpocaPlantioR2 TEXT, Descricao TEXT, Tamanho TEXT)'
+
+    # Cria a tabela Arvores
+    db.execute  'CREATE TABLE Arvores(Id INTEGER PRIMARY KEY, ' +
+                'Nome TEXT, ' +
+                'Foto TEXT, ' +
+                'NomesCientificos TEXT, ' +
+                'Classificacao TEXT, ' +
+                'Bioma TEXT, ' +
+                'RegiaoDeOrigem TEXT, ' +
+                'Caracteristicas TEXT)'
 
     # Barra de Progresso
     progresso = ProgressBar.new plantas.length
 
     # Inicia a barra de progresso
-    puts 'Populating Output Database'
+    puts 'Populating Output Database - Plants'
     progresso.start
 
     # Adicionamos agora todas as propriedades
@@ -800,8 +891,27 @@ begin
     # Finliza o progresso
     progresso.stop
 
+    # Barra de Progresso
+    progresso = ProgressBar.new plantas.length
+
+    # Inicia a barra de progresso
+    puts 'Populating Output Database - Trees'
+    progresso.start
+
+    # Vamos adicionar as arvores
+    arvores.each do |e|
+        # Checamos o progresso
+        progresso.check
+
+        # Adicionamos a entrada
+        db.execute "INSERT INTO Arvores VALUES(#{e[1].to_sql})"
+    end
+
+    # Finliza o progresso
+    progresso.stop
+
 rescue SQLite3::Exception => e
-    puts "[BUG] Error on database interaction"
+    puts '[BUG] Error on database interaction'
     puts e
 ensure
     # Fecha a db mesmo que ocoram erros
@@ -810,5 +920,5 @@ end
 
 # FINISHED :D
 puts("Extraction Complete.\n" +
-     "Open 'saida.csv' to see the results.\n" +
+     "Open 'saida.csv' or 'dados.db' to see the results.\n" +
      "Thank You\n")
