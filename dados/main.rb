@@ -63,7 +63,7 @@ end
 class Semente
     # Propriedades Gerais
     @nome
-    @sigla
+    @apelido
     @id
     @foto
     @nomes_cientificos
@@ -88,13 +88,13 @@ class Semente
     @tamanho
 
     # Getters and setters
-    attr_accessor :nome, :sigla, :id, :foto, :nomes_cientificos, :n_sementes_g, :n_dias_germinacao
+    attr_accessor :nome, :apelido, :id, :foto, :nomes_cientificos, :n_sementes_g, :n_dias_germinacao
     attr_accessor :necessidade_kg_ha, :ciclo_dias_inv, :espacamento_linha_plantas, :epoca_plantio_r1
     attr_accessor :epoca_plantio_r2, :epoca_plantio_r3, :descricao, :tamanho
 
     # Construtor
-    def initialize(nome, sigla, id)
-        @nome, @sigla, @id = nome, sigla, id
+    def initialize(nome, apelido, id)
+        @nome, @apelido, @id = nome, apelido, id
         @nomes_cientificos = []
 
         # Inicializa todas as propriedades como umas string vazia
@@ -107,7 +107,7 @@ class Semente
     # Retorna um array deste objeto
     def to_a
         [@nome,
-        @sigla,
+        @apelido,
         @id,
         @foto,
         @nomes_cientificos.to_s,
@@ -128,7 +128,7 @@ class Semente
     def to_sql
         "#{@id}, " +
         "'#{@nome}', " +
-        "'#{@sigla}', " +
+        "'#{@apelido}', " +
         "'#{@foto}', " +
         "'#{@nomes_cientificos.to_s}', " +
         "#{@n_sementes_g}, " +
@@ -147,7 +147,7 @@ class Semente
     # Retorna uma string desse objeto
     def to_s
         "nome: #{@nome}, " +
-        "sigla: #{@sigla}, " +
+        "apelido: #{@apelido}, " +
         "id: #{@id}, " +
         "foto: #{@foto}, " +
         "nomes_cientificos: #{@nomes_cientificos.to_s}, " +
@@ -527,7 +527,7 @@ id_list = id_list.map do |e|
 
         # Agora adicionamos a nova propriedade
         plantas[id] = Semente.new(  CSV.parse(arquivo[i - 2])[0][1],  # Nome
-                                    CSV.parse(arquivo[i - 1])[0][1],  # Sigla
+                                    CSV.parse(arquivo[i - 1])[0][1],  # Apelido
                                     id)                               # ID
 
         # Por ultimo adicionamos os nomes cientificos
@@ -629,7 +629,7 @@ end
 # Finaliza o progresso
 progresso.stop
 
-# Agora com todas as informações triviais organizadas, nome da planta, sigla,
+# Agora com todas as informações triviais organizadas, nome da planta, apelido,
 # e nomes cientificos, iremos salvar esse arquivo e dar um parse dele uma única
 # vez, é importante lembrar que esse novo arquivo não vai conter a lista de ID's
 # nem as classes, já que essas já estão prontas, o que falta é só compor
@@ -740,11 +740,22 @@ while i < dados.length && dados[i][0] != '=======' do
         # Apesar da receita ser a mesma, a execução é diferenciada
         # TODO - Inserção de propriedades chave
         # TODO - CICLO
-        #when 'CICLO'
+        when 'CICLO'
+            #  Ciclo tem um misto entre uma e duas linhas, por tal razão precisamos usar
+            #  um arquivo auxiliar que possui apenas as linhas impares, se cruzarmos
+            #  as linhas impares com todas as linhas descobrimos que as linhas pares
+            #  são as não impares e as impares são as não pares, com essa informação
+            #  podemos selecionar todas as celulas desta coluna
+
         # TODO - TAMANHO DA
-        #when 'TAMANHO DA '
+        when 'TAMANHO DA '
+            # Tamanho também possui a mesma coisa por isso iremos usar o mesmo padrão
+
         # TODO - CARACTERISTICAS
-        #when 'CARACTERÍSTICAS/DIFERENCIAIS'
+        when 'CARACTERÍSTICAS/DIFERENCIAIS'
+            # Caracteristicas está na mesma forma que as anteriores, então a mesma técnica
+            # será utilizada
+
         else
             # Se chegarmos em uma linha que não sabemos tratar
             # ignoramos a mesma
@@ -797,7 +808,7 @@ progresso.stop
 CSV.open 'plantas-saida.csv', 'wb' do |saida|
     # Insere os headers
     saida << %w{    NOME
-                    SIGLA
+                    APELIDO
                     ID
                     FOTO
                     NOMES_CIENTIFICOS
@@ -842,7 +853,7 @@ end
 # Existe uma lista grande de propriedades repetidas.
 # Precisamos inserir as mesmas dentros das listas já criadas
 
-# TODO - Exportar para uma tabela sqlite3
+# Exportar para uma tabela sqlite3
 begin
     # Create a new Database
     db = SQLite3::Database.open 'dados.db'
@@ -855,16 +866,16 @@ begin
 
     # Cria a tabela Plantas
     db.execute  'CREATE TABLE Plantas(Id INTEGER PRIMARY KEY, ' +
-                'Nome TEXT, Sigla TEXT, Foto TEXT, ' +
+                'Nome TEXT, Apelido TEXT, Foto BLOB, ' +
                 'NomeCientificos TEXT, NumeroSementes INTEGER, ' +
-                'NumeroDias TEXT, NecessidadeSementes , CicloDiasInv TEXT, ' +
+                'NumeroDias TEXT, NecessidadeSementes TEXT, CicloDiasInv TEXT, ' +
                 'CicloDiasVer TEXT, Espacamento TEXT, EpocaPlantioR1 TEXT, ' +
                 'EpocaPlantioR3 TEXT, EpocaPlantioR2 TEXT, Descricao TEXT, Tamanho TEXT)'
 
     # Cria a tabela Arvores
     db.execute  'CREATE TABLE Arvores(Id INTEGER PRIMARY KEY, ' +
                 'Nome TEXT, ' +
-                'Foto TEXT, ' +
+                'Foto BLOB, ' +
                 'NomesCientificos TEXT, ' +
                 'Classificacao TEXT, ' +
                 'Bioma TEXT, ' +

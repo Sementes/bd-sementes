@@ -48,11 +48,11 @@ while i < arquivo.length do
     else
         i += 1
     end
-end
+end;0
 
 id_list.sort.each do |e|
     puts e
-end
+end;0
 
 first_ref = arquivo.find_index "REF\r\n"
 
@@ -71,11 +71,11 @@ while i < arquivo.length do
     else
         i += 1
     end
-end
+end;0
 
 ref_list.sort.each do |e|
     puts e 
-end
+end;0
 
 # =====================================
 
@@ -152,7 +152,7 @@ class Semente
         "descricao: #{@descricao}," +
         "tamanho: #{@tamanho}"
     end
-end
+end;0
 
 plantas = Hash.new
 k = 0
@@ -209,7 +209,7 @@ id_list = id_list.map do |e|
     end
     
     e = id
-end
+end;0
 
 print "Not found ID's = #{k} \n"
 
@@ -256,7 +256,7 @@ class Arvore
         "regiao_de_origem: #{@regiao_de_origem}, " +
         "caracteristicas: #{@caracteristicas}"
     end
-end
+end;0
 
 first_ref -= 13
 arvores = Hash.new
@@ -306,7 +306,7 @@ ref_list = ref_list.map do |e|
     end
 
     e = id
-end
+end;0
 
 print "Not found ID's = #{k} \n"
 
@@ -319,7 +319,7 @@ arquivo_pronto.truncate(0)
 
 arquivo.each do |e|
     arquivo_pronto.write e
-end
+end;0
 
 arquivo_pronto.close
 
@@ -332,6 +332,71 @@ def remove_acentos(str)
                'NnNnNnNnnNnOOOOOOooooooOoOoOoRrRrRrSsSsSsSssTtTtTtUUUUuuuuUuUuUuUuUuUuWwYyyYyYZzZzZz') unless str.nil?
 end
 
-plantas.each do |e|
-    puts((e[1].nome.nil? && e[1].nome. '' : remove_acentos(e[1].nome).downcase + '-' ) + remove_acentos(e[1].sigla.downcase))
-end
+# ======================================
+
+require 'http'
+require 'nokogiri'
+
+base_link = 'http://www.plantei.com.br'
+base_uri = '/loja/catalogo.php?categoria=4&marca=marca_isla&page='
+
+id_baixar = []
+1..6.times do |x|
+    Nokogiri::HTML(HTTP.get(base_link + base_uri + x.to_s).to_s)
+        .css('#Vitrine')
+        .css('.produto-imagem').each do |e|
+            id_baixar.push(e[:href])
+    end
+end;0
+
+class InfoPlantas
+    @descr
+    @img_demo
+    @title
+
+    attr_accessor :descr, :img_demo, :title
+
+    def initialize(descr, img_demo, title)
+        @descr, @img_demo, @title = descr, img_demo, title
+    end
+end;0
+
+infop = []
+
+id_baixar.each do |e|
+    x = Nokogiri::HTML(HTTP.get(base_link + e).to_s)
+    descr = x.css('#descricao')[0]
+    title = x.css('.NomeProduto')[0].children.to_s.encode("UTF-8")
+    img_demo = x.css('#imgView')[0][:src]
+    infop.push(InfoPlantas.new(descr, img_demo, title))
+end;0
+
+require 'active_support/core_ext/string'
+
+encontrados = []
+infop.each_with_index do |e, j|
+    index_f = nil
+    plantas.each do |val|
+        if  e.title.mb_chars.downcase.to_s.include?(val[1].nome.nil? ? '' : val[1].nome.mb_chars.downcase.to_s.gsub('/', ' ')) &&
+            e.title.mb_chars.downcase.to_s.include?(val[1].sigla.nil? ? '' : val[1].sigla.mb_chars.downcase.to_s.gsub('/', ' '))
+            index_f = val[0]
+            puts(   verde + e.title + ' ==== ' + (val[1].nome.nil? ? '' : val[1].nome) + ' ' +
+                    (val[1].sigla.nil? ? '' : val[1].sigla) + end_cor)
+            break
+        end
+    end
+    puts azul + j.to_s + ' ' + vermelho + e.title + end_cor if index_f.nil?
+    encontrados.push([index_f, j]) unless index_f.nil?
+end;0
+
+puts azul + j.to_s + end_cor
+
+# MISC
+normal   = "\e[0m"
+bold     = "\e[1m"
+
+verde    = "\e[32m"
+vermelho = "\e[31m"
+azul     = "\e[34m"
+roxo     = "\e[35m"
+end_cor  = "\e[0m"

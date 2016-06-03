@@ -1,5 +1,6 @@
-PRAGMA foreign_keys=OFF;
+PRAGMA foreign_keys=TRUE;
 BEGIN TRANSACTION;
+DROP TABLE IF EXISTS PLANTAS;
 CREATE TABLE Plantas(Id INTEGER PRIMARY KEY, Nome TEXT, Sigla TEXT, Foto TEXT, NomeCientificos TEXT, NumeroSementes INTEGER, NumeroDias TEXT, NecessidadeSementes , CicloDiasInv TEXT, CicloDiasVer TEXT, Espacamento TEXT, EpocaPlantioR1 TEXT, EpocaPlantioR3 TEXT, EpocaPlantioR2 TEXT, Descricao TEXT, Tamanho TEXT);
 INSERT INTO "Plantas" VALUES(1,'Abóbora','MAMMOTH','','["Pumpkin Big Max", "Zapalo Mammoth", "Cucurbita pepo"]',2,'4 - 8','1.5','','','400 x 400','R1 Todo ano','R3 Ago - Dez','','','');
 INSERT INTO "Plantas" VALUES(2,'Abóbora','MENINA BRASILEIRA ','','["Pumpkin Cushaw Golden", "Calabacin Menina Brasileira", "Cucurbita moschata"]',11,'4 - 8','0.4','','','300 x 300','R1 Todo ano','R3 Ago - Dez','','','');
