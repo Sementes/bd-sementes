@@ -853,7 +853,7 @@ CICLO
 65 VER
 50 VER
 70 INV
-60 VER 
+60 VER
 75 INV
 ESPAÇAMENTO
 LINHA X PLANTAS
@@ -1006,7 +1006,7 @@ SEMENTES/g
  700
 728
 728
- 200 
+ 200
  200
 NECESSIDADE
 (KG/ha)
@@ -1154,7 +1154,7 @@ branca.
 "Planta vigorosa, raízes uniformes de formato globular. "
 Folhas muito resistentes e sadias. 
 Raízes de alta produtividade e uniformidade. Resistente à 
-Cercospora. Folhas excelentes para baby leaf e hidroponia.
+Cercospora. Folhas excelentes para baby leaf e hidroponia. 
 Raiz globular achatada.
 ÉPOCA DE
 PLANTIO
@@ -1236,16 +1236,16 @@ CRESCIMENTO
 8 - 10cm (D)
 180 - 200g (P)
 9 - 11cm (D)
-"",CARACTERÍSTICAS/DIFERENCIAIS
-Raiz globular.,""
+CARACTERÍSTICAS/DIFERENCIAIS
+Raiz globular .,""
 "Raiz cilíndrica. Indicada para restaurantes, apresenta rode-",""
 las de tamanho uniforme.,""
 Raiz globular.,""
 Bulbos globulares com casca de cor amarelo-clara.,""
 Resistente à raiz rosada.,""
-"Cebolas grandes de dias curtos, precoce, coloração ",""
-"amarelo-escura, tipo texas grano e forma de globo. ",""
-Uniformidade e produção. ,""
+"Cebolas grandes de dias curtos, precoce, coloração "
+"amarelo-escura, tipo texas grano e forma de globo.  "
+Uniformidade e produção.
 "Cebola do tipo roxa, ciclo curto, bulbos globulares.",""
 ÉPOCA DE
 PLANTIO
@@ -1586,7 +1586,7 @@ CRESCIMENTO
 35 - 40cm (D)
 30 - 50cm (D)
 30 - 40cm (AF)
-"",CARACTERÍSTICAS/DIFERENCIAIS
+CARACTERÍSTICAS/DIFERENCIAIS
 Raiz cilíndrica.,""
 Raiz cilíndrica. Resistência às doenças foliares.,""
 Raiz cônica. Resistência às doenças foliares.,""
@@ -3127,6 +3127,8 @@ Apresenta alta sanidade e uniformidade de plantas.
 Potencial tanto para mercado de frutos frescos como para o
 "processamento de conservas. Frutos saborosos, aromáticos"
 e crocantes. Ausência de pungência. Resistente à PYWV e N.
+Coloração verde (imaturos) e vermelha (maduros).
+Ausência de pungência. Frutos saborosos e crocantes.
 Frutos pequenos e arredondados. Coloração verde e
 amarela. Frutos bastante picantes 90 - 100 mil (*SHU).
 Frutos pequenos e arredondados. Coloração verde a vermelhos. Frutos bastante picantes 90 - 100 mil (*SHU).
@@ -3754,7 +3756,7 @@ CRESCIMENTO
 CARACTERÍSTICAS/DIFERENCIAIS
 Raiz cilíndrica-afilada vermelha.
 Raiz globular vermelha.
-Raiz globular vermelha.
+Raiz globular vermelha .
 Destaca-se em zonas altas e frias. Muito boa capacidade de perma-
 "necer no campo. Tem forma mediana achatada, perto de ser redondo."
 "Plantio para todo ano em zonas tropicais, semitropicais e temperadas."
@@ -4898,7 +4900,7 @@ CARACTERÍSTICAS/DIFERENCIAIS
 "e garganta, cansaço, resfriado e problemas gastrointestinais."
 "Planta de cultivo no inverno e verão. Usada na culinária, "
 "para temperos, ensopados de carne, saladas, doces e "
-"licores. Na fármacia, contra mau hálito, inflamações na boca "
+"licores. Na fármacia, contra mau hálito, inflamações na boca"
 "e garganta, cansaço, resfriado e problemas gastrointestinais."
 "Planta de cultivo no inverno e verão. Usada na culinária, "
 "para temperos, ensopados de carne, saladas, doces e "
@@ -5350,8 +5352,8 @@ CRESCIMENTO
 CARACTERÍSTICAS/DIFERENCIAIS
 Flores vermelhas. Depurativo: usar flores maceradas. Recomendadas para saquinhos.
 "Flores: vermelha, azul, púrpura e amarelo. Ideal para bordaduras e maciços. Recomendadas para saquinhos."
-"Flores: branca, roxa, azul, vermelha e rosa. Usadas para jardim."
-"Flores: branca, roxa, azul, vermelha e rosa. Usadas para jardim."
+"Flores: branca, roxa, azul, vermelha e rosa. Usadas para jardim.  "
+"Flores: branca, roxa, azul, vermelha e rosa. Usadas para jardim. "
 "Flores: branca, roxa, azul, vermelha e rosa. Usadas para jardim."
 "Flores: rosa, lilás e vermelha. Usadas para bordadura ou floreira."
 ÉPOCA DE
@@ -5513,7 +5515,7 @@ CRESCIMENTO
 55 - 65cm (A)
 150cm (A)
 40cm (A)
-"",CARACTERÍSTICAS/DIFERENCIAIS
+CARACTERÍSTICAS/DIFERENCIAIS
 Flores azuis.,""
 "Flores: creme, amarela e laranja. Emenagogas, antissép-",""
 "ticas, cicatrizantes, vasodilatadoras, tonificantes de pele e ",""
@@ -5956,7 +5958,7 @@ borboletas.
 "Flores: branca, amarela, laranja, rosa, vermelha e lilás. "
 "Produzem tubérculos radiculares, que podem ser replan-"
 tados depois da floração. Não resistem à geada. Atraem 
-borboletas.
+borboletas .
 "Flores: branca, rosa, lilás, azul, roxa e vermelha. Usadas "
 para jardins.
 "Flores: branca, amarela, rosa, laranja e vermelha. Para "
@@ -6046,7 +6048,7 @@ resistência à seca.
 Flores sortidas. Para vender mudas em saquinhos ou em 
 pequenos vasos. 
 Flores sortidas. Para vender mudas em saquinhos ou em 
-pequenos vasos. 
+pequenos vasos . 
 Flores sortidas. Plantar em local protegido. Para vender 
 mudas em saquinhos ou em pequenos vasos. 
 ÉPOCA DE
@@ -6222,7 +6224,7 @@ Recomendadas para saquinhos.
 "aparadas, irrigadas e adubadas."
 "Gramados, pastagens, campos de futebol ou golfe."
 "Gramíneas perenes. Em gramados, devem ser sempre bem"
-"aparadas, irrigadas e adubadas."
+"aparadas, irrigadas e adubadas ."
 "Flores: branca, rosa, e vermelha. Podem ser usadas como flor seca."
 ÉPOCA DE
 PLANTIO
@@ -6559,11 +6561,11 @@ CARACTERÍSTICAS/DIFERENCIAIS
 "ração e bordaduras, também recomendadas para saquinhos "
 e vasos.
 Flores sortidas. Para vender mudas em saquinhos ou em 
-pequenos vasos. 
+pequenos vasos.
 Flores sortidas. Para vender mudas em saquinhos ou em 
-pequenos vasos. 
+pequenos vasos . 
 Flores sortidas. Para vender mudas em saquinhos ou em 
-pequenos vasos. 
+pequenos vasos.
 Flores azuis. Atraem abelhas. Usadas para jardins.
 "Flores: branca, amarela, rosa, laranja e vermelha. Usadas "
 para forração e bordaduras. Recomendadas para saquinhos 
@@ -6850,7 +6852,7 @@ R3 Todo ano
 R1 Todo ano
 R2 Todo ano
 R3 Todo ano
-R1 Jun - Nov 
+R1 Jun - Nov
 R2 Jul - Jan
 R3 Jul - Jan
 R1 Todo ano
@@ -7321,7 +7323,7 @@ BIOMA
 "Mata Atlântica, "
 "Caatinga, Cerrado e "
 Pampa
-"mazônia, Cerrado e "
+"Amazônia, Cerrado e "
 Mata Atlântica
 Caatinga e Mata 
 Atlântica
@@ -7334,10 +7336,10 @@ Mata Atlântica
 REGIÃO DE ORIGEM
 " Nordeste, Sudeste"
 e Sul
-"entro-Oeste, Nort"
+"Centro-Oeste, Nort"
 e Sul
 Nordeste e Sudeste
-"entro-Oeste, Nort"
+"Centro-Oeste, Nort"
 e Sul
 "Centro-Oeste, "
 "Nordeste, Sudeste"
@@ -7390,7 +7392,7 @@ Amazônia
 Caatinga e Mata 
 Atlântica
 Mata Atlântica
-"mazônia, Cerrado e "
+"Amazônia, Cerrado e "
 Mata Atlântica
 REGIÃO DE ORIGEM
 Sudeste e Sul
@@ -7440,7 +7442,7 @@ Pioneira
 BIOMA
 Mata Atlântica
 Caatinga
-"mazônia, Cerrado e "
+"Amazônia, Cerrado e "
 Mata Atlântica
 Mata Atlântica
 Caatinga

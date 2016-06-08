@@ -1,5 +1,5 @@
 require 'csv'
-require 'sqlite3'
+require 'sequel'
 
 class Propriedade
     @nome
@@ -89,8 +89,8 @@ class Semente
 
     # Getters and setters
     attr_accessor :nome, :apelido, :id, :foto, :nomes_cientificos, :n_sementes_g, :n_dias_germinacao
-    attr_accessor :necessidade_kg_ha, :ciclo_dias_inv, :espacamento_linha_plantas, :epoca_plantio_r1
-    attr_accessor :epoca_plantio_r2, :epoca_plantio_r3, :descricao, :tamanho
+    attr_accessor :necessidade_kg_ha, :ciclo_dias_inv, :ciclo_dias_ver, :espacamento_linha_plantas
+    attr_accessor :epoca_plantio_r1, :epoca_plantio_r2, :epoca_plantio_r3, :descricao, :tamanho
 
     # Construtor
     def initialize(nome, apelido, id)
@@ -140,7 +140,7 @@ class Semente
         "'#{@epoca_plantio_r1}', " +
         "'#{@epoca_plantio_r2}', " +
         "'#{@epoca_plantio_r3}', " +
-        "'#{@descricao}', " +
+        "'#{@descricao.to_s}', " +
         "'#{@tamanho}'"
     end
 
@@ -656,6 +656,9 @@ arquivo_pronto.close
 # Carrega os dados do CSV de entrada
 dados = CSV.read 'dados.csv'
 
+# Arquivos auxiliares
+description_even = CSV.read 'tabula-catalogo-plantas-descricao.csv'
+
 # Barra de Progresso
 progresso = ProgressBar.new dados.length
 
@@ -668,6 +671,7 @@ progresso.start
 # Inicilização
 i = 0
 j = 0
+k = 0
 # Condição
 while i < dados.length && dados[i][0] != '=======' do
     # Adiciona uma barra de carregando
@@ -688,7 +692,7 @@ while i < dados.length && dados[i][0] != '=======' do
             j += 6
             i += 1
         when 'Nº DE'
-            0..5.times do |x|
+            0..6.times do |x|
                 # Coloca a informação da tabela na hash table
                 plantas[id_list[j+x]].n_sementes_g = dados[i][0].gsub('.', '').to_i
 
@@ -699,7 +703,7 @@ while i < dados.length && dados[i][0] != '=======' do
 
         # Faz a mesma coisa que o anterior só que numa propriedade nova
         when 'NECESSIDADE'
-            0..5.times do |x|
+            0..6.times do |x|
                 # Coloca a informação da tabela na hash table
                 plantas[id_list[j+x]].necessidade_kg_ha = dados[i][0].gsub('.','').gsub(',','.').to_f
 
@@ -708,7 +712,7 @@ while i < dados.length && dados[i][0] != '=======' do
 
         # Mais uma propriedade parecida
         when 'Nº DIAS INÍCIO '
-            0..5.times do |x|
+            0..6.times do |x|
                 # Coloca a informação da tabela na hash table
                 plantas[id_list[j+x]].n_dias_germinacao = dados[i][0]
 
@@ -717,7 +721,7 @@ while i < dados.length && dados[i][0] != '=======' do
 
         # Mesma receita de bolo
         when 'ESPAÇAMENTO'
-            0..5.times do |x|
+            0..6.times do |x|
                 # Coloca a informação da tabela na hash table
                 plantas[id_list[j+x]].espacamento_linha_plantas = dados[i][0]
 
@@ -726,11 +730,11 @@ while i < dados.length && dados[i][0] != '=======' do
 
         # Mesma Receita de bolo só que 3 vezes para cada planta
         when 'ÉPOCA DE'
-            0..5.times do |x|
+            0..6.times do |x|
                 # Coloca a informação da tabela na hash table
                 plantas[id_list[j+x]].epoca_plantio_r1 = dados[i][0]
                 plantas[id_list[j+x]].epoca_plantio_r2 = dados[i+1][0]
-                plantas[id_list[j+x]].epoca_plantio_r2 = dados[i+2][0]
+                plantas[id_list[j+x]].epoca_plantio_r3 = dados[i+2][0]
 
                 # Incrementamos 3 posições porque são 3 linhas por planta
                 i += 3
@@ -756,6 +760,66 @@ while i < dados.length && dados[i][0] != '=======' do
             # Caracteristicas está na mesma forma que as anteriores, então a mesma técnica
             # será utilizada
 
+            # Iterador de ID
+            x = 0
+
+            # Iterador de lista de CARACTERISTICAS
+            k += 1
+
+            # Enquanto não estivermos no final do arquivo ou tivermos encontrado 'ÉPOCA DE'
+            while i < dados.length && dados[i][0] != 'ÉPOCA DE'
+                # String temporária
+                tmp_string = ''
+
+                # Se não estivermos no final de nenhum dos arquivos, e o texto for igual nos dois
+                # adicionamos o texto a string e incrementamos o iterador
+                while i < dados.length && k < description_even.length && dados[i][0] == description_even[k][0]
+                    # Armazenamos a string atual
+                    tmp_string += dados[i][0]
+                    
+                    # Incrementamos os dois iteradores
+                    i += 1
+                    k += 1
+                end
+
+                # Armazenamos a descrição
+                plantas[id_list[j+x]].descricao = tmp_string
+
+                # Incrementamos o iterador de ID
+                x += 1
+
+                # String temporária
+                tmp_string = ''
+
+                # Se não houver mais descrição
+                if description_even[k].nil?
+                    # Armazenamos a entrada até acharmos a string 'ÉPOCA DE'
+                    while i < dados.length && dados[i][0] != 'ÉPOCA DE'
+                        # Aramzenamos a string
+                        tmp_string += dados[i][0]
+                        
+                        # Incrementamos o iterador
+                        i += 1
+                    end
+                # Se houver descrição
+                else
+                    # Como existem outras descricoes iremos verifcar se encontramos a string
+                    # 'ÉPOCA DE' ou encontrarmos a próxima descrição conhecida
+                    while i < dados.length && dados[i][0] != description_even[k][0] && dados[i][0] != 'ÉPOCA DE'
+                        # Aramzenamos a string
+                        tmp_string += dados[i][0]
+
+                        # Incrementamos o iterador
+                        i += 1
+                    end
+                end
+
+                # Armazenamos a descrição
+                plantas[id_list[j+x]].descricao = tmp_string
+
+                # Incrementamos o iterador de ID
+                x += 1
+            end
         else
             # Se chegarmos em uma linha que não sabemos tratar
             # ignoramos a mesma
@@ -787,8 +851,6 @@ while i < dados.length do
     unless titulos_colunas[palavra_reservada].nil?
         i += titulos_colunas[palavra_reservada]
     end
-
-    ref_list
 
     # Checa a palavra reservada
     case palavra_reservada
@@ -853,34 +915,34 @@ end
 # Existe uma lista grande de propriedades repetidas.
 # Precisamos inserir as mesmas dentros das listas já criadas
 
-# Exportar para uma tabela sqlite3
+# Exportar para uma tabela sqlite3j
 begin
     # Create a new Database
-    db = SQLite3::Database.open 'dados.db'
+    db = Sequel.connect('sqlite://dados.db')
 
     # Remove a tabela plantas caso a mesma já exista
-    db.execute 'DROP TABLE IF EXISTS Plantas'
+    db.run  'DROP TABLE IF EXISTS Plantas'
 
     # Remove a tabela arvores caso a mesma já exista
-    db.execute 'DROP TABLE IF EXISTS Arvores'
+    db.run  'DROP TABLE IF EXISTS Arvores'
 
     # Cria a tabela Plantas
-    db.execute  'CREATE TABLE Plantas(Id INTEGER PRIMARY KEY, ' +
-                'Nome TEXT, Apelido TEXT, Foto BLOB, ' +
-                'NomeCientificos TEXT, NumeroSementes INTEGER, ' +
-                'NumeroDias TEXT, NecessidadeSementes TEXT, CicloDiasInv TEXT, ' +
-                'CicloDiasVer TEXT, Espacamento TEXT, EpocaPlantioR1 TEXT, ' +
-                'EpocaPlantioR3 TEXT, EpocaPlantioR2 TEXT, Descricao TEXT, Tamanho TEXT)'
+    db.run  'CREATE TABLE Plantas(Id INTEGER PRIMARY KEY, ' +
+            'Nome TEXT, Apelido TEXT, Foto BLOB, ' +
+            'NomeCientificos TEXT, NumeroSementes INTEGER, ' +
+            'NumeroDias TEXT, NecessidadeSementes TEXT, CicloDiasInv TEXT, ' +
+            'CicloDiasVer TEXT, Espacamento TEXT, EpocaPlantioR1 TEXT, ' +
+            'EpocaPlantioR2 TEXT, EpocaPlantioR3 TEXT, Descricao TEXT, Tamanho TEXT);'
 
     # Cria a tabela Arvores
-    db.execute  'CREATE TABLE Arvores(Id INTEGER PRIMARY KEY, ' +
-                'Nome TEXT, ' +
-                'Foto BLOB, ' +
-                'NomesCientificos TEXT, ' +
-                'Classificacao TEXT, ' +
-                'Bioma TEXT, ' +
-                'RegiaoDeOrigem TEXT, ' +
-                'Caracteristicas TEXT)'
+    db.run  'CREATE TABLE Arvores(Id INTEGER PRIMARY KEY, ' +
+            'Nome TEXT, ' +
+            'Foto BLOB, ' +
+            'NomesCientificos TEXT, ' +
+            'Classificacao TEXT, ' +
+            'Bioma TEXT, ' +
+            'RegiaoDeOrigem TEXT, ' +
+            'Caracteristicas TEXT);'
 
     # Barra de Progresso
     progresso = ProgressBar.new plantas.length
@@ -895,15 +957,38 @@ begin
         # Adicionamos o progresso
         progresso.check
 
+        # DEBUG
+        # print "\n>> #{e[1].descricao}"
+
+        # Dataset Selection
+        plants_db = db.from(:Plantas)
+
         # Adicionamos a entrada
-        db.execute "INSERT INTO Plantas VALUES(#{e[1].to_sql})"
+        # Forma correta, cuidado com SQL Injection :X
+        plants_db.insert(   :Id => e[1].id,
+                            :Nome => e[1].nome,
+                            :Apelido => e[1].apelido,
+                            :Foto => e[1].foto,
+                            :NomeCientificos => e[1].nomes_cientificos.to_s,
+                            :NumeroSementes => e[1].n_sementes_g,
+                            :NumeroDias => e[1].n_dias_germinacao,
+                            :NecessidadeSementes => e[1].necessidade_kg_ha,
+                            :CicloDiasInv => e[1].ciclo_dias_inv,
+                            :CicloDiasVer => e[1].ciclo_dias_ver,
+                            :Espacamento => e[1].espacamento_linha_plantas,
+                            :EpocaPlantioR1 => e[1].epoca_plantio_r1,
+                            :EpocaPlantioR2 => e[1].epoca_plantio_r2,
+                            :EpocaPlantioR3 => e[1].epoca_plantio_r3,
+                            :Descricao => e[1].descricao,
+                            :Tamanho => e[1].tamanho)
+
     end
 
     # Finliza o progresso
     progresso.stop
 
     # Barra de Progresso
-    progresso = ProgressBar.new plantas.length
+    progresso = ProgressBar.new arvores.length
 
     # Inicia a barra de progresso
     puts 'Populating Output Database - Trees'
@@ -915,7 +1000,7 @@ begin
         progresso.check
 
         # Adicionamos a entrada
-        db.execute "INSERT INTO Arvores VALUES(#{e[1].to_sql})"
+        db.run "INSERT INTO Arvores VALUES(#{e[1].to_sql})"
     end
 
     # Finliza o progresso
@@ -926,7 +1011,7 @@ rescue SQLite3::Exception => e
     puts e
 ensure
     # Fecha a db mesmo que ocoram erros
-    db.close if db
+    db.disconnect if db
 end
 
 # FINISHED :D

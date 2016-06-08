@@ -33,7 +33,7 @@ end
 id_list = []
 ref_list = []
 
-arquivo = IO.readlines 'entrada.csv'
+arquivo = IO.readlines 'entrada.csv';0
 i = 0
 
 while i < arquivo.length do
@@ -400,3 +400,55 @@ vermelho = "\e[31m"
 azul     = "\e[34m"
 roxo     = "\e[35m"
 end_cor  = "\e[0m"
+
+# ======================================
+
+dados = CSV.read 'entrada.csv';0
+description_even = CSV.read 'tabula-catalogo-plantas-descricao.csv';0
+
+i = 0
+j = 0
+k = 0
+while i < dados.length
+    if dados[i][0] == 'CARACTERÍSTICAS/DIFERENCIAIS'
+        i += 1
+        j += 1
+
+        x = ''
+        y = ''
+        while i < dados.length && dados[i][0] != 'ÉPOCA DE'
+            while i < dados.length && j < description_even.length  && dados[i][0] == description_even[j][0]
+                x += dados[i][0]
+                i += 1
+                j += 1
+            end
+
+            #puts "=== CARACTERÍSTICAS IMPAR === \n" + x
+            if x == ''
+                puts "\e[31m LADO 1/#{i+1} => #{dados[i][0]} | LADO 2/#{j+1} => #{description_even[j][0]} \e[0m"
+            end
+
+            if description_even[j].nil?
+                while i < dados.length && dados[i][0] != 'ÉPOCA DE'
+                    y += dados[i][0]
+                    i += 1
+                end
+            else
+                while i < dados.length && dados[i][0] != description_even[j][0] && dados[i][0] != 'ÉPOCA DE'
+                    y += dados[i][0]
+                    i += 1
+                end
+            end
+
+            #puts "=== CARACTERÍSTICAS PAR === \n" + y
+            #gets
+
+            x = ''
+            y = ''
+
+            k += 2
+        end
+    else
+        i += 1
+    end
+end
