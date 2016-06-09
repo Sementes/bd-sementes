@@ -71,7 +71,7 @@ class Semente
     # Propriedades Especificas
     @n_sementes_g
     @n_dias_germinacao
-    @necessidade_kg_ha
+    @necessidade_ha
 
     # Preferencias da planta
     @ciclo_dias_ver
@@ -89,7 +89,7 @@ class Semente
 
     # Getters and setters
     attr_accessor :nome, :apelido, :id, :foto, :nomes_cientificos, :n_sementes_g, :n_dias_germinacao
-    attr_accessor :necessidade_kg_ha, :ciclo_dias_inv, :ciclo_dias_ver, :espacamento_linha_plantas
+    attr_accessor :necessidade_ha, :ciclo_dias_inv, :ciclo_dias_ver, :espacamento_linha_plantas
     attr_accessor :epoca_plantio_r1, :epoca_plantio_r2, :epoca_plantio_r3, :descricao, :tamanho
 
     # Construtor
@@ -101,7 +101,7 @@ class Semente
         @foto, @n_sementes_g, @n_dias_germinacao = ''
         @ciclo_dias_inv, @ciclo_dias_ver, @espacamento_linha_plantas = ''
         @epoca_plantio_r1, @epoca_plantio_r2, @epoca_plantio_r3 = ''
-        @descricao, @tamanho, @necessidade_kg_ha = ''
+        @descricao, @tamanho, @necessidade_ha = ''
     end
 
     # Retorna um array deste objeto
@@ -113,7 +113,7 @@ class Semente
         @nomes_cientificos.to_s,
         @n_sementes_g,
         @n_dias_germinacao,
-        @necessidade_kg_ha,
+        @necessidade_ha,
         @ciclo_dias_inv,
         @ciclo_dias_ver,
         @espacamento_linha_plantas,
@@ -122,26 +122,6 @@ class Semente
         @epoca_plantio_r3,
         @descricao,
         @tamanho]
-    end
-
-    # To string sql
-    def to_sql
-        "#{@id}, " +
-        "'#{@nome}', " +
-        "'#{@apelido}', " +
-        "'#{@foto}', " +
-        "'#{@nomes_cientificos.to_s}', " +
-        "#{@n_sementes_g}, " +
-        "'#{@n_dias_germinacao}', " +
-        "'#{@necessidade_kg_ha}', " +
-        "'#{@ciclo_dias_inv}', " +
-        "'#{@ciclo_dias_ver}', " +
-        "'#{@espacamento_linha_plantas}', " +
-        "'#{@epoca_plantio_r1}', " +
-        "'#{@epoca_plantio_r2}', " +
-        "'#{@epoca_plantio_r3}', " +
-        "'#{@descricao.to_s}', " +
-        "'#{@tamanho}'"
     end
 
     # Retorna uma string desse objeto
@@ -153,7 +133,7 @@ class Semente
         "nomes_cientificos: #{@nomes_cientificos.to_s}, " +
         "n_sementes_g: #{@n_sementes_g}, " +
         "n_dias_germinacao: #{@n_dias_germinacao}, " +
-        "necessidade_kg_ha: #{@necessidade_kg_ha}, " +
+        "necessidade_ha: #{@necessidade_ha}, " +
         "ciclo_dias_inv: #{@ciclo_dias_inv}, " +
         "ciclo_dias_ver: #{@ciclo_dias_ver}, " +
         "espacamento_linha_plantas: #{@espacamento_linha_plantas}, " +
@@ -216,6 +196,7 @@ class Arvore
         "caracteristicas: #{@caracteristicas}"
     end
 
+    # This is not secure, only here for tests
     def to_sql
         "#{@id}, " +
         "'#{@nome}', " +
@@ -657,7 +638,7 @@ arquivo_pronto.close
 dados = CSV.read 'dados.csv'
 
 # Arquivos auxiliares
-description_even = CSV.read 'tabula-catalogo-plantas-descricao.csv'
+description_even = CSV.read 'tabula_catologo/tabula-catalogo-plantas-descricao.csv'
 
 # Barra de Progresso
 progresso = ProgressBar.new dados.length
@@ -703,11 +684,22 @@ while i < dados.length && dados[i][0] != '=======' do
 
         # Faz a mesma coisa que o anterior só que numa propriedade nova
         when 'NECESSIDADE'
-            0..6.times do |x|
-                # Coloca a informação da tabela na hash table
-                plantas[id_list[j+x]].necessidade_kg_ha = dados[i][0].gsub('.','').gsub(',','.').to_f
+            # Verifica se possuimos 'gramas'
+            if dados[i-1][0] == 'g / 1000m²'
+                0..6.times do |x|
+                    # Coloca a informação da tabela na hash table
+                    plantas[id_list[j+x]].necessidade_ha = dados[i][0].gsub('.','').gsub(',','.') + "G"
 
-                i += 1
+                    i += 1
+                end
+            # Ou se possuimos quilos
+            else
+                0..6.times do |x|
+                    # Coloca a informação da tabela na hash table
+                    plantas[id_list[j+x]].necessidade_ha = dados[i][0].gsub('.','').gsub(',','.') + "KG"
+
+                    i += 1
+                end
             end
 
         # Mais uma propriedade parecida
@@ -876,7 +868,7 @@ CSV.open 'plantas-saida.csv', 'wb' do |saida|
                     NOMES_CIENTIFICOS
                     N_SEMENTES_G
                     N_DIAS_GERMINACAO
-                    NECESSIDADE_KG_HA
+                    NECESSIDADE_HA
                     CICLO_DIAS_INV
                     CICLO_DIAS_VER
                     ESPACAMENTO_LINHA_PLANTAS
@@ -930,7 +922,7 @@ begin
     db.run  'CREATE TABLE Plantas(Id INTEGER PRIMARY KEY, ' +
             'Nome TEXT, Apelido TEXT, Foto BLOB, ' +
             'NomeCientificos TEXT, NumeroSementes INTEGER, ' +
-            'NumeroDias TEXT, NecessidadeSementes TEXT, CicloDiasInv TEXT, ' +
+            'NumeroDias TEXT, NecessidadeSementesHA TEXT, CicloDiasInv TEXT, ' +
             'CicloDiasVer TEXT, Espacamento TEXT, EpocaPlantioR1 TEXT, ' +
             'EpocaPlantioR2 TEXT, EpocaPlantioR3 TEXT, Descricao TEXT, Tamanho TEXT);'
 
@@ -957,30 +949,27 @@ begin
         # Adicionamos o progresso
         progresso.check
 
-        # DEBUG
-        # print "\n>> #{e[1].descricao}"
-
-        # Dataset Selection
+        # Dataset SelectionNecessidadeSementesHA
         plants_db = db.from(:Plantas)
 
         # Adicionamos a entrada
-        # Forma correta, cuidado com SQL Injection :X
-        plants_db.insert(   :Id => e[1].id,
-                            :Nome => e[1].nome,
-                            :Apelido => e[1].apelido,
-                            :Foto => e[1].foto,
-                            :NomeCientificos => e[1].nomes_cientificos.to_s,
-                            :NumeroSementes => e[1].n_sementes_g,
-                            :NumeroDias => e[1].n_dias_germinacao,
-                            :NecessidadeSementes => e[1].necessidade_kg_ha,
-                            :CicloDiasInv => e[1].ciclo_dias_inv,
-                            :CicloDiasVer => e[1].ciclo_dias_ver,
-                            :Espacamento => e[1].espacamento_linha_plantas,
-                            :EpocaPlantioR1 => e[1].epoca_plantio_r1,
-                            :EpocaPlantioR2 => e[1].epoca_plantio_r2,
-                            :EpocaPlantioR3 => e[1].epoca_plantio_r3,
-                            :Descricao => e[1].descricao,
-                            :Tamanho => e[1].tamanho)
+        # Forma correta, tem que ter cuidado com SQL Injection :X
+        plants_db.insert(   :Id                     => e[1].id,
+                            :Nome                   => e[1].nome,
+                            :Apelido                => e[1].apelido,
+                            :Foto                   => e[1].foto,
+                            :NomeCientificos        => e[1].nomes_cientificos.to_s,
+                            :NumeroSementes         => e[1].n_sementes_g,
+                            :NumeroDias             => e[1].n_dias_germinacao,
+                            :NecessidadeSementesHA  => e[1].necessidade_ha,
+                            :CicloDiasInv           => e[1].ciclo_dias_inv,
+                            :CicloDiasVer           => e[1].ciclo_dias_ver,
+                            :Espacamento            => e[1].espacamento_linha_plantas,
+                            :EpocaPlantioR1         => e[1].epoca_plantio_r1,
+                            :EpocaPlantioR2         => e[1].epoca_plantio_r2,
+                            :EpocaPlantioR3         => e[1].epoca_plantio_r3,
+                            :Descricao              => e[1].descricao,
+                            :Tamanho                => e[1].tamanho)
 
     end
 
