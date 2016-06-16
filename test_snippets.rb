@@ -410,6 +410,7 @@ i = 0
 j = 0
 k = 0
 while i < dados.length
+    # noinspection RubyScope
     if dados[i][0] == 'CARACTERÍSTICAS/DIFERENCIAIS'
         i += 1
         j += 1

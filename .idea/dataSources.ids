@@ -7,18 +7,18 @@
     <table name="Plantas" schema="" catalog="" type="TABLE">
       <column name="Id" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
       <column name="Nome" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
-      <column name="Sigla" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
-      <column name="Foto" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="Apelido" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="Foto" sqlType="BLOB" precision="0" scale="-1" nullable="true" jdbcType="12"/>
       <column name="NomeCientificos" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
       <column name="NumeroSementes" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
       <column name="NumeroDias" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
-      <column name="NecessidadeSementes" sqlType="" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="NecessidadeSementesHA" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
       <column name="CicloDiasInv" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
       <column name="CicloDiasVer" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
       <column name="Espacamento" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
       <column name="EpocaPlantioR1" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
-      <column name="EpocaPlantioR3" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
       <column name="EpocaPlantioR2" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="EpocaPlantioR3" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
       <column name="Descricao" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
       <column name="Tamanho" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
       <primary-key columns="id"/>
